@@ -1,0 +1,15 @@
+.meter {
+  display: inline-flex;
+  gap: 4px;
+}
+
+.cell {
+  width: 16px;
+  height: 12px;
+  background: var(--color-border);
+  transform: skewX(-18deg);
+}
+
+.active {
+  background: var(--color-brand);
+}

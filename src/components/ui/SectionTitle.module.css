@@ -1,0 +1,59 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.center {
+  align-items: center;
+  text-align: center;
+}
+
+.kicker {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-style: italic;
+  font-size: var(--text-small);
+  letter-spacing: 0.14em;
+  color: var(--color-brand);
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: var(--text-h2);
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  position: relative;
+  padding-left: 22px;
+}
+
+/* Refinas heading marker: a sharp red slash (vs LAVA's blurred dot) */
+.title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.32em;
+  width: 12px;
+  height: 0.75em;
+  background: var(--color-brand);
+  transform: skewX(-18deg);
+}
+
+.center .title {
+  padding-left: 0;
+}
+
+.center .title::before {
+  display: none;
+}
+
+.lead {
+  margin-top: var(--space-1);
+  color: inherit;
+}
+
+.lead em {
+  font-style: normal;
+  color: var(--color-brand);
+  font-weight: 700;
+}

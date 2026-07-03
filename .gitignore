@@ -1,0 +1,21 @@
+# dependencies
+/node_modules
+
+# next.js
+/.next/
+/out/
+next-env.d.ts
+
+# reference research (scraped audits, browser session dumps) — never commit
+/context/
+
+# misc
+.DS_Store
+*.pem
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo

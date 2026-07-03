@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="g12" x1="0.8" y1="0" x2="0.2" y2="1">
+      <stop offset="0" stop-color="#1E1E1E"/>
+      <stop offset="1" stop-color="#141414"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#g12)"/>
+  <polygon points="560,0 648,0 488,600 400,600" fill="#D8222B" opacity="0.25"/>
+     <polygon points="680,0 724,0 564,600 520,600" fill="#D8222B" opacity="0.25"/>
+  <line x1="440.00000000000006" y1="600" x2="720" y2="0" stroke="#D8222B" stroke-width="2" opacity="0.35"/>
+  <rect x="347" y="247.2" width="106" height="3" fill="#D8222B"/>
+  <text x="400" y="311.55" text-anchor="middle" font-family="Roboto, sans-serif" font-size="33" font-weight="500" letter-spacing="9.9" fill="#666">PROGRAM — MITT</text>
+  
+</svg>

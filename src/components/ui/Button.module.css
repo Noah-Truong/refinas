@@ -1,0 +1,139 @@
+.button {
+  --btn-bg: var(--color-brand);
+  --btn-fg: var(--color-on-dark);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 12px 44px 12px 28px;
+  background: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--text-body);
+  letter-spacing: 0.04em;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: background var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+  box-shadow: var(--shadow-1);
+  text-align: center;
+}
+
+/* sharp diagonal sheen on the right edge */
+.button::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -14px;
+  width: 46px;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.14);
+  transform: skewX(-18deg);
+  transition: transform var(--dur-med) var(--ease-out);
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-2);
+}
+
+.button:hover::after {
+  transform: skewX(-18deg) translateX(-8px);
+}
+
+.primary:hover {
+  background: var(--color-brand-strong);
+}
+
+.secondary {
+  --btn-bg: var(--color-dark);
+}
+
+.secondary:hover {
+  background: #000;
+}
+
+.ghost {
+  --btn-bg: transparent;
+  --btn-fg: var(--color-ink);
+  box-shadow: inset 0 0 0 2px var(--color-ink);
+}
+
+.ghost::after {
+  display: none;
+}
+
+.ghost:hover {
+  --btn-fg: var(--color-on-dark);
+  background: var(--color-ink);
+}
+
+.whiteOutline {
+  --btn-bg: transparent;
+  --btn-fg: var(--color-on-dark);
+  box-shadow: inset 0 0 0 2px var(--color-on-dark);
+}
+
+.whiteOutline::after {
+  display: none;
+}
+
+.whiteOutline:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.lg {
+  min-height: 64px;
+  padding: 16px 52px 16px 36px;
+  font-size: 1.125rem;
+  min-width: min(360px, 100%);
+}
+
+.arrow {
+  position: absolute;
+  right: 18px;
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid currentColor;
+  border-right: 2px solid currentColor;
+  transform: rotate(45deg);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.button:hover .arrow {
+  transform: rotate(45deg) translate(2px, -2px);
+}
+
+.withCatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.catch {
+  font-weight: 700;
+  font-size: var(--text-small);
+  color: inherit;
+}
+
+.catch::before,
+.catch::after {
+  content: '＼';
+  color: var(--color-brand);
+  margin: 0 6px;
+  font-weight: 900;
+}
+
+.catch::after {
+  content: '／';
+}
+
+@media (max-width: 640px) {
+  .button {
+    width: 100%;
+  }
+}

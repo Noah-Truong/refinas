@@ -1,0 +1,57 @@
+.hoursPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  background: var(--color-base);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-1);
+}
+
+.hoursTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.hoursTable tr + tr {
+  border-top: 1px solid var(--color-border);
+}
+
+.hoursLabel {
+  width: 34%;
+  padding: var(--space-1) var(--space-2);
+  text-align: left;
+  font-weight: 700;
+  font-size: var(--text-small);
+  color: var(--color-ink);
+  background: var(--color-panel);
+  border-right: 3px solid var(--color-brand);
+  vertical-align: middle;
+}
+
+.hoursTime {
+  padding: var(--space-1) var(--space-2);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: var(--text-body);
+  vertical-align: middle;
+}
+
+.snsNote {
+  font-size: var(--text-small);
+  color: var(--color-muted);
+  padding-left: 1.2em;
+  position: relative;
+}
+
+.snsNote::before {
+  content: '※';
+  position: absolute;
+  left: 0;
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: center;
+}

@@ -1,0 +1,93 @@
+.slider {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  min-width: 0;
+}
+
+.track {
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  overscroll-behavior-x: contain;
+}
+
+.track::-webkit-scrollbar {
+  display: none;
+}
+
+.slide {
+  flex: 0 0 var(--slide-w);
+  min-width: 0;
+  scroll-snap-align: start;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+}
+
+.arrowButton {
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-dark);
+  border-radius: var(--radius-sm);
+  transition: background var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
+  flex-shrink: 0;
+}
+
+.arrowButton:hover:not(:disabled) {
+  background: var(--color-brand);
+}
+
+.arrowButton:disabled {
+  opacity: 0.25;
+  cursor: default;
+}
+
+.chevron {
+  width: 8px;
+  height: 8px;
+  border-top: 2px solid var(--color-on-dark);
+  border-right: 2px solid var(--color-on-dark);
+  transform: rotate(45deg);
+  margin-left: -3px;
+}
+
+.chevronLeft {
+  transform: rotate(-135deg);
+  margin-left: 3px;
+}
+
+.bullets {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.bullet {
+  width: 10px;
+  height: 10px;
+  background: var(--color-border);
+  transform: skewX(-18deg);
+  transition: background var(--dur-fast) var(--ease-out);
+  padding: 0;
+}
+
+.bullet:hover {
+  background: var(--color-muted);
+}
+
+.bulletActive,
+.bulletActive:hover {
+  background: var(--color-brand);
+}

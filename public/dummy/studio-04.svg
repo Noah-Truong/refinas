@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <defs>
+    <linearGradient id="g6" x1="0.8" y1="0" x2="0.2" y2="1">
+      <stop offset="0" stop-color="#1E1E1E"/>
+      <stop offset="1" stop-color="#141414"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#g6)"/>
+  <polygon points="840,0 972,0 732,800 600,800" fill="#D8222B" opacity="0.25"/>
+     <polygon points="1020,0 1086,0 846,800 780,800" fill="#D8222B" opacity="0.25"/>
+  <line x1="660" y1="800" x2="1080" y2="0" stroke="#D8222B" stroke-width="2" opacity="0.35"/>
+  <rect x="529.5" y="329.6" width="141" height="3" fill="#D8222B"/>
+  <text x="600" y="415.4" text-anchor="middle" font-family="Roboto, sans-serif" font-size="44" font-weight="500" letter-spacing="13.2" fill="#666">STUDIO PHOTO 04</text>
+  
+</svg>

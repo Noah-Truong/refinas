@@ -1,0 +1,29 @@
+.link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 700;
+  font-size: var(--text-small);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  transition: color var(--dur-fast) var(--ease-out);
+}
+
+.link:hover {
+  color: var(--color-brand);
+}
+
+.arrow {
+  width: 7px;
+  height: 7px;
+  border-top: 2px solid var(--color-brand);
+  border-right: 2px solid var(--color-brand);
+  transform: rotate(45deg);
+  flex-shrink: 0;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.link:hover .arrow {
+  transform: rotate(45deg) translate(2px, -2px);
+}

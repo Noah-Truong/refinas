@@ -1,0 +1,233 @@
+/* --- scrollable table (SP) --- */
+.scrollWrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table {
+  width: 100%;
+  min-width: 620px;
+  border-collapse: collapse;
+  background: var(--color-base);
+  font-size: var(--text-body);
+}
+
+.table th,
+.table td {
+  border: 1px solid var(--color-border);
+  padding: var(--space-2);
+  text-align: center;
+  vertical-align: middle;
+}
+
+.cornerCell {
+  background: transparent;
+  border: none;
+}
+
+/* recommended column: tint + 2px red column border */
+.recommendedCol {
+  background: var(--color-brand-tint);
+  border-left: 2px solid var(--color-brand);
+  border-right: 2px solid var(--color-brand);
+}
+
+.table thead .recommendedCol {
+  border-top: 2px solid var(--color-brand);
+}
+
+.table tbody tr:last-child .recommendedCol {
+  border-bottom: 2px solid var(--color-brand);
+}
+
+/* --- column headers --- */
+.planHeader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.recommendBadge {
+  display: inline-block;
+  background: var(--color-brand);
+  color: var(--color-on-dark);
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: var(--text-small);
+  letter-spacing: 0.06em;
+  padding: 3px 14px;
+  transform: skewX(-18deg);
+}
+
+.planName {
+  font-size: var(--text-h3);
+  font-weight: 900;
+  line-height: var(--leading-heading);
+}
+
+.planTarget {
+  font-size: var(--text-small);
+  font-weight: 400;
+  color: var(--color-muted);
+}
+
+/* --- body cells --- */
+.rowLabel {
+  background: var(--color-dark);
+  color: var(--color-on-dark);
+  font-weight: 700;
+  font-size: var(--text-small);
+  white-space: nowrap;
+}
+
+.priceCell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.priceLine {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.genderLabel {
+  font-size: var(--text-small);
+  font-weight: 700;
+  color: var(--color-muted);
+}
+
+.priceValue {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-size: 1.375rem;
+  color: var(--color-ink);
+  font-variant-numeric: tabular-nums;
+}
+
+.priceUnit {
+  font-size: var(--text-small);
+  color: var(--color-muted);
+}
+
+.cellText {
+  font-weight: 700;
+}
+
+/* compact in-table CTA */
+.tableCta {
+  min-height: 40px;
+  padding: 6px 30px 6px 16px;
+  font-size: var(--text-small);
+  border-radius: var(--radius-sm);
+  width: 100%;
+}
+
+/* --- footnotes --- */
+.footnote {
+  font-size: var(--text-small);
+  color: var(--color-muted);
+  line-height: var(--leading-body);
+}
+
+/* --- options accordions --- */
+.optionsBlock {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.optionsTitle {
+  font-size: var(--text-h3);
+  font-weight: 900;
+  position: relative;
+  padding-left: 20px;
+}
+
+.optionsTitle::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.32em;
+  width: 10px;
+  height: 0.75em;
+  background: var(--color-brand);
+  transform: skewX(-18deg);
+}
+
+.optionList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.option {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: var(--color-base);
+}
+
+.optionSummary {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) 44px var(--space-2) var(--space-2);
+  font-weight: 700;
+  position: relative;
+  list-style: none;
+}
+
+.optionSummary::-webkit-details-marker {
+  display: none;
+}
+
+.optionSummary::after {
+  content: '';
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  width: 8px;
+  height: 8px;
+  border-right: 2px solid var(--color-brand);
+  border-bottom: 2px solid var(--color-brand);
+  transform: translateY(-70%) rotate(45deg);
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.option[open] .optionSummary::after {
+  transform: translateY(-30%) rotate(-135deg);
+}
+
+.optionName {
+  flex: 1;
+  min-width: 0;
+}
+
+.optionPrice {
+  margin-left: auto;
+  text-align: right;
+  color: var(--color-brand);
+  font-family: var(--font-heading);
+  font-weight: 900;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.optionBody {
+  padding: 0 var(--space-2) var(--space-2);
+  font-size: var(--text-small);
+  color: var(--color-body);
+  line-height: var(--leading-body);
+}
+
+/* --- section-end CTA --- */
+.ctaWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+}
