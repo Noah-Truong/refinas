@@ -6,10 +6,10 @@
     </linearGradient>
   </defs>
   <rect width="600" height="600" fill="url(#g18)"/>
-  <polygon points="420,0 486,0 366,600 300,600" fill="#D8222B" opacity="0.25"/>
-     <polygon points="510,0 543,0 423,600 390,600" fill="#D8222B" opacity="0.25"/>
-  <line x1="330" y1="600" x2="540" y2="0" stroke="#D8222B" stroke-width="2" opacity="0.35"/>
-  <rect x="247" y="247.2" width="106" height="3" fill="#D8222B"/>
+  <polygon points="420,0 486,0 366,600 300,600" fill="#D8212C" opacity="0.25"/>
+     <polygon points="510,0 543,0 423,600 390,600" fill="#D8212C" opacity="0.25"/>
+  <line x1="330" y1="600" x2="540" y2="0" stroke="#D8212C" stroke-width="2" opacity="0.35"/>
+  <rect x="247" y="247.2" width="106" height="3" fill="#D8212C"/>
   <text x="300" y="311.55" text-anchor="middle" font-family="Roboto, sans-serif" font-size="33" font-weight="500" letter-spacing="9.9" fill="#666">TRAINER 02</text>
   
 </svg>

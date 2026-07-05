@@ -9,7 +9,14 @@ export function NearbyGyms({ gym }: { gym: Gym }) {
   if (!gym.nearbyGyms?.length) return null;
   return (
     <>
-      <SectionTitle title={`${gym.name}の近くの店舗`} />
+      <SectionTitle
+        title={`${gym.name}の近くの店舗`}
+        lead={
+          <>
+            <em>フルアクセス</em>プランなら、全38店舗を相互にご利用いただけます。
+          </>
+        }
+      />
       <ul className={styles.list}>
         {gym.nearbyGyms.map((nearby) => (
           <li key={nearby.slug} className={styles.item}>

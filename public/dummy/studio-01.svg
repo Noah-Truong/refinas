@@ -6,9 +6,9 @@
     </linearGradient>
   </defs>
   <rect width="1200" height="800" fill="url(#g3)"/>
-  <polygon points="420,0 684,0 444,800 180,800" fill="#D8222B" opacity="0.25"/>
-  <line x1="0" y1="600" x2="1200" y2="280" stroke="#D8222B" stroke-width="2" opacity="0.3"/>
-  <rect x="529.5" y="329.6" width="141" height="3" fill="#D8222B"/>
+  <polygon points="420,0 684,0 444,800 180,800" fill="#D8212C" opacity="0.25"/>
+  <line x1="0" y1="600" x2="1200" y2="280" stroke="#D8212C" stroke-width="2" opacity="0.3"/>
+  <rect x="529.5" y="329.6" width="141" height="3" fill="#D8212C"/>
   <text x="600" y="415.4" text-anchor="middle" font-family="Roboto, sans-serif" font-size="44" font-weight="500" letter-spacing="13.2" fill="#666">STUDIO PHOTO 01</text>
   
 </svg>

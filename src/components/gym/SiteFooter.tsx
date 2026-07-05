@@ -91,7 +91,7 @@ export function SiteFooter({ gym }: { gym: Gym }) {
             </p>
             <p className={styles.brandLine}>理想に向かい、輝き続ける人々のコミュニティを創造する</p>
             <p className={styles.brandText}>
-              Refinasは、キックボクシングを通じて一人ひとりが自分を磨き、洗練させていくためのスタジオです。汗を流すその先にある、理想のあなたと輝く毎日を、私たちは全力で応援します。
+              Refinasは、キックボクシングを通じて一人ひとりが自分を磨き、洗練させていくためのジムです。汗を流すその先にある、理想のあなたと輝く毎日を、私たちは全力で応援します。
             </p>
           </div>
         </Container>

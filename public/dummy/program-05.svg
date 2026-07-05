@@ -6,9 +6,9 @@
     </linearGradient>
   </defs>
   <rect width="800" height="600" fill="url(#g13)"/>
-  <polygon points="-176,0 176,0 440.00000000000006,600 88.00000000000006,600" fill="#D8222B" opacity="0.15"/>
-  <line x1="0" y1="450" x2="800" y2="210" stroke="#D8222B" stroke-width="2" opacity="0.3"/>
-  <rect x="347" y="247.2" width="106" height="3" fill="#D8222B"/>
+  <polygon points="-176,0 176,0 440.00000000000006,600 88.00000000000006,600" fill="#D8212C" opacity="0.15"/>
+  <line x1="0" y1="450" x2="800" y2="210" stroke="#D8212C" stroke-width="2" opacity="0.3"/>
+  <rect x="347" y="247.2" width="106" height="3" fill="#D8212C"/>
   <text x="400" y="311.55" text-anchor="middle" font-family="Roboto, sans-serif" font-size="33" font-weight="500" letter-spacing="9.9" fill="#666">PROGRAM — CIRCUIT</text>
   
 </svg>

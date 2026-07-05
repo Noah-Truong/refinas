@@ -4,8 +4,9 @@
    No hardcoded colors in components — reference these tokens.
    ============================================================ */
 :root {
-  /* Color */
-  --color-brand: #d8222b;        /* Refinas Red — CTA / emphasis */
+  /* Color — official brand colors per client checklist (refinas_nformation.pdf) */
+  --color-brand: #d8212c;        /* Refinas Red — CTA / emphasis */
+  --color-brand-blue: #0f6eb8;   /* Refinas Blue — official secondary (reserved for accents) */
   --color-brand-strong: #df0000; /* hover / emphasis */
   --color-brand-deep: #a01018;   /* pressed / gradient end */
   --color-brand-tint: #fbeef0;   /* light red-tinted surface */

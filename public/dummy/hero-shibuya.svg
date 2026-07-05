@@ -6,9 +6,9 @@
     </linearGradient>
   </defs>
   <rect width="1600" height="640" fill="url(#g0)"/>
-  <polygon points="-352,0 352,0 880.0000000000001,640 176.0000000000001,640" fill="#D8222B" opacity="0.15"/>
-  <line x1="160" y1="640" x2="720" y2="0" stroke="#D8222B" stroke-width="2" opacity="0.35"/>
-  <rect x="744" y="264" width="112" height="3" fill="#D8222B"/>
+  <polygon points="-352,0 352,0 880.0000000000001,640 176.0000000000001,640" fill="#D8212C" opacity="0.15"/>
+  <line x1="160" y1="640" x2="720" y2="0" stroke="#D8212C" stroke-width="2" opacity="0.35"/>
+  <rect x="744" y="264" width="112" height="3" fill="#D8212C"/>
   <text x="800" y="332.25" text-anchor="middle" font-family="Roboto, sans-serif" font-size="35" font-weight="500" letter-spacing="10.5" fill="#666">REFINAS SHIBUYA</text>
-  <text x="800" y="369" text-anchor="middle" font-family="Roboto, 'Noto Sans JP', sans-serif" font-size="19" letter-spacing="6.6" fill="#555">KICKBOXING STUDIO</text>
+  <text x="800" y="369" text-anchor="middle" font-family="Roboto, 'Noto Sans JP', sans-serif" font-size="19" letter-spacing="6.6" fill="#555">KICKBOXING GYM</text>
 </svg>

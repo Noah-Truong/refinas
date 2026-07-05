@@ -5,7 +5,7 @@ import styles from './page.module.css';
 
 export const metadata: Metadata = {
   title: '店舗一覧',
-  description: 'キックボクシングスタジオ Refinas の店舗一覧（デモ）。',
+  description: 'キックボクシングジム Refinas の店舗一覧（デモ）。',
 };
 
 export default async function GymListPage() {

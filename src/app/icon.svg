@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <!-- Refinas logo mark: brand-red square with the diagonal corner cut (see SiteHeader .logoMark) -->
-  <polygon points="0,0 64,0 64,39.7 39.7,64 0,64" fill="#d8222b"/>
+  <polygon points="0,0 64,0 64,39.7 39.7,64 0,64" fill="#d8212c"/>
   <!-- Heavy italic R, drawn as strokes so no font is needed -->
   <g transform="translate(4,0) skewX(-9)"
      fill="none" stroke="#ffffff" stroke-width="7.5"

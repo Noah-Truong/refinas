@@ -21,9 +21,10 @@ const hours: Gym['hours'] = [
   { label: '日祝', time: '10:00〜18:00' },
 ];
 
+// プラン名・条件・おすすめ指定はチェックリスト⑦の記入値。金額は未記入のためダミーのまま。
 const plans: Gym['plans'] = [
   {
-    planName: 'シルバー会員',
+    planName: 'シルバー',
     priceFemale: 9800,
     priceMale: 11800,
     unit: '円/月（税抜）',
@@ -33,17 +34,17 @@ const plans: Gym['plans'] = [
     ctaUrl: '#reserve',
   },
   {
-    planName: 'プラチナ会員',
+    planName: 'プラチナ',
     priceFemale: 14800,
     priceMale: 16800,
     unit: '円/月（税抜）',
     target: 'しっかり結果を出したい方に一番人気',
-    sessions: '通い放題（1店舗）',
+    sessions: '通い放題',
     isRecommended: true,
     ctaUrl: '#reserve',
   },
   {
-    planName: 'フルアクセス会員',
+    planName: 'フルアクセス',
     priceFemale: 16800,
     priceMale: 18800,
     unit: '円/月（税抜）',
@@ -60,14 +61,16 @@ const options: Gym['options'] = [
   { name: 'フルレンタル', price: 3000, note: '+3,000円/月（パンツ・シャツ・タオル）' },
 ];
 
+// チェックリスト④：実施中／タイトル「無料体験実施中」／専用キャンペーンページなし（予約導線へ）
+// 体験価格はチェックリスト③：通常5,000円→キャンペーン0円
 const campaign: Gym['campaign'] = {
   active: true,
-  title: '入会金15,000円→無料＆体験レッスン0円キャンペーン',
+  title: '無料体験実施中｜体験レッスン通常5,000円→0円',
   banner: {
     url: '/dummy/campaign-banner.svg',
     width: 1200,
     height: 400,
-    alt: '入会金15,000円→無料＆体験レッスン0円キャンペーン',
+    alt: '無料体験実施中｜体験レッスン通常5,000円→0円',
   },
   url: '#reserve',
 };
@@ -170,7 +173,7 @@ const faqs: Gym['faqs'] = [
   },
   {
     q: '支払い方法は何が使えますか？',
-    a: '月会費は口座振替またはクレジットカードでのお支払いとなります。オプションや物販はクレジットカード・QRコード決済・交通系ICもご利用いただけます。',
+    a: '月会費は口座振替でのお支払いとなります。入会金などの初期費用は現金またはクレジットカードがご利用いただけます。',
   },
   {
     q: '更衣室やシャワーはありますか？',
@@ -178,20 +181,20 @@ const faqs: Gym['faqs'] = [
   },
 ];
 
+// チェックリスト⑯の記入値
 const facilities: string[] = [
-  '男女別シャワー',
-  'パウダールーム',
-  '鍵付きロッカー',
-  'ウェア・グローブレンタル',
-  '水素水サーバー',
-  'Wi-Fi完備',
+  'シャワー',
+  '男女別更衣室',
+  'レンタルグローブ',
+  'レンタルタオル',
+  'レンタルウェア',
+  'パワーラック',
+  'リング',
 ];
 
 const paymentMethods: string[] = [
-  'クレジットカード',
-  'QRコード決済',
-  '交通系IC',
-  '口座振替',
+  '月会費：口座振替',
+  '初期費用：現金・クレジットカード',
 ];
 
 const sns = { instagram: 'https://www.instagram.com/refinas_kickboxing_studio' };
@@ -203,7 +206,7 @@ const trainerPhotos: Image[] = [
 ];
 
 const shared = {
-  brandLabel: 'キックボクシングスタジオ',
+  brandLabel: 'キックボクシングジム',
   status: 'published' as const,
   hours,
   holiday: '毎週月曜',
@@ -215,9 +218,9 @@ const shared = {
   reserveUrl: '#reserve',
   faqs,
   facilities,
-  studioType: '男女共用',
+  studioType: '男女可',
   paymentMethods,
-  primaryCtaLabel: '初回無料体験 今すぐ予約する',
+  primaryCtaLabel: '無料体験を予約する',
   primaryCtaUrl: '#reserve',
   contactUrl: '#reserve',
   sns,
@@ -233,20 +236,17 @@ export const demoGyms: Gym[] = [
     name: 'キックボクシング渋谷 Refinas',
     nameKana: 'キックボクシングシブヤ リフィナス',
     area: '東京',
-    catchCopy: '渋谷駅徒歩4分。初心者からはじめる、洗練されたキックボクシングスタジオ。',
+    catchCopy: '渋谷駅徒歩5分。初心者からはじめる、洗練されたキックボクシングジム。',
     heroImage: { url: '/dummy/hero-shibuya.svg', width: 1600, height: 640, alt: 'キックボクシング渋谷 Refinas スタジオ内観' },
-    targetNote: '初心者歓迎・男女共用',
-    postalCode: '150-0042',
-    address: '東京都渋谷区宇田川町12-5 リフィナス渋谷ビル4階',
-    tel: '03-6416-8321',
-    access: [
-      { line: 'JR山手線', station: '渋谷駅', exit: 'ハチ公口', walkMin: 4 },
-      { line: '東京メトロ半蔵門線', station: '渋谷駅', exit: 'A2出口', walkMin: 5 },
-      { line: '京王井の頭線', station: '渋谷駅', exit: 'アベニュー口', walkMin: 3 },
-    ],
-    accessNote: '井の頭通り沿い、1階がコンビニのビルです。',
+    targetNote: '初心者歓迎・男女可',
+    // NAP はチェックリスト⑤の記入値（最寄②③・駐車駐輪は未記入）
+    postalCode: '150-0002',
+    address: '東京都渋谷区渋谷3丁目1-8 オーベル渋谷 1階',
+    tel: '0120-181-199',
+    access: [{ line: 'JR山手線', station: '渋谷駅', walkMin: 5 }],
+    accessNote: '渋谷駅東口方面、明治通りから1本入った「オーベル渋谷」の1階です。',
     parking: '専用駐車場なし（近隣にコインパーキングあり）',
-    geo: { lat: 35.661236, lng: 139.698002 },
+    geo: { lat: 35.656, lng: 139.7045 },
     trainers: [
       {
         name: '佐藤 拓海',
@@ -289,7 +289,7 @@ export const demoGyms: Gym[] = [
     ],
     news: [
       { date: '2026/06/25', title: '7月の営業時間・休館日のお知らせ', url: '#', important: true },
-      { date: '2026/06/15', title: '入会金無料＆体験レッスン0円キャンペーン延長のお知らせ', url: '#', important: true },
+      { date: '2026/06/15', title: '無料体験キャンペーン（体験レッスン0円）延長のお知らせ', url: '#', important: true },
       { date: '2026/06/01', title: '新プログラム「女性向けボディメイクキック」スタート', url: '#' },
       { date: '2026/05/20', title: 'トレーナー高橋のパーソナル枠を増枠しました', url: '#' },
       { date: '2026/05/02', title: 'ゴールデンウィーク期間の営業について', url: '#' },
@@ -298,11 +298,11 @@ export const demoGyms: Gym[] = [
       { slug: 'refinas_ikebukuro', name: 'キックボクシング池袋 Refinas', accessNote: '渋谷駅から電車で16分' },
       { slug: 'yokohama', name: 'キックボクシング横浜 Refinas', accessNote: '渋谷駅から電車で25分' },
     ],
-    telCta: '03-6416-8321',
+    telCta: '0120-181-199',
     seo: {
-      title: 'キックボクシング渋谷 Refinas｜渋谷駅徒歩4分・初心者歓迎のキックボクシングスタジオ',
+      title: 'キックボクシング渋谷 Refinas｜渋谷駅徒歩5分・初心者歓迎のキックボクシングジム',
       description:
-        '渋谷駅徒歩4分のキックボクシングスタジオRefinas（リフィナス）。初心者・女性歓迎、月4回9,800円〜。今なら入会金15,000円→無料＆体験レッスン0円。',
+        '渋谷駅徒歩5分のキックボクシングジムRefinas（リフィナス）。初心者・女性歓迎、月4回9,800円〜。今なら体験レッスン通常5,000円→0円。',
       ogImage: { url: '/dummy/hero-shibuya.svg', width: 1600, height: 640, alt: 'キックボクシング渋谷 Refinas' },
     },
   },
@@ -316,9 +316,9 @@ export const demoGyms: Gym[] = [
     name: 'キックボクシング池袋 Refinas',
     nameKana: 'キックボクシングイケブクロ リフィナス',
     area: '東京',
-    catchCopy: '池袋駅徒歩1分。仕事帰りにそのまま通える、初心者歓迎のキックボクシングスタジオ。',
+    catchCopy: '池袋駅徒歩1分。仕事帰りにそのまま通える、初心者歓迎のキックボクシングジム。',
     heroImage: { url: '/dummy/hero-refinas_ikebukuro.svg', width: 1600, height: 640, alt: 'キックボクシング池袋 Refinas スタジオ内観' },
-    targetNote: '初心者歓迎・男女共用',
+    targetNote: '初心者歓迎・男女可',
     postalCode: '171-0021',
     address: '東京都豊島区西池袋3丁目29-14 一平ビル3階',
     tel: '03-5985-4620',
@@ -372,7 +372,7 @@ export const demoGyms: Gym[] = [
     ],
     news: [
       { date: '2026/06/28', title: '7月の営業時間・休館日のお知らせ', url: '#', important: true },
-      { date: '2026/06/10', title: '入会金無料＆体験レッスン0円キャンペーン実施中', url: '#', important: true },
+      { date: '2026/06/10', title: '無料体験キャンペーン（体験レッスン0円）実施中', url: '#', important: true },
       { date: '2026/06/03', title: 'ロッカールームの改装が完了しました', url: '#' },
       { date: '2026/05/18', title: 'トレーナー石井が入社しました', url: '#' },
       { date: '2026/05/01', title: '水素水サーバーを新型に入れ替えました', url: '#' },
@@ -393,9 +393,9 @@ export const demoGyms: Gym[] = [
     name: 'キックボクシング横浜 Refinas',
     nameKana: 'キックボクシングヨコハマ リフィナス',
     area: '神奈川',
-    catchCopy: '横浜駅西口徒歩5分。はじめてでも、女性ひとりでも通いやすいキックボクシングスタジオ。',
+    catchCopy: '横浜駅西口徒歩5分。はじめてでも、女性ひとりでも通いやすいキックボクシングジム。',
     heroImage: { url: '/dummy/hero-yokohama.svg', width: 1600, height: 640, alt: 'キックボクシング横浜 Refinas スタジオ内観' },
-    targetNote: '初心者歓迎・男女共用',
+    targetNote: '初心者歓迎・男女可',
     postalCode: '220-0004',
     address: '神奈川県横浜市西区北幸2-8-19 横浜西口Kビル5階',
     tel: '045-577-3908',
@@ -449,7 +449,7 @@ export const demoGyms: Gym[] = [
     ],
     news: [
       { date: '2026/06/27', title: '7月の営業時間・休館日のお知らせ', url: '#', important: true },
-      { date: '2026/06/12', title: '入会金無料＆体験レッスン0円キャンペーン実施中', url: '#', important: true },
+      { date: '2026/06/12', title: '無料体験キャンペーン（体験レッスン0円）実施中', url: '#', important: true },
       { date: '2026/06/05', title: 'サンドバッグを2台増設しました', url: '#' },
       { date: '2026/05/22', title: '「ストレッチ＆クールダウン」の開催枠を拡大', url: '#' },
       { date: '2026/05/06', title: 'ゴールデンウィーク中のご利用ありがとうございました', url: '#' },

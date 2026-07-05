@@ -18,13 +18,13 @@ const notoSansJp = Noto_Sans_JP({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://refinas-demo.example.com'),
+  metadataBase: new URL('https://refinas.jp'),
   title: {
-    default: 'Refinas｜キックボクシングスタジオ',
-    template: '%s｜キックボクシングスタジオ Refinas',
+    default: 'Refinas｜キックボクシングジム リフィナス',
+    template: '%s｜キックボクシングジム Refinas',
   },
   description:
-    '「理想」に向かい「輝き続ける」人々のために。初心者・女性歓迎のキックボクシングスタジオ Refinas（リフィナス）。',
+    '「理想」に向かい「輝き続ける」人々のために。初心者・女性歓迎のキックボクシングジム Refinas（リフィナス）。全38店舗。',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

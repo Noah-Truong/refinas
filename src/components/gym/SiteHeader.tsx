@@ -46,16 +46,12 @@ export function SiteHeader({ gym }: { gym: Gym }) {
             <span className={styles.logoMark} aria-hidden="true" />
             <span className={styles.logoText}>
               Refinas
-              <small>キックボクシングスタジオ</small>
+              <small>キックボクシングジム</small>
             </span>
           </Link>
 
           <div className={styles.navArea}>
-            <ul className={styles.utilityRow}>
-              <li>
-                <Link href="#login">会員様ログイン</Link>
-              </li>
-            </ul>
+            {/* 会員ログインは提供なし（情報収集チェックリスト：会員ログインURL＝なし） */}
             <nav aria-label="店舗内ナビゲーション">
               <ul className={styles.storeRow}>
                 <li className={styles.storeName}>{gym.name}</li>
@@ -107,9 +103,6 @@ export function SiteHeader({ gym }: { gym: Gym }) {
         <div className={styles.drawerCtas}>
           <Link href={gym.primaryCtaUrl} className={styles.drawerTrial} onClick={() => setMenuOpen(false)}>
             {gym.primaryCtaLabel}
-          </Link>
-          <Link href="#login" className={styles.drawerLogin} onClick={() => setMenuOpen(false)}>
-            会員様ログイン
           </Link>
         </div>
         <ul className={styles.drawerList}>
