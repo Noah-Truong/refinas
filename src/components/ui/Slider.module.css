@@ -75,12 +75,15 @@
 }
 
 .bullet {
-  width: 10px;
-  height: 10px;
+  /* 24px touch target, 10px visible mark (background clipped to content box) */
+  width: 24px;
+  height: 24px;
+  padding: 7px;
+  box-sizing: border-box;
   background: var(--color-border);
+  background-clip: content-box;
   transform: skewX(-18deg);
   transition: background var(--dur-fast) var(--ease-out);
-  padding: 0;
 }
 
 .bullet:hover {

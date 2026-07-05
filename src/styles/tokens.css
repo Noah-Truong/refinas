@@ -76,3 +76,12 @@
   --z-header: 1000;
   --z-bottom-bar: 101;
 }
+
+/* Mobile: tighter vertical rhythm, proportionally smaller corner cut */
+@media (max-width: 640px) {
+  :root {
+    --corner-cut: 28px;
+    --gutter: 16px;
+    --section-gap: clamp(var(--space-6), 9vw, var(--space-8));
+  }
+}

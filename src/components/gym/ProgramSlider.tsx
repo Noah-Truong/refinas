@@ -11,7 +11,7 @@ export function ProgramSlider({ gym }: { gym: Gym }) {
   return (
     <>
       <SectionTitle id="program" kicker="PROGRAM" title={`${gym.name}のプログラム`} />
-      <Slider label={`${gym.name}のプログラム一覧`} slideWidth="260px">
+      <Slider label={`${gym.name}のプログラム一覧`} slideWidth="min(260px, 80vw)">
         {gym.programs.map((program) => (
           <article key={program.name} className={styles.card}>
             <h3 className={styles.name}>{program.name}</h3>

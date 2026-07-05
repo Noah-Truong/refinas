@@ -195,6 +195,13 @@
   color: var(--color-on-dark-muted);
 }
 
+@media (max-width: 900px) {
+  /* reserve room for the fixed bottom quick-nav so the copyright isn't covered */
+  .footerProper {
+    padding-bottom: calc(var(--space-6) + 56px + env(safe-area-inset-bottom));
+  }
+}
+
 @media (max-width: 640px) {
   .support {
     grid-template-columns: 1fr;

@@ -14,6 +14,18 @@
   height: auto;
 }
 
+/* SP: guarantee room for the overlaid title on narrow screens */
+@media (max-width: 640px) {
+  .image {
+    min-height: 240px;
+    object-fit: cover;
+  }
+
+  .subtitle {
+    letter-spacing: 0.18em;
+  }
+}
+
 .overlay {
   position: absolute;
   inset: 0;
@@ -23,9 +35,11 @@
 .titleWrapper {
   position: absolute;
   left: clamp(16px, 4vw, 40px);
+  right: clamp(16px, 4vw, 40px);
   bottom: clamp(16px, 4vw, 36px);
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 6px;
 }
 

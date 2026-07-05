@@ -13,6 +13,13 @@ html {
   scroll-padding-top: 96px;
 }
 
+/* SP header is a single logo row — smaller anchor offset */
+@media (max-width: 900px) {
+  html {
+    scroll-padding-top: 64px;
+  }
+}
+
 body {
   margin: 0;
   font-family: var(--font-body);

@@ -27,6 +27,7 @@ export function PriceTable({ gym }: { gym: Gym }) {
       />
 
       {/* 7a. comparison table (horizontally scrollable on SP) */}
+      <p className={styles.scrollHint}>※ 表は横にスクロールできます</p>
       <div className={styles.scrollWrapper}>
         <table className={styles.table}>
           <thead>
