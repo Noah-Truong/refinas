@@ -138,12 +138,17 @@
   font-weight: 700;
 }
 
-.facilityBullet {
-  width: 9px;
-  height: 9px;
-  background: var(--color-brand);
-  transform: skewX(-18deg);
+.facilityIcon {
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  color: var(--color-brand);
   flex-shrink: 0;
+}
+
+.facilityIcon svg {
+  width: 100%;
+  height: 100%;
 }
 
 /* --- section-end CTA --- */

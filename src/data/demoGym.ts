@@ -7,12 +7,12 @@ import type { Gym, Image } from '@/types/gym';
 
 /** 6 studio photos shared by all demo stores (used by PhotoSlider). */
 export const studioPhotos: Image[] = [
-  { url: '/dummy/studio-01.svg', width: 1200, height: 800, alt: 'トレーニングフロア全景' },
-  { url: '/dummy/studio-02.svg', width: 1200, height: 800, alt: 'サンドバッグエリア' },
-  { url: '/dummy/studio-03.svg', width: 1200, height: 800, alt: 'ミット打ちスペース' },
-  { url: '/dummy/studio-04.svg', width: 1200, height: 800, alt: '筋力トレーニングマシン' },
-  { url: '/dummy/studio-05.svg', width: 1200, height: 800, alt: '鍵付きロッカールーム' },
-  { url: '/dummy/studio-06.svg', width: 1200, height: 800, alt: 'パウダールーム・シャワー' },
+  { url: '/studio/studio-01.png', width: 2816, height: 1536, alt: 'トレーニングフロア全景' },
+  { url: '/studio/studio-02.png', width: 2816, height: 1536, alt: 'サンドバッグエリア' },
+  { url: '/studio/studio-03.png', width: 2816, height: 1536, alt: 'ミット打ちスペース' },
+  { url: '/studio/studio-04.png', width: 2816, height: 1536, alt: '筋力トレーニングマシン' },
+  { url: '/studio/studio-05.png', width: 2816, height: 1536, alt: '鍵付きロッカールーム' },
+  { url: '/studio/studio-06.png', width: 2816, height: 1536, alt: 'パウダールーム・シャワー' },
 ];
 
 const hours: Gym['hours'] = [
@@ -200,9 +200,9 @@ const paymentMethods: string[] = [
 const sns = { instagram: 'https://www.instagram.com/refinas_kickboxing_studio' };
 
 const trainerPhotos: Image[] = [
-  { url: '/dummy/trainer-01.svg', width: 600, height: 600, alt: 'トレーナー写真' },
-  { url: '/dummy/trainer-02.svg', width: 600, height: 600, alt: 'トレーナー写真' },
-  { url: '/dummy/trainer-03.svg', width: 600, height: 600, alt: 'トレーナー写真' },
+  { url: '/trainer/trainer-01.png', width: 343, height: 382, alt: 'トレーナー写真' },
+  { url: '/trainer/trainer-02.png', width: 347, height: 383, alt: 'トレーナー写真' },
+  { url: '/trainer/trainer-03.png', width: 267, height: 385, alt: 'トレーナー写真' },
 ];
 
 const shared = {
@@ -237,7 +237,7 @@ export const demoGyms: Gym[] = [
     nameKana: 'キックボクシングシブヤ リフィナス',
     area: '東京',
     catchCopy: '渋谷駅徒歩5分。初心者からはじめる、洗練されたキックボクシングジム。',
-    heroImage: { url: '/dummy/hero-shibuya.svg', width: 1600, height: 640, alt: 'キックボクシング渋谷 Refinas スタジオ内観' },
+    heroImage: { url: '/hero-kickboxing.png', width: 2816, height: 1536, alt: 'キックボクシング渋谷 Refinas スタジオ内観' },
     targetNote: '初心者歓迎・男女可',
     // NAP はチェックリスト⑤の記入値（最寄②③・駐車駐輪は未記入）
     postalCode: '150-0002',
@@ -317,7 +317,7 @@ export const demoGyms: Gym[] = [
     nameKana: 'キックボクシングイケブクロ リフィナス',
     area: '東京',
     catchCopy: '池袋駅徒歩1分。仕事帰りにそのまま通える、初心者歓迎のキックボクシングジム。',
-    heroImage: { url: '/dummy/hero-refinas_ikebukuro.svg', width: 1600, height: 640, alt: 'キックボクシング池袋 Refinas スタジオ内観' },
+    heroImage: { url: '/hero-kickboxing.png', width: 2816, height: 1536, alt: 'キックボクシング池袋 Refinas スタジオ内観' },
     targetNote: '初心者歓迎・男女可',
     postalCode: '171-0021',
     address: '東京都豊島区西池袋3丁目29-14 一平ビル3階',
@@ -394,7 +394,7 @@ export const demoGyms: Gym[] = [
     nameKana: 'キックボクシングヨコハマ リフィナス',
     area: '神奈川',
     catchCopy: '横浜駅西口徒歩5分。はじめてでも、女性ひとりでも通いやすいキックボクシングジム。',
-    heroImage: { url: '/dummy/hero-yokohama.svg', width: 1600, height: 640, alt: 'キックボクシング横浜 Refinas スタジオ内観' },
+    heroImage: { url: '/hero-kickboxing.png', width: 2816, height: 1536, alt: 'キックボクシング横浜 Refinas スタジオ内観' },
     targetNote: '初心者歓迎・男女可',
     postalCode: '220-0004',
     address: '神奈川県横浜市西区北幸2-8-19 横浜西口Kビル5階',

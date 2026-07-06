@@ -1,8 +1,118 @@
+import type { ReactNode } from 'react';
 import type { Gym, Image } from '@/types/gym';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Button } from '@/components/ui/Button';
 import { PhotoSlider } from './PhotoSlider';
 import styles from './AccessNap.module.css';
+
+/** 設備・サービス名 → ラインアイコン（24x24 stroke SVG。未定義の設備はチェックマーク） */
+const FACILITY_ICON: Record<string, ReactNode> = {
+  シャワー: (
+    // シャワーヘッドと水滴
+    <>
+      <path d="M12 3v3M8 6h8l1 4H7l1-4z" />
+      <path d="M8 14v1M12 14v2M16 14v1M9.5 18v1M14.5 18v1M12 20v1" />
+    </>
+  ),
+  男女別更衣室: (
+    // ハンガー
+    <>
+      <path d="M12 6a2 2 0 1 1 2-2" />
+      <path d="M12 6l-8.5 6.5a1.5 1.5 0 0 0 .9 2.7h15.2a1.5 1.5 0 0 0 .9-2.7L12 6z" />
+    </>
+  ),
+  レンタルグローブ: (
+    // ボクシンググローブ
+    <>
+      <path d="M7 10V7a5 5 0 0 1 10 0v5a5 5 0 0 1-5 5h-1" />
+      <path d="M7 10a2.5 2.5 0 0 0 0 5h4" />
+      <path d="M11 17v4h4v-3" />
+    </>
+  ),
+  レンタルタオル: (
+    // 畳んだタオル
+    <>
+      <rect x="4" y="6" width="16" height="12" rx="2" />
+      <path d="M4 10h16M4 14h16" />
+    </>
+  ),
+  レンタルウェア: (
+    // Tシャツ
+    <>
+      <path d="M9 4l3 1 3-1 5 3-2 4-2-1v10H7V10l-2 1-2-4 5-3z" />
+    </>
+  ),
+  パワーラック: (
+    // バーベル
+    <>
+      <path d="M2 12h3M19 12h3M8 12h8" />
+      <rect x="5" y="7" width="3" height="10" rx="1" />
+      <rect x="16" y="7" width="3" height="10" rx="1" />
+    </>
+  ),
+  リング: (
+    // リング（コーナーポストとロープ）
+    <>
+      <path d="M4 5v14M20 5v14" />
+      <path d="M4 9h16M4 13h16M4 17h16" />
+      <circle cx="4" cy="5" r="1.5" />
+      <circle cx="20" cy="5" r="1.5" />
+    </>
+  ),
+  駐車場: (
+    // P マーク
+    <>
+      <rect x="4" y="4" width="16" height="16" rx="3" />
+      <path d="M10 16V8h3a2.5 2.5 0 0 1 0 5h-3" />
+    </>
+  ),
+  ロッカー: (
+    // ロッカーと鍵
+    <>
+      <rect x="6" y="3" width="10" height="18" rx="2" />
+      <path d="M9 7h4M9 10h4" />
+      <circle cx="17.5" cy="15.5" r="2.5" />
+      <path d="M17.5 18v3" />
+    </>
+  ),
+  パウダールーム: (
+    // 鏡
+    <>
+      <circle cx="12" cy="9" r="5" />
+      <path d="M12 14v7M8 21h8" />
+    </>
+  ),
+  'Wi-Fi': (
+    <>
+      <path d="M2 9a15 15 0 0 1 20 0M5.5 12.5a10 10 0 0 1 13 0M9 16a5 5 0 0 1 6 0" />
+      <circle cx="12" cy="19" r="1" />
+    </>
+  ),
+};
+
+// 未定義の設備用フォールバック（チェックマーク）
+const DEFAULT_ICON = (
+  <>
+    <circle cx="12" cy="12" r="9" />
+    <path d="M8 12.5l2.5 2.5L16 9.5" />
+  </>
+);
+
+function FacilityIcon({ name }: { name: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {FACILITY_ICON[name] ?? DEFAULT_ICON}
+    </svg>
+  );
+}
 
 /** Access / NAP section (LAVA block 5): labeled rows (underlined h3 + content) + map + photo slider. */
 export function AccessNap({ gym, photos }: { gym: Gym; photos: Image[] }) {
@@ -79,7 +189,9 @@ export function AccessNap({ gym, photos }: { gym: Gym; photos: Image[] }) {
           <ul className={styles.facilityList}>
             {gym.facilities.map((facility) => (
               <li key={facility} className={styles.facilityChip}>
-                <span className={styles.facilityBullet} aria-hidden="true" />
+                <span className={styles.facilityIcon} aria-hidden="true">
+                  <FacilityIcon name={facility} />
+                </span>
                 {facility}
               </li>
             ))}
