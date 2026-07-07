@@ -18,7 +18,8 @@ import { ProgramSlider } from '@/components/gym/ProgramSlider';
 import { ScheduleLink } from '@/components/gym/ScheduleLink';
 import { FaqAccordion } from '@/components/gym/FaqAccordion';
 import { TopicList } from '@/components/gym/TopicList';
-import { Breadcrumb } from '@/components/gym/Breadcrumb';
+import { ColumnList } from '@/components/gym/ColumnList';
+import { BrandConcept } from '@/components/gym/BrandConcept';
 import { SiteFooter } from '@/components/gym/SiteFooter';
 
 type Params = { slug: string };
@@ -101,7 +102,12 @@ export default async function GymPage({ params }: { params: Promise<Params> }) {
         <Section bg="panel" cut="left">
           <TopicList gym={gym} />
         </Section>
-        <Breadcrumb gym={gym} />
+        <Section bg="white" cut="right">
+          <ColumnList gym={gym} />
+        </Section>
+        <Section bg="dark" cut="none">
+          <BrandConcept gym={gym} />
+        </Section>
       </main>
       <SiteFooter gym={gym} />
     </>

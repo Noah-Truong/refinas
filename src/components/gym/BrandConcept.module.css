@@ -1,0 +1,71 @@
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.photoWrapper {
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+  align-self: stretch;
+}
+
+.photo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.statement {
+  text-align: center;
+  padding: var(--space-3) 0;
+}
+
+.brandMark {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  font-style: italic;
+  font-size: var(--text-h2);
+  letter-spacing: 0.08em;
+  color: var(--color-brand);
+  line-height: 1;
+}
+
+.brandSub {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  font-size: var(--text-small);
+  letter-spacing: 0.32em;
+  color: var(--color-on-dark-muted);
+  margin-bottom: var(--space-4);
+}
+
+.heading {
+  font-size: var(--text-h3);
+  font-weight: 700;
+  line-height: var(--leading-heading);
+  margin-bottom: var(--space-3);
+}
+
+.copy p {
+  font-size: var(--text-small);
+  line-height: 2.2;
+  color: var(--color-on-dark-muted);
+}
+
+@media (max-width: 640px) {
+  .split {
+    grid-template-columns: 1fr;
+  }
+
+  .photoWrapper {
+    align-self: auto;
+  }
+
+  .photo {
+    aspect-ratio: 16 / 10;
+    height: auto;
+  }
+}

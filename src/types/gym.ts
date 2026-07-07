@@ -64,6 +64,8 @@ export type Gym = {
   faqs: Array<{ q: string; a: string }>;
   news?: Array<{ date: string; title: string; url: string; important?: boolean; pdf?: boolean }>;
   nearbyGyms?: Array<{ slug: string; name: string; accessNote?: string }>;
+  /** ⑦ Column: brand-wide article picks (image card + title) */
+  columns?: Array<{ title: string; url: string; image: Image }>;
 
   // Facilities / Payment / Type
   facilities: string[];

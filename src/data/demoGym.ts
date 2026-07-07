@@ -205,7 +205,27 @@ const trainerPhotos: Image[] = [
   { url: '/trainer/trainer-03.png', width: 267, height: 385, alt: 'トレーナー写真' },
 ];
 
+/** Brand-wide column articles (shared by all demo stores). */
+const columns: Gym['columns'] = [
+  {
+    title: 'キックボクシングとは？ボクシングと何が違う？現役トレーナーが徹底解説',
+    url: '#',
+    image: { url: '/studio/studio-03.png', width: 2816, height: 1536, alt: 'ミット打ちレッスンの様子' },
+  },
+  {
+    title: 'キックボクシングの3大効果！ダイエット・ストレス発散に効く理由',
+    url: '#',
+    image: { url: '/studio/studio-02.png', width: 2816, height: 1536, alt: 'サンドバッグトレーニングの様子' },
+  },
+  {
+    title: '【初心者向け】はじめてのキックボクシング、持ち物と服装まとめ',
+    url: '#',
+    image: { url: '/studio/studio-05.png', width: 2816, height: 1536, alt: '鍵付きロッカールーム' },
+  },
+];
+
 const shared = {
+  columns,
   brandLabel: 'キックボクシングジム',
   status: 'published' as const,
   hours,
