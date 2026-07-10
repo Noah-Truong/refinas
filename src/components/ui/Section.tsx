@@ -1,8 +1,8 @@
 import styles from './Section.module.css';
 
 type SectionProps = {
-  /** Surface per LAVA's alternation: white / panel(gray) / tint(gradient) / dark */
-  bg?: 'white' | 'panel' | 'tint' | 'dark';
+  /** Surface per LAVA's alternation: white / panel(gray) / tint(red grad) / blue(brand grad, fix1 replaces dark) */
+  bg?: 'white' | 'panel' | 'tint' | 'blue';
   /** Sharp corner cut on one top corner — alternates per section (LAVA's rounded-corner rhythm, Refinas-sharp) */
   cut?: 'left' | 'right' | 'none';
   id?: string;

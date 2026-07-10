@@ -2,30 +2,33 @@
    Refinas design tokens (§8 of the build spec)
    LAVA structure ← unchanged / look → Refinas identity
    No hardcoded colors in components — reference these tokens.
+   Color scheme per fix1.pdf minutes (2026-07-07): red / blue /
+   white — former black (#111) grounds are gone; contrast bands
+   use the official brand blue instead.
    ============================================================ */
 :root {
-  /* Color — official brand colors per client checklist (refinas_nformation.pdf) */
+  /* Color — official brand colors per client checklist (fix1.pdf) */
   --color-brand: #d8212c;        /* Refinas Red — CTA / emphasis */
-  --color-brand-blue: #0f6eb8;   /* Refinas Blue — official secondary (reserved for accents) */
   --color-brand-strong: #df0000; /* hover / emphasis */
   --color-brand-deep: #a01018;   /* pressed / gradient end */
   --color-brand-tint: #fbeef0;   /* light red-tinted surface */
+  --color-brand-blue: #0f6eb8;   /* Refinas Blue — secondary ground + accents */
+  --color-blue-strong: #0a5a99;  /* blue hover / gradient end */
+  --color-blue-tint: #ecf3fa;    /* light blue-tinted surface */
   --color-ink: #1a1a1a;          /* headings */
   --color-body: #333333;         /* body text */
   --color-base: #ffffff;
   --color-panel: #f5f5f5;        /* light gray surface */
   --color-border: #e2e2e2;
-  --color-dark: #111111;         /* dark ground (hero/dividers), white text */
-  --color-dark-2: #1c1c1c;       /* dark surface elevation */
   --color-muted: #888888;
-  --color-on-dark: #ffffff;
-  --color-on-dark-muted: #b5b5b5;
+  --color-on-brand: #ffffff;                 /* text on red/blue grounds */
+  --color-on-brand-muted: rgba(255, 255, 255, 0.78);
 
   /* Surfaces used by section alternation (LAVA: white/gray/gradYellow) */
   --surface-white: var(--color-base);
   --surface-panel: var(--color-panel);
   --surface-tint: linear-gradient(175deg, #fdf5f5 0%, #f9e8ea 100%);
-  --surface-dark: linear-gradient(160deg, #161616 0%, #0d0d0d 100%);
+  --surface-blue: linear-gradient(160deg, #1179c4 0%, #0a5a99 100%);
 
   /* Typography (next/font sets the family vars on <html>) */
   --font-heading: var(--font-roboto), var(--font-noto-sans-jp), sans-serif;

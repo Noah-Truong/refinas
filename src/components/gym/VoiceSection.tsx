@@ -6,12 +6,14 @@ import styles from './VoiceSection.module.css';
 
 /** Member voices: 2-col testimonial cards + disclaimers + trial CTA. */
 export function VoiceSection({ gym }: { gym: Gym }) {
-  if (!gym.voices?.length) return null;
+  // Checklist ⑪: publish consent is required — unconsented voices never render
+  const voices = gym.voices?.filter((voice) => voice.consentConfirmed) ?? [];
+  if (!voices.length) return null;
   return (
     <>
       <SectionTitle kicker="VOICE" title="Refinas会員様の声" />
       <ul className={styles.list}>
-        {gym.voices.map((voice, i) => (
+        {voices.map((voice, i) => (
           <li key={voice.label + i} className={styles.card}>
             <div className={styles.cardHeader}>
               <Image

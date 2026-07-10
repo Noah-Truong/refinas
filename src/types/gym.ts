@@ -58,7 +58,8 @@ export type Gym = {
 
   // ⑤ Staff / Voices
   trainers: Array<{ name: string; nameKana?: string; role?: string; profile: string; photo?: Image }>;
-  voices?: Array<{ label: string; comment: string; tags?: string[] }>;
+  /** consentConfirmed is required by checklist ⑪ (★) — voices without it are never rendered */
+  voices?: Array<{ label: string; comment: string; tags?: string[]; consentConfirmed: boolean }>;
 
   // ⑥ FAQ / News / Nearby
   faqs: Array<{ q: string; a: string }>;

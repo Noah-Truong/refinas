@@ -66,7 +66,7 @@ export default async function GymPage({ params }: { params: Promise<Params> }) {
         {/* 16-block structure — order fixed per the reference IA (spec §5) */}
         <GymHero gym={gym} />
         {/* id="reserve" — landing target for every reserveUrl/primaryCtaUrl (#reserve) CTA */}
-        <Section bg="dark" cut="none" id="reserve">
+        <Section bg="blue" cut="none" id="reserve">
           <TrialCta gym={gym} />
         </Section>
         <Section bg="white" cut="right">
@@ -105,7 +105,7 @@ export default async function GymPage({ params }: { params: Promise<Params> }) {
         <Section bg="white" cut="right">
           <ColumnList gym={gym} />
         </Section>
-        <Section bg="dark" cut="none">
+        <Section bg="blue" cut="none">
           <BrandConcept gym={gym} />
         </Section>
       </main>

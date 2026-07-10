@@ -1,11 +1,11 @@
 .footer {
-  color: var(--color-on-dark);
+  color: var(--color-body);
 }
 
 /* --- a. Trial support band --- */
 
 .trialBand {
-  background: var(--surface-dark);
+  background: var(--color-blue-tint);
   padding: var(--space-8) 0;
 }
 
@@ -14,14 +14,15 @@
   flex-direction: column;
   align-items: center;
   gap: var(--space-4);
-  color: var(--color-on-dark);
+  color: var(--color-ink);
 }
 
 .support {
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  border: 1px solid var(--color-border);
+  background: var(--color-base);
   border-radius: var(--radius-md);
 }
 
@@ -35,11 +36,11 @@
 }
 
 .supportCol + .supportCol {
-  border-left: 1px solid rgba(255, 255, 255, 0.25);
+  border-left: 1px solid var(--color-border);
 }
 
 .supportTitle {
-  color: var(--color-on-dark);
+  color: var(--color-ink);
   font-size: var(--text-body);
   font-weight: 700;
   position: relative;
@@ -62,7 +63,7 @@
   font-weight: 900;
   font-size: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
   letter-spacing: 0.02em;
-  color: var(--color-on-dark);
+  color: var(--color-ink);
   transition: color var(--dur-fast) var(--ease-out);
 }
 
@@ -72,17 +73,17 @@
 
 .supportNote {
   font-size: var(--text-small);
-  color: var(--color-on-dark-muted);
+  color: var(--color-muted);
 }
 
 .supportLink {
-  color: var(--color-on-dark);
+  color: var(--color-ink);
 }
 
 /* --- b. Brand statement band --- */
 
 .brandBand {
-  background: var(--color-dark);
+  background: var(--color-base);
   padding: var(--space-10) 0;
 }
 
@@ -101,7 +102,8 @@
   font-size: clamp(2.5rem, 2rem + 2.4vw, 3.5rem);
   line-height: 1;
   letter-spacing: 0.02em;
-  color: var(--color-on-dark);
+  /* brand blue wordmark on white — the footer's blue moment (fix1) */
+  color: var(--color-brand-blue);
 }
 
 .brandLine {
@@ -109,20 +111,20 @@
   font-weight: 700;
   font-size: var(--text-h3);
   line-height: var(--leading-heading);
-  color: var(--color-on-dark);
+  color: var(--color-ink);
 }
 
 .brandText {
   max-width: 40em;
   font-size: var(--text-small);
   line-height: var(--leading-body);
-  color: var(--color-on-dark-muted);
+  color: var(--color-body);
 }
 
 /* --- c. Footer proper --- */
 
 .footerProper {
-  background: var(--color-dark-2);
+  background: var(--color-blue-tint);
   padding-bottom: var(--space-6);
 }
 
@@ -130,7 +132,7 @@
   overflow: hidden;
   white-space: nowrap;
   padding: var(--space-3) 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid rgba(15, 110, 184, 0.15);
 }
 
 .marqueeText {
@@ -141,7 +143,7 @@
   letter-spacing: 0.06em;
   text-transform: uppercase;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.18);
+  -webkit-text-stroke: 1px rgba(15, 110, 184, 0.35);
 }
 
 .footerInner {
@@ -162,12 +164,12 @@
 
 .navLink {
   font-size: var(--text-small);
-  color: var(--color-on-dark-muted);
+  color: var(--color-body);
   transition: color var(--dur-fast) var(--ease-out);
 }
 
 .navLink:hover {
-  color: var(--color-on-dark);
+  color: var(--color-brand-blue);
 }
 
 .snsList {
@@ -180,7 +182,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-on-dark);
+  color: var(--color-brand-blue);
   transition: color var(--dur-fast) var(--ease-out);
 }
 
@@ -192,7 +194,7 @@
   font-family: var(--font-heading);
   font-size: var(--text-small);
   letter-spacing: 0.08em;
-  color: var(--color-on-dark-muted);
+  color: var(--color-muted);
 }
 
 @media (max-width: 900px) {
@@ -209,6 +211,6 @@
 
   .supportCol + .supportCol {
     border-left: none;
-    border-top: 1px solid rgba(255, 255, 255, 0.25);
+    border-top: 1px solid var(--color-border);
   }
 }

@@ -5,6 +5,10 @@ import type { Gym, Image } from '@/types/gym';
 // real plan names/prices (税抜), campaign wording, CTA wording, tone.
 // ---------------------------------------------------------------------------
 
+// チェックリスト③：予約導線URL。デモはページ内の予約ブロック（#reserve）に着地させる。
+// 本番リリース時にここを実際の予約ページ（現行 refinas.net 系）へ差し替えるだけでよい。
+const RESERVE_URL = '#reserve';
+
 /** 6 studio photos shared by all demo stores (used by PhotoSlider). */
 export const studioPhotos: Image[] = [
   { url: '/studio/studio-01.png', width: 2816, height: 1536, alt: 'トレーニングフロア全景' },
@@ -31,7 +35,7 @@ const plans: Gym['plans'] = [
     target: 'まずは週1ペースで通いたい方に',
     sessions: '月4回',
     isRecommended: false,
-    ctaUrl: '#reserve',
+    ctaUrl: RESERVE_URL,
   },
   {
     planName: 'プラチナ',
@@ -41,7 +45,7 @@ const plans: Gym['plans'] = [
     target: 'しっかり結果を出したい方に一番人気',
     sessions: '通い放題',
     isRecommended: true,
-    ctaUrl: '#reserve',
+    ctaUrl: RESERVE_URL,
   },
   {
     planName: 'フルアクセス',
@@ -51,7 +55,7 @@ const plans: Gym['plans'] = [
     target: '職場や外出先でも通いたい方に',
     sessions: '全店舗通い放題',
     isRecommended: false,
-    ctaUrl: '#reserve',
+    ctaUrl: RESERVE_URL,
   },
 ];
 
@@ -72,7 +76,7 @@ const campaign: Gym['campaign'] = {
     height: 400,
     alt: '無料体験実施中｜体験レッスン通常5,000円→0円',
   },
-  url: '#reserve',
+  url: RESERVE_URL,
 };
 
 const programs: Gym['programs'] = [
@@ -165,7 +169,8 @@ const faqs: Gym['faqs'] = [
   },
   {
     q: '体験当日はどんな流れですか？',
-    a: 'ご来店→カウンセリング（約10分）→ウォームアップ→シャドー・サンドバッグ・ミット打ちの体験（約45分）→シャワー・お着替え→料金プランのご案内、という流れです。全体で約90分を見ていただければ大丈夫です。',
+    // 所要時間はチェックリスト⑨の記入値（約60分）に合わせる
+    a: 'ご来店→カウンセリング（約10分）→ウォームアップ→シャドー・サンドバッグ・ミット打ちの体験（約45分）→シャワー・お着替え→料金プランのご案内、という流れです。全体で約60分を見ていただければ大丈夫です。',
   },
   {
     q: '予約の変更やキャンセルはできますか？',
@@ -197,7 +202,9 @@ const paymentMethods: string[] = [
   '初期費用：現金・クレジットカード',
 ];
 
-const sns = { instagram: 'https://www.instagram.com/refinas_kickboxing_studio' };
+// チェックリスト⑯：SNS（Instagram）は「店舗ごと」の方針。店舗別URLが届くまで
+// ブランド共通アカウントを各店舗に仮置きしている（デモ用）。
+const sharedInstagram = { instagram: 'https://www.instagram.com/refinas_kickboxing_studio' };
 
 const trainerPhotos: Image[] = [
   { url: '/trainer/trainer-01.png', width: 343, height: 382, alt: 'トレーナー写真' },
@@ -235,15 +242,14 @@ const shared = {
   campaign,
   programs,
   scheduleType: 'external' as const,
-  reserveUrl: '#reserve',
+  reserveUrl: RESERVE_URL,
   faqs,
   facilities,
   studioType: '男女可',
   paymentMethods,
   primaryCtaLabel: '無料体験を予約する',
-  primaryCtaUrl: '#reserve',
-  contactUrl: '#reserve',
-  sns,
+  primaryCtaUrl: RESERVE_URL,
+  contactUrl: RESERVE_URL,
 };
 
 export const demoGyms: Gym[] = [
@@ -299,12 +305,14 @@ export const demoGyms: Gym[] = [
         comment:
           '仕事帰りに週2回通って3ヶ月でウエスト−6cm！ ミット打ちが楽しすぎて、気づいたらストレスも一緒に消えています。',
         tags: ['ダイエット', 'ストレス発散', '初心者'],
+        consentConfirmed: true, // チェックリスト⑪：掲載同意確認済み
       },
       {
         label: '30代 男性',
         comment:
           '運動不足解消のつもりが今では完全に趣味になりました。予約なしで好きな時間に行けるので、忙しくても続けられています。',
         tags: ['運動不足解消', '通い放題', '仕事帰り'],
+        consentConfirmed: true, // チェックリスト⑪：掲載同意確認済み
       },
     ],
     news: [
@@ -319,6 +327,7 @@ export const demoGyms: Gym[] = [
       { slug: 'yokohama', name: 'キックボクシング横浜 Refinas', accessNote: '渋谷駅から電車で25分' },
     ],
     telCta: '0120-181-199',
+    sns: sharedInstagram, // TODO: 渋谷店の店舗別アカウントに差し替え
     seo: {
       title: 'キックボクシング渋谷 Refinas｜渋谷駅徒歩5分・初心者歓迎のキックボクシングジム',
       description:
@@ -382,12 +391,14 @@ export const demoGyms: Gym[] = [
         comment:
           '運動は学生時代以来でしたが、トレーナーさんが根気強く教えてくれるので安心でした。半年で体が軽くなり、健康診断の数値も改善しました。',
         tags: ['健康維持', '初心者', '40代からの運動'],
+        consentConfirmed: true, // チェックリスト⑪：掲載同意確認済み
       },
       {
         label: '20代 男性',
         comment:
           '駅徒歩1分なので雨の日でもサボる言い訳ができません（笑）。サンドバッグを打ち込んだあとの爽快感で、残業のストレスもリセットできます。',
         tags: ['ストレス発散', '駅チカ', '仕事帰り'],
+        consentConfirmed: true, // チェックリスト⑪：掲載同意確認済み
       },
     ],
     news: [
@@ -402,6 +413,7 @@ export const demoGyms: Gym[] = [
       { slug: 'yokohama', name: 'キックボクシング横浜 Refinas', accessNote: '池袋駅から電車で40分' },
     ],
     telCta: '03-5985-4620',
+    sns: sharedInstagram, // TODO: 池袋店の店舗別アカウントに差し替え
   },
 
   // -------------------------------------------------------------------------
@@ -459,12 +471,14 @@ export const demoGyms: Gym[] = [
         comment:
           '産後のボディメイク目的で入会しました。キックのレッスンでウエストまわりが引き締まり、何より自分の時間ができたことが嬉しいです。',
         tags: ['ボディメイク', '産後ダイエット', '初心者'],
+        consentConfirmed: true, // チェックリスト⑪：掲載同意確認済み
       },
       {
         label: '50代 男性',
         comment:
           '健康のために始めて1年、体重は8kg落ちました。若い頃の部活のような一体感があって、通うのが毎週の楽しみになっています。',
         tags: ['ダイエット', '健康維持', '通い放題'],
+        consentConfirmed: true, // チェックリスト⑪：掲載同意確認済み
       },
     ],
     news: [
@@ -479,5 +493,6 @@ export const demoGyms: Gym[] = [
       { slug: 'refinas_ikebukuro', name: 'キックボクシング池袋 Refinas', accessNote: '横浜駅から電車で40分' },
     ],
     telCta: '045-577-3908',
+    sns: sharedInstagram, // TODO: 横浜店の店舗別アカウントに差し替え
   },
 ];

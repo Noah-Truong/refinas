@@ -43,7 +43,22 @@ export function SiteHeader({ gym }: { gym: Gym }) {
       <header className={styles.header} data-scrolled={scrolled || undefined}>
         <div className={styles.inner}>
           <Link href="/" className={styles.logo} aria-label="Refinas トップ">
-            <span className={styles.logoMark} aria-hidden="true" />
+            {/* logo mark — same artwork as src/app/icon.svg / apple-icon (red cut square + italic R) */}
+            <svg className={styles.logoMark} viewBox="0 0 64 64" aria-hidden="true">
+              <polygon points="0,0 64,0 64,39.7 39.7,64 0,64" fill="var(--color-brand)" />
+              <g
+                transform="translate(4,0) skewX(-9)"
+                fill="none"
+                stroke="var(--color-on-brand)"
+                strokeWidth="7.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M24 17 V48" />
+                <path d="M24 17 H32.5 A9.25 9.25 0 0 1 32.5 35.5 H24" />
+                <path d="M33 35.5 L42.5 48" />
+              </g>
+            </svg>
             <span className={styles.logoText}>
               Refinas
               <small>キックボクシングジム</small>

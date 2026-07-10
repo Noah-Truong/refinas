@@ -82,7 +82,7 @@
 .recommendBadge {
   display: inline-block;
   background: var(--color-brand);
-  color: var(--color-on-dark);
+  color: var(--color-on-brand);
   font-family: var(--font-heading);
   font-weight: 900;
   font-size: var(--text-small);
@@ -105,8 +105,8 @@
 
 /* --- body cells --- */
 .rowLabel {
-  background: var(--color-dark);
-  color: var(--color-on-dark);
+  background: var(--color-brand-blue);
+  color: var(--color-on-brand);
   font-weight: 700;
   font-size: var(--text-small);
   white-space: nowrap;

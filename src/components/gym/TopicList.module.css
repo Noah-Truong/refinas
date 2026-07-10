@@ -38,7 +38,7 @@
   display: inline-flex;
   align-items: center;
   background: var(--color-brand);
-  color: var(--color-on-dark);
+  color: var(--color-on-brand);
   font-weight: 700;
   font-size: var(--text-small);
   padding: 1px 10px;

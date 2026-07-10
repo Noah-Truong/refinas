@@ -1,6 +1,7 @@
 .card {
-  background: var(--color-dark-2);
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  /* elevated panel on the blue band (fix1: former dark card) */
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: var(--radius-md);
   padding: clamp(var(--space-4), 5vw, var(--space-6));
   display: flex;
@@ -8,7 +9,7 @@
   align-items: center;
   gap: var(--space-3);
   text-align: center;
-  color: var(--color-on-dark);
+  color: var(--color-on-brand);
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%);
 }
 
@@ -33,7 +34,8 @@
   font-size: var(--text-small);
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--color-brand);
+  /* red reads muddy on the blue band — kicker goes white here */
+  color: var(--color-on-brand);
   white-space: nowrap;
 }
 
@@ -41,7 +43,7 @@
   font-size: var(--text-h2);
   font-weight: 900;
   line-height: var(--leading-heading);
-  color: var(--color-on-dark);
+  color: var(--color-on-brand);
 }
 
 .spBreak {
@@ -71,7 +73,7 @@
 .priceLabel {
   display: inline-block;
   background: var(--color-brand);
-  color: var(--color-on-dark);
+  color: var(--color-on-brand);
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: var(--text-small);
@@ -126,7 +128,7 @@
   padding-left: 26px;
   font-weight: 700;
   font-size: var(--text-body);
-  color: var(--color-on-dark);
+  color: var(--color-on-brand);
   text-align: left;
 }
 
@@ -135,7 +137,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  color: var(--color-brand);
+  color: var(--color-on-brand);
   font-weight: 900;
 }
 
@@ -149,9 +151,9 @@
 }
 
 .flowLink {
-  color: var(--color-on-dark);
+  color: var(--color-on-brand);
 }
 
 .flowLink:hover {
-  color: var(--color-brand);
+  color: var(--color-on-brand-muted);
 }

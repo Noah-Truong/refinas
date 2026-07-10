@@ -15,8 +15,10 @@ Next.js 15 (App Router, TS, CSS Modules — no Tailwind, no UI deps) demo reprod
 - Section order is fixed (spec §5, 16 blocks) — do not reorder.
 - Data access goes through `getGym(slug)`/`getAllGyms()` in `src/data/getGym.ts`; the demo reads
   `src/data/demoGym.ts`, the real build will swap in CMS fetching with the same signatures.
-- Design language: brand red #D8222B, dark #111 grounds, sharp -18deg skew accents, radius 4/8px,
-  diagonal clip-path corner cuts between sections, Roboto 900 italic EN kickers + Noto Sans JP.
+- Design language (red/blue/white per client minutes `context/fix1.pdf`, 2026-07-07): brand red
+  #D8212C for CTA/emphasis, brand blue #0F6EB8 for contrast bands/secondary accents, white/light
+  grounds — no black/dark grounds. Sharp -18deg skew accents, radius 4/8px, diagonal clip-path
+  corner cuts between sections, Roboto 900 italic EN kickers + Noto Sans JP.
 - `context/` holds reference research (LAVA audits, scraped brand notes) — excluded from tsconfig;
   never import from it.
 - Placeholder images are SVGs in `public/dummy/` (next.config enables dangerouslyAllowSVG).

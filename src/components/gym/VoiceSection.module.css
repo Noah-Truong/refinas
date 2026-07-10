@@ -31,8 +31,8 @@
 .labelChip {
   display: inline-flex;
   align-items: center;
-  background: var(--color-dark);
-  color: var(--color-on-dark);
+  background: var(--color-brand-blue);
+  color: var(--color-on-brand);
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: var(--text-small);

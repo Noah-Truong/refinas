@@ -9,7 +9,7 @@ const CHECK_ITEMS = [
   'トレーナーがマンツーマンでサポート',
 ];
 
-/** Trial CTA card (LAVA block 3). Rendered on a dark Section — white-on-dark styling. */
+/** Trial CTA card (LAVA block 3). Rendered on the blue Section — white-on-blue styling (fix1). */
 export function TrialCta({ gym }: { gym: Gym }) {
   return (
     <div className={styles.card}>

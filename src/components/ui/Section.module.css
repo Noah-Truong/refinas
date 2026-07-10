@@ -20,13 +20,13 @@
   background: var(--surface-tint);
 }
 
-.dark {
-  background: var(--surface-dark);
-  color: var(--color-on-dark-muted);
+.blue {
+  background: var(--surface-blue);
+  color: var(--color-on-brand-muted);
 }
 
-.dark :is(h1, h2, h3, h4) {
-  color: var(--color-on-dark);
+.blue :is(h1, h2, h3, h4) {
+  color: var(--color-on-brand);
 }
 
 .cutLeft {

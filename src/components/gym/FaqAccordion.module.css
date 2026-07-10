@@ -34,7 +34,7 @@
   height: 28px;
   flex-shrink: 0;
   background: var(--color-brand);
-  color: var(--color-on-dark);
+  color: var(--color-on-brand);
   font-family: var(--font-heading);
   font-weight: 900;
   font-size: var(--text-small);
@@ -47,7 +47,7 @@
 }
 
 .aChip {
-  background: var(--color-dark);
+  background: var(--color-brand-blue);
 }
 
 .question {
