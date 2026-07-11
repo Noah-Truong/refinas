@@ -55,7 +55,7 @@
   width: 8px;
   height: 0.75em;
   background: var(--color-brand);
-  transform: skewX(-18deg);
+  transform: skewX(-8deg);
 }
 
 .telLink {

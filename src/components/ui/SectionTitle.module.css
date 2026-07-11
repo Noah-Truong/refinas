@@ -25,6 +25,7 @@
   letter-spacing: 0.01em;
   position: relative;
   padding-left: 22px;
+  text-wrap: balance; /* avoid one-character orphan lines when the JP title wraps on SP */
 }
 
 /* Refinas heading marker: a sharp red slash (vs LAVA's blurred dot) */
@@ -36,7 +37,7 @@
   width: 12px;
   height: 0.75em;
   background: var(--color-brand);
-  transform: skewX(-18deg);
+  transform: skewX(-8deg);
 }
 
 .center .title {

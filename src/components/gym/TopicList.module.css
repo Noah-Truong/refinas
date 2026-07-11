@@ -42,11 +42,11 @@
   font-weight: 700;
   font-size: var(--text-small);
   padding: 1px 10px;
-  transform: skewX(-18deg);
+  transform: skewX(-8deg);
 }
 
 .importantChip > span {
-  transform: skewX(18deg);
+  transform: skewX(8deg);
 }
 
 .title {

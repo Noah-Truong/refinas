@@ -14,6 +14,7 @@ export function PhotoSlider({ photos }: { photos: Image[] }) {
             width={1200}
             height={800}
             alt={photo.alt}
+            sizes="(max-width: 840px) 100vw, 760px"
             className={styles.image}
           />
           <figcaption className={styles.caption}>{photo.alt}</figcaption>

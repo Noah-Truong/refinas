@@ -36,6 +36,7 @@ export function ProgramSlider({ gym }: { gym: Gym }) {
                 width={program.image.width}
                 height={program.image.height}
                 alt={program.image.alt}
+                sizes="(max-width: 640px) 80vw, 260px"
                 className={styles.image}
               />
             )}

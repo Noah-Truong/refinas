@@ -38,11 +38,11 @@
   font-size: var(--text-small);
   letter-spacing: 0.06em;
   padding: 3px 14px;
-  transform: skewX(-18deg);
+  transform: skewX(-8deg);
 }
 
 .labelChip > span {
-  transform: skewX(18deg);
+  transform: skewX(8deg);
 }
 
 .comment {
@@ -66,11 +66,11 @@
   font-weight: 700;
   font-size: var(--text-small);
   padding: 2px 10px;
-  transform: skewX(-18deg);
+  transform: skewX(-8deg);
 }
 
 .tag > span {
-  transform: skewX(18deg);
+  transform: skewX(8deg);
 }
 
 .notes {

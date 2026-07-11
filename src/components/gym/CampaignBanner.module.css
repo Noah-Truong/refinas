@@ -48,7 +48,7 @@
   font-size: var(--text-small);
   letter-spacing: 0.18em;
   padding: 4px 16px;
-  transform: skewX(-18deg);
+  transform: skewX(-8deg);
 }
 
 .bannerTitle {

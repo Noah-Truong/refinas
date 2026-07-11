@@ -16,6 +16,7 @@ export function GymHero({ gym }: { gym: Gym }) {
             height={gym.heroImage.height}
             alt={gym.heroImage.alt}
             priority
+            sizes="(max-width: 840px) 100vw, 800px"
             className={styles.image}
           />
           <div className={styles.overlay} aria-hidden="true" />

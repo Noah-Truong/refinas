@@ -69,4 +69,14 @@
     aspect-ratio: 16 / 10;
     height: auto;
   }
+
+  /* the per-sentence line breaks wrap into one-character orphans on
+     narrow screens — flow the statement as a single paragraph instead */
+  .copy p {
+    display: inline;
+  }
+
+  .copy {
+    line-height: 2.2;
+  }
 }

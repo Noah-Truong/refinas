@@ -82,7 +82,7 @@
   box-sizing: border-box;
   background: var(--color-border);
   background-clip: content-box;
-  transform: skewX(-18deg);
+  transform: skewX(-8deg);
   transition: background var(--dur-fast) var(--ease-out);
 }
 
@@ -93,4 +93,17 @@
 .bulletActive,
 .bulletActive:hover {
   background: var(--color-brand);
+}
+
+/* SP: compact bullets so a long slide count fits the row between the arrows */
+@media (max-width: 640px) {
+  .bullets {
+    gap: 6px;
+  }
+
+  .bullet {
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+  }
 }

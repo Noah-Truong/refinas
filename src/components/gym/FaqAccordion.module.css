@@ -38,12 +38,12 @@
   font-family: var(--font-heading);
   font-weight: 900;
   font-size: var(--text-small);
-  transform: skewX(-18deg);
+  transform: skewX(-8deg);
 }
 
 .qChip > span,
 .aChip > span {
-  transform: skewX(18deg);
+  transform: skewX(8deg);
 }
 
 .aChip {

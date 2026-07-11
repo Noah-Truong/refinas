@@ -20,6 +20,7 @@ export function CampaignBanner({ gym }: { gym: Gym }) {
               width={campaign.banner.width}
               height={campaign.banner.height}
               alt={campaign.banner.alt}
+              sizes="(max-width: 840px) 100vw, 760px"
               className={styles.bannerImage}
             />
           ) : (

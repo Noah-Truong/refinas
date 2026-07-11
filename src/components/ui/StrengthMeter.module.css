@@ -7,7 +7,7 @@
   width: 16px;
   height: 12px;
   background: var(--color-border);
-  transform: skewX(-18deg);
+  transform: skewX(-8deg);
 }
 
 .active {

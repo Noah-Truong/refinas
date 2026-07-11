@@ -88,7 +88,7 @@
   font-size: var(--text-small);
   letter-spacing: 0.06em;
   padding: 3px 14px;
-  transform: skewX(-18deg);
+  transform: skewX(-8deg);
 }
 
 .planName {
@@ -186,7 +186,7 @@
   width: 10px;
   height: 0.75em;
   background: var(--color-brand);
-  transform: skewX(-18deg);
+  transform: skewX(-8deg);
 }
 
 .optionList {

@@ -20,6 +20,7 @@ export function ColumnList({ gym }: { gym: Gym }) {
                   width={column.image.width}
                   height={column.image.height}
                   alt={column.image.alt}
+                  sizes="(max-width: 640px) 100vw, 250px"
                   className={styles.image}
                 />
               </span>

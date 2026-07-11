@@ -31,7 +31,7 @@
   width: 46px;
   height: 100%;
   background: rgba(255, 255, 255, 0.14);
-  transform: skewX(-18deg);
+  transform: skewX(-8deg);
   transition: transform var(--dur-med) var(--ease-out);
 }
 
@@ -41,7 +41,7 @@
 }
 
 .button:hover::after {
-  transform: skewX(-18deg) translateX(-8px);
+  transform: skewX(-8deg) translateX(-8px);
 }
 
 .primary:hover {

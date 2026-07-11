@@ -14,6 +14,7 @@ export function BrandConcept({ gym }: { gym: Gym }) {
           width={photo.width}
           height={photo.height}
           alt={photo.alt}
+          sizes="(max-width: 640px) 100vw, 400px"
           className={styles.photo}
         />
       </div>

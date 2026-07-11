@@ -76,7 +76,14 @@ export function TrialFlow({ gym }: { gym: Gym }) {
               <span className={styles.stepLabel}>STEP</span>
               {step.number}
             </p>
-            <Image src={step.image} width={400} height={300} alt="" className={styles.stepImage} />
+            <Image
+              src={step.image}
+              width={400}
+              height={300}
+              alt=""
+              sizes="(max-width: 640px) 100vw, 380px"
+              className={styles.stepImage}
+            />
             <h3 className={styles.stepTitle}>{step.title}</h3>
             <p className={styles.stepText}>{step.description}</p>
           </li>

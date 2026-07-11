@@ -25,6 +25,7 @@ export function StaffSection({ gym }: { gym: Gym }) {
                   width={trainer.photo.width}
                   height={trainer.photo.height}
                   alt={trainer.photo.alt}
+                  sizes="88px"
                   className={styles.photo}
                 />
               )}

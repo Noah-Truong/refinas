@@ -29,8 +29,8 @@
 .overlay {
   position: absolute;
   inset: 0;
-  /* photo legibility scrim — deep blue instead of black (fix1: red/blue/white) */
-  background: linear-gradient(12deg, rgba(9, 42, 68, 0.88) 18%, rgba(9, 42, 68, 0.25) 55%, rgba(216, 34, 43, 0.18) 100%);
+  /* photo legibility scrim — warm espresso for the soft/warm theme */
+  background: linear-gradient(12deg, rgba(62, 38, 26, 0.85) 18%, rgba(62, 38, 26, 0.22) 55%, rgba(216, 34, 43, 0.14) 100%);
 }
 
 .titleWrapper {
@@ -55,11 +55,11 @@
   font-size: var(--text-small);
   letter-spacing: 0.08em;
   padding: 4px 14px;
-  transform: skewX(-12deg);
+  transform: skewX(-6deg);
 }
 
 .brandLabel > * {
-  transform: skewX(12deg);
+  transform: skewX(6deg);
 }
 
 .title {
@@ -94,6 +94,7 @@
   font-size: var(--text-h3);
   font-weight: 700;
   line-height: 1.5;
+  text-wrap: balance;
 }
 
 .badges {

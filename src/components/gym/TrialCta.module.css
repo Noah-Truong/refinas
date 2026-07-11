@@ -44,6 +44,7 @@
   font-weight: 900;
   line-height: var(--leading-heading);
   color: var(--color-on-brand);
+  text-wrap: balance;
 }
 
 .spBreak {
@@ -78,7 +79,7 @@
   font-weight: 700;
   font-size: var(--text-small);
   padding: 4px 14px;
-  transform: skewX(-18deg);
+  transform: skewX(-8deg);
 }
 
 .priceValue {
