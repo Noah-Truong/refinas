@@ -11,13 +11,28 @@ const RESERVE_URL = '#reserve';
 
 /** 6 studio photos shared by all demo stores (used by PhotoSlider). */
 export const studioPhotos: Image[] = [
-  { url: '/studio/studio-01.png', width: 2816, height: 1536, alt: 'トレーニングフロア全景' },
-  { url: '/studio/studio-02.png', width: 2816, height: 1536, alt: 'サンドバッグエリア' },
-  { url: '/studio/studio-03.png', width: 2816, height: 1536, alt: 'ミット打ちスペース' },
-  { url: '/studio/studio-04.png', width: 2816, height: 1536, alt: '筋力トレーニングマシン' },
-  { url: '/studio/studio-05.png', width: 2816, height: 1536, alt: '鍵付きロッカールーム' },
-  { url: '/studio/studio-06.png', width: 2816, height: 1536, alt: 'パウダールーム・シャワー' },
+  { url: '/photos/interior-01.jpg', width: 1477, height: 984, alt: 'トレーニングフロア全景' },
+  { url: '/photos/interior-02.jpg', width: 1500, height: 999, alt: 'リング・サンドバッグエリア' },
+  { url: '/photos/interior-03.jpg', width: 1500, height: 999, alt: '受付・エントランス' },
+  { url: '/photos/action-01.jpg', width: 1500, height: 1000, alt: 'グループレッスンの様子' },
+  { url: '/photos/action-02.jpg', width: 1500, height: 1000, alt: 'ミット打ちトレーニングの様子' },
+  { url: '/photos/action-03.jpg', width: 1500, height: 1000, alt: 'キックのフォーム練習' },
 ];
+
+/**
+ * Hero slideshow: every studio/action photo, action shots interleaved with
+ * interiors. Rotated per store so each store page leads with a different shot.
+ */
+const heroOrder: Image[] = [
+  studioPhotos[4], // action-02 ミット打ち
+  studioPhotos[1], // interior-02 リング
+  studioPhotos[3], // action-01 グループレッスン
+  studioPhotos[0], // interior-01 フロア全景
+  studioPhotos[5], // action-03 キック
+  studioPhotos[2], // interior-03 受付
+];
+
+const rotate = <T,>(arr: T[], n: number): T[] => [...arr.slice(n), ...arr.slice(0, n)];
 
 const hours: Gym['hours'] = [
   { label: '平日', time: '11:00〜22:00' },
@@ -86,7 +101,7 @@ const programs: Gym['programs'] = [
       'はじめての方向けの無料体験プログラム。グローブの付け方から基本のパンチ・キックまで、トレーナーがマンツーマンに近い距離で丁寧にレクチャーします。運動経験ゼロでも45分で「打てる楽しさ」を実感できます。',
     intensity: 2,
     durationMin: 45,
-    image: { url: '/dummy/program-01.svg', width: 800, height: 600, alt: '体験キックボクシング' },
+    image: { url: '/photos/action-01.jpg', width: 1500, height: 1000, alt: '体験キックボクシング' },
     trialOk: true,
   },
   {
@@ -95,7 +110,7 @@ const programs: Gym['programs'] = [
       '鏡の前でフォームを固める基礎プログラム。構え・ステップ・パンチの軌道をひとつずつ確認しながら、きれいなフォームを身につけます。ケガをしにくい体の使い方が学べるので、入会後最初の1ヶ月に特におすすめです。',
     intensity: 2,
     durationMin: 45,
-    image: { url: '/dummy/program-02.svg', width: 800, height: 600, alt: 'シャドー＆フォーム基礎' },
+    image: { url: '/photos/action-03.jpg', width: 1500, height: 1000, alt: 'シャドー＆フォーム基礎' },
     trialOk: true,
   },
   {
@@ -104,7 +119,7 @@ const programs: Gym['programs'] = [
       'サンドバッグを打ち込み続ける高強度プログラム。1ラウンド3分のインターバル形式で、全身を使って一気にカロリーを燃焼します。終わったあとの爽快感とストレス発散効果は当スタジオ随一です。',
     intensity: 4,
     durationMin: 45,
-    image: { url: '/dummy/program-03.svg', width: 800, height: 600, alt: 'サンドバッグ・バーンアウト' },
+    image: { url: '/photos/interior-02.jpg', width: 1500, height: 999, alt: 'サンドバッグ・バーンアウト' },
     trialOk: true,
   },
   {
@@ -113,7 +128,7 @@ const programs: Gym['programs'] = [
       'トレーナーが構えるミットに向かってコンビネーションを打ち込むセッション。動くターゲットを追うことで、実戦さながらの反応速度と体幹が鍛えられます。パンチが「決まる」音がクセになると好評です。',
     intensity: 4,
     durationMin: 50,
-    image: { url: '/dummy/program-04.svg', width: 800, height: 600, alt: 'ミット打ちセッション' },
+    image: { url: '/photos/action-02.jpg', width: 1500, height: 1000, alt: 'ミット打ちセッション' },
     trialOk: true,
   },
   {
@@ -122,7 +137,7 @@ const programs: Gym['programs'] = [
       '自重とダンベルを組み合わせたサーキット形式の筋力トレーニング。キックボクシングに必要な下半身・体幹・肩まわりを重点的に強化します。ボディメイク目的の方はキック系プログラムとの組み合わせが効果的です。',
     intensity: 3,
     durationMin: 45,
-    image: { url: '/dummy/program-05.svg', width: 800, height: 600, alt: '筋力トレーニングサーキット' },
+    image: { url: '/photos/interior-01.jpg', width: 1477, height: 984, alt: '筋力トレーニングサーキット' },
     trialOk: true,
   },
   {
@@ -131,7 +146,7 @@ const programs: Gym['programs'] = [
       'くびれ・ヒップアップにフォーカスした女性向けプログラム。キックの動作を中心に、ウエストまわりと下半身を効率よく引き締めます。強度は調整できるので、体力に自信がない方も安心してご参加いただけます。',
     intensity: 3,
     durationMin: 45,
-    image: { url: '/dummy/program-06.svg', width: 800, height: 600, alt: '女性向けボディメイクキック' },
+    image: { url: '/photos/action-03.jpg', width: 1500, height: 1000, alt: '女性向けボディメイクキック' },
     trialOk: true,
   },
   {
@@ -140,7 +155,7 @@ const programs: Gym['programs'] = [
       'トレーニング後の疲労回復と柔軟性向上のためのプログラム。呼吸に合わせて全身をゆっくり伸ばし、翌日に疲れを残しません。デスクワークで固まった肩・股関節のケアとしてこのプログラムだけ受ける方もいます。',
     intensity: 1,
     durationMin: 45,
-    image: { url: '/dummy/program-07.svg', width: 800, height: 600, alt: 'ストレッチ＆クールダウン' },
+    image: { url: '/photos/interior-03.jpg', width: 1500, height: 999, alt: 'ストレッチ＆クールダウン' },
     trialOk: true,
   },
   {
@@ -149,7 +164,7 @@ const programs: Gym['programs'] = [
       '完全マンツーマンの約50分プログラム（要予約・+5,000円/回）。目標や体力レベルに合わせてトレーナーが専用メニューを組み立てます。最短で結果を出したい方、大会や撮影など期日が決まっている方に最適です。',
     intensity: 5,
     durationMin: 50,
-    image: { url: '/dummy/program-08.svg', width: 800, height: 600, alt: 'パーソナルトレーニング' },
+    image: { url: '/photos/action-02.jpg', width: 1500, height: 1000, alt: 'パーソナルトレーニング' },
     trialOk: false,
   },
 ];
@@ -217,17 +232,17 @@ const columns: Gym['columns'] = [
   {
     title: 'キックボクシングとは？ボクシングと何が違う？現役トレーナーが徹底解説',
     url: '#',
-    image: { url: '/studio/studio-03.png', width: 2816, height: 1536, alt: 'ミット打ちレッスンの様子' },
+    image: { url: '/photos/action-02.jpg', width: 1500, height: 1000, alt: 'ミット打ちレッスンの様子' },
   },
   {
     title: 'キックボクシングの3大効果！ダイエット・ストレス発散に効く理由',
     url: '#',
-    image: { url: '/studio/studio-02.png', width: 2816, height: 1536, alt: 'サンドバッグトレーニングの様子' },
+    image: { url: '/photos/interior-02.jpg', width: 1500, height: 999, alt: 'サンドバッグトレーニングの様子' },
   },
   {
     title: '【初心者向け】はじめてのキックボクシング、持ち物と服装まとめ',
     url: '#',
-    image: { url: '/studio/studio-05.png', width: 2816, height: 1536, alt: '鍵付きロッカールーム' },
+    image: { url: '/photos/interior-03.jpg', width: 1500, height: 999, alt: '受付・エントランス' },
   },
 ];
 
@@ -263,7 +278,9 @@ export const demoGyms: Gym[] = [
     nameKana: 'キックボクシングシブヤ リフィナス',
     area: '東京',
     catchCopy: '渋谷駅徒歩5分。初心者からはじめる、洗練されたキックボクシングジム。',
-    heroImage: { url: '/hero-kickboxing.png', width: 2816, height: 1536, alt: 'キックボクシング渋谷 Refinas スタジオ内観' },
+    heroImage: { url: '/photos/hero-01.jpg', width: 1568, height: 881, alt: 'キックボクシング渋谷 Refinas ミット打ちレッスンの様子' },
+    heroPhotos: rotate(heroOrder, 0), // ミット打ちの action ショットが先頭
+
     targetNote: '初心者歓迎・男女可',
     // NAP はチェックリスト⑤の記入値（最寄②③・駐車駐輪は未記入）
     postalCode: '150-0002',
@@ -332,7 +349,7 @@ export const demoGyms: Gym[] = [
       title: 'キックボクシング渋谷 Refinas｜渋谷駅徒歩5分・初心者歓迎のキックボクシングジム',
       description:
         '渋谷駅徒歩5分のキックボクシングジムRefinas（リフィナス）。初心者・女性歓迎、月4回9,800円〜。今なら体験レッスン通常5,000円→0円。',
-      ogImage: { url: '/dummy/hero-shibuya.svg', width: 1600, height: 640, alt: 'キックボクシング渋谷 Refinas' },
+      ogImage: { url: '/photos/hero-01.jpg', width: 1568, height: 881, alt: 'キックボクシング渋谷 Refinas' },
     },
   },
 
@@ -346,7 +363,9 @@ export const demoGyms: Gym[] = [
     nameKana: 'キックボクシングイケブクロ リフィナス',
     area: '東京',
     catchCopy: '池袋駅徒歩1分。仕事帰りにそのまま通える、初心者歓迎のキックボクシングジム。',
-    heroImage: { url: '/hero-kickboxing.png', width: 2816, height: 1536, alt: 'キックボクシング池袋 Refinas スタジオ内観' },
+    heroImage: { url: '/photos/hero-02.jpg', width: 1568, height: 882, alt: 'キックボクシング池袋 Refinas グループレッスンの様子' },
+    heroPhotos: rotate(heroOrder, 2), // グループレッスンの action ショットが先頭
+
     targetNote: '初心者歓迎・男女可',
     postalCode: '171-0021',
     address: '東京都豊島区西池袋3丁目29-14 一平ビル3階',
@@ -426,7 +445,9 @@ export const demoGyms: Gym[] = [
     nameKana: 'キックボクシングヨコハマ リフィナス',
     area: '神奈川',
     catchCopy: '横浜駅西口徒歩5分。はじめてでも、女性ひとりでも通いやすいキックボクシングジム。',
-    heroImage: { url: '/hero-kickboxing.png', width: 2816, height: 1536, alt: 'キックボクシング横浜 Refinas スタジオ内観' },
+    heroImage: { url: '/photos/hero-03.jpg', width: 1568, height: 881, alt: 'キックボクシング横浜 Refinas キックレッスンの様子' },
+    heroPhotos: rotate(heroOrder, 4), // キックの action ショットが先頭
+
     targetNote: '初心者歓迎・男女可',
     postalCode: '220-0004',
     address: '神奈川県横浜市西区北幸2-8-19 横浜西口Kビル5階',

@@ -1,3 +1,14 @@
+.awardWrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: var(--space-4);
+}
+
+.award {
+  width: min(420px, 80vw);
+  height: auto;
+}
+
 .list {
   display: grid;
   grid-template-columns: 1fr 1fr;

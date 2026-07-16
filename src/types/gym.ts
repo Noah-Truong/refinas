@@ -11,7 +11,8 @@ export type Gym = {
 
   // ① Hero
   catchCopy: string;
-  heroImage: Image;
+  heroImage: Image;            // lead photo — also the OG-image fallback
+  heroPhotos?: Image[];        // full hero slideshow (falls back to [heroImage])
   targetNote?: string;          // e.g. "初心者歓迎・男女共用"
 
   // ② Access / NAP

@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="640" viewBox="0 0 1600 640">
-  <rect width="1600" height="640" fill="#F8F0E4"/>
-  <circle cx="1380" cy="80" r="360" fill="#FDF0EA"/>
-  <circle cx="160" cy="600" r="240" fill="#ECF3FA"/>
-  <circle cx="800" cy="230" r="60" fill="none" stroke="#D8212C" stroke-width="4" opacity="0.5"/>
-  <circle cx="800" cy="230" r="12" fill="#D8212C"/>
-  <text x="800" y="390" text-anchor="middle" font-family="Montserrat, Roboto, sans-serif" font-size="64" font-weight="700" letter-spacing="14" fill="#463D36">REFINAS YOKOHAMA</text>
-  <text x="800" y="450" text-anchor="middle" font-family="Montserrat, Roboto, sans-serif" font-size="24" letter-spacing="10" fill="#99897C">KICKBOXING GYM</text>
-</svg>

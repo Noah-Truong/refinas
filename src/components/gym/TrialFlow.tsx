@@ -8,7 +8,7 @@ import styles from './TrialFlow.module.css';
 const STEPS = [
   {
     number: '01',
-    image: '/flow/step-01.png',
+    image: '/photos/interior-03.jpg',
     title: 'ご来店・受付',
     description: (
       <>
@@ -19,7 +19,7 @@ const STEPS = [
   },
   {
     number: '02',
-    image: '/flow/step-02.png',
+    image: '/photos/interior-01.jpg',
     title: '着替え・ウォームアップ',
     description: (
       <>
@@ -30,7 +30,7 @@ const STEPS = [
   },
   {
     number: '03',
-    image: '/flow/step-03.png',
+    image: '/photos/action-02.jpg',
     title: '体験トレーニング',
     description: (
       <>
@@ -41,7 +41,7 @@ const STEPS = [
   },
   {
     number: '04',
-    image: '/flow/step-04.png',
+    image: '/photos/action-01.jpg',
     title: 'アフターカウンセリング',
     description: (
       <>
@@ -78,8 +78,8 @@ export function TrialFlow({ gym }: { gym: Gym }) {
             </p>
             <Image
               src={step.image}
-              width={400}
-              height={300}
+              width={600}
+              height={400}
               alt=""
               sizes="(max-width: 640px) 100vw, 380px"
               className={styles.stepImage}

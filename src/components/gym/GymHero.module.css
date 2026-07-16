@@ -7,18 +7,58 @@
   position: relative;
   overflow: hidden;
   border-radius: 0 0 var(--radius-band) 0;
+  /* slides are absolutely stacked, so the band sizes itself */
+  aspect-ratio: 16 / 9;
 }
 
-.image {
+.slideBase,
+.slide {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
 }
 
-/* SP: guarantee room for the overlaid title on narrow screens */
+/*
+ * Crossfade slideshow. Duration/delay come from GymHero.tsx (slides × 5s);
+ * the keyframe windows below assume 6 slides (fade over 1.2s, hold ~4s).
+ */
+.slide {
+  opacity: 0;
+  animation: heroFade linear infinite;
+}
+
+@keyframes heroFade {
+  0% {
+    opacity: 0;
+  }
+  4% {
+    opacity: 1;
+  }
+  16.67% {
+    opacity: 1;
+  }
+  20.67% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* no slideshow — the static base photo stays */
+  .slide {
+    animation: none;
+  }
+}
+
+/* SP: taller crop so the overlaid title keeps breathing room */
 @media (max-width: 640px) {
-  .image {
+  .imageWrapper {
+    aspect-ratio: 4 / 3;
     min-height: 240px;
-    object-fit: cover;
   }
 
   .subtitle {

@@ -27,36 +27,15 @@
   flex-shrink: 0;
 }
 
-.logoMark {
-  width: 30px;
-  height: 30px;
-  flex-shrink: 0;
+.logoImage {
+  height: 44px;
+  width: auto;
   transition: transform var(--dur-med) var(--ease-out);
 }
 
-.header[data-scrolled] .logoMark {
-  transform: rotate(-8deg) scale(0.92);
-}
-
-.logoText {
-  /* brand logotype — keeps the italic of the logo mark's R */
-  font-family: var(--font-en);
-  font-weight: 700;
-  font-style: italic;
-  font-size: 1.375rem;
-  letter-spacing: 0.03em;
-  color: var(--color-ink);
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
-}
-
-.logoText small {
-  font-style: normal;
-  font-weight: 500;
-  font-size: 0.5625rem;
-  letter-spacing: 0.28em;
-  color: var(--color-muted);
+.header[data-scrolled] .logoImage {
+  transform: scale(0.94);
+  transform-origin: left center;
 }
 
 .navArea {
