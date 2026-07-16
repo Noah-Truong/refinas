@@ -10,34 +10,33 @@
 }
 
 .kicker {
-  font-family: var(--font-heading);
-  font-weight: 900;
-  font-style: italic;
+  font-family: var(--font-en);
+  font-weight: 600;
   font-size: var(--text-small);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   color: var(--color-brand);
   text-transform: uppercase;
 }
 
 .title {
   font-size: var(--text-h2);
-  font-weight: 900;
+  font-weight: 700;
   letter-spacing: 0.01em;
   position: relative;
-  padding-left: 22px;
+  padding-left: 24px;
   text-wrap: balance; /* avoid one-character orphan lines when the JP title wraps on SP */
 }
 
-/* Refinas heading marker: a sharp red slash (vs LAVA's blurred dot) */
+/* Refinas heading marker: a soft red dot (LAVA's blurred-dot pattern) */
 .title::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 0.32em;
+  top: 0.42em;
   width: 12px;
-  height: 0.75em;
-  background: var(--color-brand);
-  transform: skewX(-8deg);
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--color-brand) 0%, var(--color-brand-strong) 55%, transparent 72%);
 }
 
 .center .title {

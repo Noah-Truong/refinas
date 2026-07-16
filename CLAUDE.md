@@ -15,10 +15,12 @@ Next.js 15 (App Router, TS, CSS Modules — no Tailwind, no UI deps) demo reprod
 - Section order is fixed (spec §5, 16 blocks) — do not reorder.
 - Data access goes through `getGym(slug)`/`getAllGyms()` in `src/data/getGym.ts`; the demo reads
   `src/data/demoGym.ts`, the real build will swap in CMS fetching with the same signatures.
-- Design language (red/blue/white per client minutes `context/fix1.pdf`, 2026-07-07): brand red
-  #D8212C for CTA/emphasis, brand blue #0F6EB8 for contrast bands/secondary accents, white/light
-  grounds — no black/dark grounds. Sharp -18deg skew accents, radius 4/8px, diagonal clip-path
-  corner cuts between sections, Roboto 900 italic EN kickers + Noto Sans JP.
+- Design language (red/blue/white per client minutes `context/fix1.pdf`, 2026-07-07; surface
+  language matched to yoga-lava.com 2026-07-15): brand red #D8212C for CTA/emphasis, brand blue
+  #0F6EB8 for contrast bands/secondary accents, white/#F8F7F7 grounds — no black/dark grounds,
+  no skews/italics (logo text excepted). Soft LAVA rhythm: one large rounded corner per section
+  band (--radius-band, alternating side, bands overlap), pill buttons/chips (--radius-pill),
+  red-dot heading markers, Noto Sans JP body + Montserrat EN kickers (weights ≤700).
 - `context/` holds reference research (LAVA audits, scraped brand notes) — excluded from tsconfig;
   never import from it.
 - Placeholder images are SVGs in `public/dummy/` (next.config enables dangerouslyAllowSVG).

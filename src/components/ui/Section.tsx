@@ -1,9 +1,9 @@
 import styles from './Section.module.css';
 
 type SectionProps = {
-  /** Surface per LAVA's alternation: white / panel(gray) / tint(red grad) / blue(brand grad, fix1 replaces dark) */
+  /** Surface per LAVA's alternation: white / panel(gray) / tint(peach) / blue(brand, fix1 replaces dark) */
   bg?: 'white' | 'panel' | 'tint' | 'blue';
-  /** Sharp corner cut on one top corner — alternates per section (LAVA's rounded-corner rhythm, Refinas-sharp) */
+  /** Large rounded top corner — alternates per section, overlapping the previous band (LAVA's rhythm) */
   cut?: 'left' | 'right' | 'none';
   id?: string;
   className?: string;
@@ -11,7 +11,7 @@ type SectionProps = {
 };
 
 export function Section({ bg = 'white', cut = 'none', id, className, children }: SectionProps) {
-  const classes = [styles.section, styles[bg], cut !== 'none' ? styles[`cut${cut === 'left' ? 'Left' : 'Right'}`] : '', className]
+  const classes = [styles.section, styles[bg], cut !== 'none' ? styles[`round${cut === 'left' ? 'Left' : 'Right'}`] : '', className]
     .filter(Boolean)
     .join(' ');
   return (

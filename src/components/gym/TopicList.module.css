@@ -41,12 +41,8 @@
   color: var(--color-on-brand);
   font-weight: 700;
   font-size: var(--text-small);
-  padding: 1px 10px;
-  transform: skewX(-8deg);
-}
-
-.importantChip > span {
-  transform: skewX(8deg);
+  padding: 1px 12px;
+  border-radius: var(--radius-pill);
 }
 
 .title {

@@ -14,17 +14,17 @@
 }
 
 .kicker {
-  font-family: var(--font-heading);
-  font-weight: 900;
-  font-style: italic;
+  font-family: var(--font-en);
+  font-weight: 600;
   font-size: var(--text-small);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   color: var(--color-brand);
+  text-transform: uppercase;
 }
 
 .title {
   font-size: var(--text-h1);
-  font-weight: 900;
+  font-weight: 700;
 }
 
 .note {
@@ -40,8 +40,19 @@
 
 .areaTitle {
   font-size: var(--text-h3);
-  border-left: 4px solid var(--color-brand);
-  padding-left: 12px;
+  position: relative;
+  padding-left: 20px;
+}
+
+.areaTitle::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.42em;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-brand);
 }
 
 .list {

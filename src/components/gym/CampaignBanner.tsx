@@ -31,7 +31,8 @@ export function CampaignBanner({ gym }: { gym: Gym }) {
           )}
         </a>
         <div className={styles.buttonWrapper}>
-          <Button href={href} variant="secondary">
+          {/* outline pill — LAVA's secondary-action pattern */}
+          <Button href={href} variant="ghost">
             キャンペーン内容を見る
           </Button>
         </div>

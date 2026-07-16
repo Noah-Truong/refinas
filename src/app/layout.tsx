@@ -1,13 +1,20 @@
 import type { Metadata } from 'next';
-import { M_PLUS_Rounded_1c } from 'next/font/google';
+import { Montserrat, Noto_Sans_JP } from 'next/font/google';
 import '@/styles/globals.css';
 
-// Rounded JP+Latin family — soft, newcomer-friendly tone (no italics; obliques are synthesized)
-const rounded = M_PLUS_Rounded_1c({
-  weight: ['400', '500', '700', '900'],
+// Noto Sans JP body/headings + Montserrat EN kickers — same pairing as the reference site
+const sans = Noto_Sans_JP({
+  weight: ['400', '500', '700'],
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-rounded',
+  variable: '--font-sans',
+});
+
+const montserrat = Montserrat({
+  weight: ['500', '600', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-montserrat',
 });
 
 export const metadata: Metadata = {
@@ -22,7 +29,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ja" className={rounded.variable}>
+    <html lang="ja" className={`${sans.variable} ${montserrat.variable}`}>
       <body>{children}</body>
     </html>
   );

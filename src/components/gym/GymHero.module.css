@@ -6,7 +6,7 @@
 .imageWrapper {
   position: relative;
   overflow: hidden;
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 36px), calc(100% - 36px) 100%, 0 100%);
+  border-radius: 0 0 var(--radius-band) 0;
 }
 
 .image {
@@ -29,8 +29,8 @@
 .overlay {
   position: absolute;
   inset: 0;
-  /* photo legibility scrim — warm espresso for the soft/warm theme */
-  background: linear-gradient(12deg, rgba(62, 38, 26, 0.85) 18%, rgba(62, 38, 26, 0.22) 55%, rgba(216, 34, 43, 0.14) 100%);
+  /* photo legibility scrim — warm dark brown cast */
+  background: linear-gradient(12deg, rgba(56, 44, 36, 0.78) 18%, rgba(56, 44, 36, 0.18) 55%, rgba(56, 44, 36, 0) 100%);
 }
 
 .titleWrapper {
@@ -54,21 +54,16 @@
   font-weight: 700;
   font-size: var(--text-small);
   letter-spacing: 0.08em;
-  padding: 4px 14px;
-  transform: skewX(-6deg);
-}
-
-.brandLabel > * {
-  transform: skewX(6deg);
+  padding: 4px 16px;
+  border-radius: var(--radius-pill);
 }
 
 .title {
-  /* overlays the photo (on the blue scrim) — stays white */
+  /* overlays the photo (on the scrim) — stays white */
   color: var(--color-on-brand);
   font-size: var(--text-h1);
-  font-weight: 900;
-  font-style: italic;
-  letter-spacing: 0.01em;
+  font-weight: 700;
+  letter-spacing: 0.02em;
   text-shadow: 0 2px 24px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
@@ -108,6 +103,6 @@
   color: var(--color-ink);
   font-size: var(--text-small);
   font-weight: 700;
-  padding: 4px 12px;
-  border-left: 3px solid var(--color-brand);
+  padding: 4px 14px;
+  border-radius: var(--radius-pill);
 }

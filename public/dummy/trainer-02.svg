@@ -1,15 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
-  <defs>
-    <linearGradient id="g18" x1="0.8" y1="0" x2="0.2" y2="1">
-      <stop offset="0" stop-color="#1E1E1E"/>
-      <stop offset="1" stop-color="#141414"/>
-    </linearGradient>
-  </defs>
-  <rect width="600" height="600" fill="url(#g18)"/>
-  <polygon points="420,0 486,0 366,600 300,600" fill="#D8212C" opacity="0.25"/>
-     <polygon points="510,0 543,0 423,600 390,600" fill="#D8212C" opacity="0.25"/>
-  <line x1="330" y1="600" x2="540" y2="0" stroke="#D8212C" stroke-width="2" opacity="0.35"/>
-  <rect x="247" y="247.2" width="106" height="3" fill="#D8212C"/>
-  <text x="300" y="311.55" text-anchor="middle" font-family="Roboto, sans-serif" font-size="33" font-weight="500" letter-spacing="9.9" fill="#666">TRAINER 02</text>
-  
+  <rect width="600" height="600" fill="#F7F2EA"/>
+  <circle cx="500" cy="90" r="180" fill="#FDF0EA"/>
+  <circle cx="90" cy="520" r="130" fill="#ECF3FA"/>
+  <circle cx="300" cy="230" r="44" fill="none" stroke="#D8212C" stroke-width="3" opacity="0.5"/>
+  <circle cx="300" cy="230" r="9" fill="#D8212C"/>
+  <text x="300" y="360" text-anchor="middle" font-family="Montserrat, Roboto, sans-serif" font-size="32" font-weight="600" letter-spacing="9" fill="#99897C">TRAINER 02</text>
 </svg>

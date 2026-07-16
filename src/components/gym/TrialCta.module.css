@@ -10,7 +10,6 @@
   gap: var(--space-3);
   text-align: center;
   color: var(--color-on-brand);
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%);
 }
 
 /* --- EN kicker: line — label — line --- */
@@ -28,9 +27,8 @@
 }
 
 .kickerLabel {
-  font-family: var(--font-heading);
-  font-weight: 900;
-  font-style: italic;
+  font-family: var(--font-en);
+  font-weight: 600;
   font-size: var(--text-small);
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -41,7 +39,7 @@
 
 .heading {
   font-size: var(--text-h2);
-  font-weight: 900;
+  font-weight: 700;
   line-height: var(--leading-heading);
   color: var(--color-on-brand);
   text-wrap: balance;
@@ -78,8 +76,8 @@
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: var(--text-small);
-  padding: 4px 14px;
-  transform: skewX(-8deg);
+  padding: 4px 16px;
+  border-radius: var(--radius-pill);
 }
 
 .priceValue {
@@ -89,16 +87,15 @@
 }
 
 .priceAmount {
-  font-family: var(--font-heading);
-  font-weight: 900;
-  font-style: italic;
+  font-family: var(--font-en);
+  font-weight: 700;
   font-size: clamp(3rem, 2.4rem + 2.4vw, 4rem);
   line-height: 1;
   color: var(--color-brand);
 }
 
 .priceYen {
-  font-weight: 900;
+  font-weight: 700;
   font-size: var(--text-h3);
   color: var(--color-ink);
 }
@@ -139,7 +136,7 @@
   left: 0;
   top: 0;
   color: var(--color-on-brand);
-  font-weight: 900;
+  font-weight: 700;
 }
 
 /* --- CTA --- */

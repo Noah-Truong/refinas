@@ -3,12 +3,14 @@
    LAVA structure ← unchanged / look → Refinas identity
    No hardcoded colors in components — reference these tokens.
    Color scheme per fix1.pdf minutes (2026-07-07): red / blue /
-   white — former black (#111) grounds are gone; contrast bands
-   use the official brand blue instead.
+   white. Surface language matched to yoga-lava.com (2026-07):
+   white / warm-gray bands with one large rounded corner per
+   band, pill buttons, quiet 1px rules — soft and airy.
    ============================================================ */
 :root {
-  /* Color — official brand red/blue (fix1.pdf) on a soft warm base:
-     cream grounds, espresso text, sand panels (newcomer-friendly). */
+  /* Color — official brand red/blue (fix1.pdf) on a warm-filtered
+     take on LAVA's base: cream-white grounds, cream bands, warm
+     gray-brown text. */
   --color-brand: #d8212c;        /* Refinas Red — CTA / emphasis */
   --color-brand-strong: #e2554a; /* hover — warm coral */
   --color-brand-deep: #a3352c;   /* pressed / gradient end */
@@ -16,41 +18,43 @@
   --color-brand-blue: #0f6eb8;   /* Refinas Blue — secondary ground + accents */
   --color-blue-strong: #0a5a99;  /* blue hover / gradient end */
   --color-blue-tint: #ecf3fa;    /* light blue-tinted surface */
-  --color-ink: #43302b;          /* headings — warm espresso */
-  --color-body: #5c4b44;         /* body text — warm brown-gray */
-  --color-base: #fffaf4;         /* warm cream */
-  --color-panel: #f8efe4;        /* warm sand surface */
-  --color-border: #ecdfd2;
-  --color-muted: #a08d82;
+  --color-ink: #463d36;          /* headings — warm gray-brown */
+  --color-body: #4a403a;         /* body text — warm gray-brown, airy leading */
+  --color-base: #fffcf7;         /* warm white ground */
+  --color-panel: #f7f2ea;        /* warm cream band */
+  --color-border: #e5dcd1;       /* quiet warm 1px rules */
+  --color-muted: #99897c;
   --color-on-brand: #ffffff;                 /* text on red/blue grounds */
   --color-on-brand-muted: rgba(255, 255, 255, 0.82);
 
-  /* Surfaces used by section alternation (LAVA: white/gray/gradYellow) */
+  /* Surfaces used by section alternation (LAVA: white ↔ gray, flat) */
   --surface-white: var(--color-base);
   --surface-panel: var(--color-panel);
-  --surface-tint: linear-gradient(175deg, #fdf3ea 0%, #fae5d8 100%);
-  --surface-blue: linear-gradient(160deg, #2a84c8 0%, #0f6eb8 100%);
+  --surface-tint: var(--color-brand-tint);
+  --surface-blue: var(--color-brand-blue);
 
   /* Typography (next/font sets the family vars on <html>) —
-     rounded family for a soft, approachable tone */
-  --font-heading: var(--font-rounded), 'Hiragino Maru Gothic ProN', sans-serif;
-  --font-body: var(--font-rounded), 'Hiragino Maru Gothic ProN', sans-serif;
+     Noto Sans JP body + Montserrat EN accents, like the reference */
+  --font-heading: var(--font-sans), 'Hiragino Kaku Gothic ProN', sans-serif;
+  --font-body: var(--font-sans), 'Hiragino Kaku Gothic ProN', sans-serif;
+  --font-en: var(--font-montserrat), var(--font-sans), sans-serif;
 
   /* Type scale (desktop; ~0.85x on mobile via clamp) */
   --text-h1: clamp(2.125rem, 1.5rem + 2.2vw, 3rem);      /* 34–48 */
-  --text-h2: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);        /* 24–32 */
+  --text-h2: clamp(1.5rem, 1.2rem + 1.2vw, 1.875rem);    /* 24–30 (LAVA h2 = 30) */
   --text-h3: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);    /* 18–22 */
   --text-body: 1rem;                                      /* 16 */
   --text-small: 0.8125rem;                                /* 13 */
-  --leading-heading: 1.3;
-  --leading-body: 1.8;
+  --leading-heading: 1.4;
+  --leading-body: 1.9;
 
-  /* Radius — generous and soft */
-  --radius-sm: 12px;
-  --radius-md: 18px;
+  /* Radius — soft: cards 8–16, buttons full pills */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-pill: 999px;
 
-  /* Corner cut between sections — kept, but shallower for a softer edge */
-  --corner-cut: 36px;
+  /* One large rounded corner per section band (LAVA: 100px, alternating side) */
+  --radius-band: clamp(48px, 9vw, 100px);
 
   /* Spacing — 8px grid */
   --space-1: 8px;
@@ -65,8 +69,8 @@
   --section-gap: clamp(var(--space-8), 6vw, var(--space-12));
 
   /* Elevation — soft, warm-tinted */
-  --shadow-1: 0 1px 2px rgba(87, 55, 34, 0.05), 0 4px 14px rgba(87, 55, 34, 0.07);
-  --shadow-2: 0 2px 4px rgba(87, 55, 34, 0.06), 0 12px 30px rgba(87, 55, 34, 0.1);
+  --shadow-1: 0 1px 2px rgba(86, 62, 43, 0.04), 0 4px 14px rgba(86, 62, 43, 0.07);
+  --shadow-2: 0 2px 4px rgba(86, 62, 43, 0.05), 0 12px 30px rgba(86, 62, 43, 0.1);
 
   /* Layout — LAVA's content column is a single 800px column */
   --container-max: 800px;
@@ -82,10 +86,9 @@
   --z-bottom-bar: 101;
 }
 
-/* Mobile: tighter vertical rhythm, proportionally smaller corner cut */
+/* Mobile: tighter vertical rhythm */
 @media (max-width: 640px) {
   :root {
-    --corner-cut: 28px;
     --gutter: 16px;
     --section-gap: clamp(var(--space-6), 9vw, var(--space-8));
   }

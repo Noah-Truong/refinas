@@ -16,15 +16,15 @@
   display: flex;
   align-items: baseline;
   gap: 8px;
-  font-family: var(--font-heading);
-  font-weight: 900;
-  font-style: italic;
+  font-family: var(--font-en);
+  font-weight: 600;
   font-size: clamp(2.25rem, 2rem + 1vw, 2.75rem);
   line-height: 1;
   color: var(--color-brand);
 }
 
 .stepLabel {
+  font-family: var(--font-en);
   font-size: var(--text-small);
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -92,16 +92,16 @@
   content: '';
   position: absolute;
   left: 0;
-  top: 0.32em;
-  width: 8px;
-  height: 0.75em;
+  top: 0.42em;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
   background: var(--color-brand);
-  transform: skewX(-8deg);
 }
 
 .telLink {
   font-family: var(--font-heading);
-  font-weight: 900;
+  font-weight: 700;
   font-size: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
   letter-spacing: 0.02em;
   color: var(--color-ink);

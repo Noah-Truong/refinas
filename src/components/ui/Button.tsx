@@ -11,7 +11,7 @@ type ButtonProps = {
   children: React.ReactNode;
 };
 
-/** CTA button. primary = Refinas red with sharp skewed edge accent. */
+/** CTA button. Pill-shaped (LAVA pattern): solid red primary, blue secondary, outline ghost. */
 export function Button({ href, variant = 'primary', size = 'md', catchText, className, children }: ButtonProps) {
   const anchor = (
     <Link

@@ -35,15 +35,10 @@
   flex-shrink: 0;
   background: var(--color-brand);
   color: var(--color-on-brand);
-  font-family: var(--font-heading);
-  font-weight: 900;
+  font-family: var(--font-en);
+  font-weight: 600;
   font-size: var(--text-small);
-  transform: skewX(-8deg);
-}
-
-.qChip > span,
-.aChip > span {
-  transform: skewX(8deg);
+  border-radius: 50%;
 }
 
 .aChip {

@@ -84,16 +84,16 @@
   background: var(--color-brand);
   color: var(--color-on-brand);
   font-family: var(--font-heading);
-  font-weight: 900;
+  font-weight: 700;
   font-size: var(--text-small);
   letter-spacing: 0.06em;
   padding: 3px 14px;
-  transform: skewX(-8deg);
+  border-radius: var(--radius-pill);
 }
 
 .planName {
   font-size: var(--text-h3);
-  font-weight: 900;
+  font-weight: 700;
   line-height: var(--leading-heading);
 }
 
@@ -133,7 +133,7 @@
 
 .priceValue {
   font-family: var(--font-heading);
-  font-weight: 900;
+  font-weight: 700;
   font-size: 1.375rem;
   color: var(--color-ink);
   font-variant-numeric: tabular-nums;
@@ -153,7 +153,6 @@
   min-height: 40px;
   padding: 6px 30px 6px 16px;
   font-size: var(--text-small);
-  border-radius: var(--radius-sm);
   width: 100%;
 }
 
@@ -173,7 +172,7 @@
 
 .optionsTitle {
   font-size: var(--text-h3);
-  font-weight: 900;
+  font-weight: 700;
   position: relative;
   padding-left: 20px;
 }
@@ -182,11 +181,11 @@
   content: '';
   position: absolute;
   left: 0;
-  top: 0.32em;
+  top: 0.42em;
   width: 10px;
-  height: 0.75em;
+  height: 10px;
+  border-radius: 50%;
   background: var(--color-brand);
-  transform: skewX(-8deg);
 }
 
 .optionList {
@@ -243,7 +242,7 @@
   text-align: right;
   color: var(--color-brand);
   font-family: var(--font-heading);
-  font-weight: 900;
+  font-weight: 700;
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
 }

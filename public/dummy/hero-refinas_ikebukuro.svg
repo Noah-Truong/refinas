@@ -1,14 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1600" height="640" viewBox="0 0 1600 640">
-  <defs>
-    <linearGradient id="g1" x1="1" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#1E1E1E"/>
-      <stop offset="1" stop-color="#141414"/>
-    </linearGradient>
-  </defs>
-  <rect width="1600" height="640" fill="url(#g1)"/>
-  <polygon points="1248,0 1952,0 960,640 256,640" fill="#D8212C" opacity="0.20"/>
-  <line x1="880.0000000000001" y1="640" x2="1440" y2="0" stroke="#D8212C" stroke-width="2" opacity="0.35"/>
-  <rect x="744" y="264" width="112" height="3" fill="#D8212C"/>
-  <text x="800" y="332.25" text-anchor="middle" font-family="Roboto, sans-serif" font-size="35" font-weight="500" letter-spacing="10.5" fill="#666">REFINAS IKEBUKURO</text>
-  <text x="800" y="369" text-anchor="middle" font-family="Roboto, 'Noto Sans JP', sans-serif" font-size="19" letter-spacing="6.6" fill="#555">KICKBOXING GYM</text>
+  <rect width="1600" height="640" fill="#F7F2EA"/>
+  <circle cx="1380" cy="80" r="360" fill="#FDF0EA"/>
+  <circle cx="160" cy="600" r="240" fill="#ECF3FA"/>
+  <circle cx="800" cy="230" r="60" fill="none" stroke="#D8212C" stroke-width="4" opacity="0.5"/>
+  <circle cx="800" cy="230" r="12" fill="#D8212C"/>
+  <text x="800" y="390" text-anchor="middle" font-family="Montserrat, Roboto, sans-serif" font-size="64" font-weight="700" letter-spacing="14" fill="#463D36">REFINAS IKEBUKURO</text>
+  <text x="800" y="450" text-anchor="middle" font-family="Montserrat, Roboto, sans-serif" font-size="24" letter-spacing="10" fill="#99897C">KICKBOXING GYM</text>
 </svg>

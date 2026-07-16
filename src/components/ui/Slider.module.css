@@ -38,7 +38,7 @@
   align-items: center;
   justify-content: center;
   background: var(--color-brand-blue);
-  border-radius: var(--radius-sm);
+  border-radius: 50%;
   transition: background var(--dur-fast) var(--ease-out), opacity var(--dur-fast) var(--ease-out);
   flex-shrink: 0;
 }
@@ -82,7 +82,7 @@
   box-sizing: border-box;
   background: var(--color-border);
   background-clip: content-box;
-  transform: skewX(-8deg);
+  border-radius: 50%;
   transition: background var(--dur-fast) var(--ease-out);
 }
 

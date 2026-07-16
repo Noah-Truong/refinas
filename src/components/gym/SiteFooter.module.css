@@ -51,16 +51,16 @@
   content: '';
   position: absolute;
   left: 0;
-  top: 0.32em;
-  width: 8px;
-  height: 0.75em;
+  top: 0.42em;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
   background: var(--color-brand);
-  transform: skewX(-8deg);
 }
 
 .telLink {
   font-family: var(--font-heading);
-  font-weight: 900;
+  font-weight: 700;
   font-size: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
   letter-spacing: 0.02em;
   color: var(--color-ink);
@@ -96,9 +96,8 @@
 }
 
 .wordmark {
-  font-family: var(--font-heading);
-  font-weight: 900;
-  font-style: italic;
+  font-family: var(--font-en);
+  font-weight: 700;
   font-size: clamp(2.5rem, 2rem + 2.4vw, 3.5rem);
   line-height: 1;
   letter-spacing: 0.02em;
@@ -136,9 +135,8 @@
 }
 
 .marqueeText {
-  font-family: var(--font-heading);
-  font-weight: 900;
-  font-style: italic;
+  font-family: var(--font-en);
+  font-weight: 700;
   font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2.25rem);
   letter-spacing: 0.06em;
   text-transform: uppercase;

@@ -6,14 +6,15 @@
 
 .bannerLink {
   display: block;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
   overflow: hidden;
-  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 24px), calc(100% - 24px) 100%, 0 100%);
-  transition: opacity var(--dur-fast) var(--ease-out);
+  box-shadow: var(--shadow-1);
+  transition: opacity var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
 }
 
 .bannerLink:hover {
-  opacity: 0.88;
+  opacity: 0.9;
+  box-shadow: var(--shadow-2);
 }
 
 .bannerImage {
@@ -28,33 +29,31 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-1);
+  gap: var(--space-2);
   min-height: 160px;
   padding: var(--space-4) var(--space-3);
-  /* campaign fallback: light red tint, red kicker chip (fix1: no dark ground) */
+  /* campaign fallback: light peach surface with a red pill kicker (fix1: no dark ground) */
   background: var(--surface-tint);
   color: var(--color-ink);
   text-align: center;
-  border-left: 6px solid var(--color-brand);
 }
 
 .bannerKicker {
   display: inline-block;
   background: var(--color-brand);
   color: var(--color-on-brand);
-  font-family: var(--font-heading);
-  font-weight: 900;
-  font-style: italic;
+  font-family: var(--font-en);
+  font-weight: 600;
   font-size: var(--text-small);
   letter-spacing: 0.18em;
-  padding: 4px 16px;
-  transform: skewX(-8deg);
+  padding: 4px 18px;
+  border-radius: var(--radius-pill);
 }
 
 .bannerTitle {
   font-family: var(--font-heading);
   font-size: var(--text-h3);
-  font-weight: 900;
+  font-weight: 700;
   line-height: var(--leading-heading);
 }
 

@@ -1,7 +1,7 @@
 import styles from './SectionTitle.module.css';
 
 type SectionTitleProps = {
-  /** Optional small English kicker (italic, red) — e.g. "TRIAL LESSON" */
+  /** Optional small English kicker (Montserrat caps, red) — e.g. "TRIAL LESSON" */
   kicker?: string;
   /** Main Japanese title (H2), e.g. 「渋谷店の料金プラン」 */
   title: string;

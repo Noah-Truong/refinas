@@ -1,14 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
-  <defs>
-    <linearGradient id="g4" x1="1" y1="1" x2="0" y2="0">
-      <stop offset="0" stop-color="#1E1E1E"/>
-      <stop offset="1" stop-color="#141414"/>
-    </linearGradient>
-  </defs>
-  <rect width="1200" height="800" fill="url(#g4)"/>
-  <polygon points="0,800 1200,440.00000000000006 1200,800 " fill="#D8212C" opacity="0.15"/>
-  <line x1="360" y1="800" x2="900" y2="0" stroke="#D8212C" stroke-width="2" opacity="0.35"/>
-  <rect x="529.5" y="329.6" width="141" height="3" fill="#D8212C"/>
-  <text x="600" y="415.4" text-anchor="middle" font-family="Roboto, sans-serif" font-size="44" font-weight="500" letter-spacing="13.2" fill="#666">STUDIO PHOTO 02</text>
-  
+  <rect width="1200" height="800" fill="#F7F2EA"/>
+  <circle cx="1000" cy="140" r="300" fill="#FDF0EA"/>
+  <circle cx="170" cy="700" r="210" fill="#ECF3FA"/>
+  <circle cx="600" cy="300" r="52" fill="none" stroke="#D8212C" stroke-width="3" opacity="0.5"/>
+  <circle cx="600" cy="300" r="10" fill="#D8212C"/>
+  <text x="600" y="450" text-anchor="middle" font-family="Montserrat, Roboto, sans-serif" font-size="36" font-weight="600" letter-spacing="10" fill="#99897C">STUDIO PHOTO 02</text>
 </svg>

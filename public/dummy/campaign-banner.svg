@@ -1,16 +1,15 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="400" viewBox="0 0 1200 400">
   <defs>
     <linearGradient id="cg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#D8212C"/>
-      <stop offset="1" stop-color="#A01018"/>
+      <stop offset="0" stop-color="#E2554A"/>
+      <stop offset="1" stop-color="#D8212C"/>
     </linearGradient>
   </defs>
   <rect width="1200" height="400" fill="url(#cg)"/>
-  <polygon points="900,0 1200,0 1200,400 780,400" fill="#FFFFFF" opacity="0.08"/>
-  <polygon points="0,0 180,0 60,400 0,400" fill="#000000" opacity="0.12"/>
-  <line x1="740" y1="400" x2="1000" y2="0" stroke="#FFFFFF" stroke-width="2" opacity="0.25"/>
-  <rect x="500" y="96" width="200" height="4" fill="#FFFFFF" opacity="0.9"/>
+  <circle cx="1080" cy="40" r="220" fill="#FFFFFF" opacity="0.1"/>
+  <circle cx="90" cy="380" r="150" fill="#FFFFFF" opacity="0.08"/>
+  <circle cx="600" cy="96" r="5" fill="#FFFFFF" opacity="0.9"/>
   <text x="600" y="196" text-anchor="middle" font-family="'Noto Sans JP', Roboto, sans-serif" font-size="66" font-weight="700" fill="#FFFFFF" letter-spacing="4">無料体験実施中</text>
   <text x="600" y="286" text-anchor="middle" font-family="'Noto Sans JP', Roboto, sans-serif" font-size="44" font-weight="700" fill="#FFFFFF" letter-spacing="10">体験レッスン 通常5,000円→0円</text>
-  <text x="600" y="336" text-anchor="middle" font-family="Roboto, sans-serif" font-size="16" letter-spacing="6" fill="#FFFFFF" opacity="0.7">REFINAS KICKBOXING GYM</text>
+  <text x="600" y="336" text-anchor="middle" font-family="Montserrat, Roboto, sans-serif" font-size="16" letter-spacing="6" fill="#FFFFFF" opacity="0.75">REFINAS KICKBOXING GYM</text>
 </svg>

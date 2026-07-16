@@ -24,9 +24,8 @@
 }
 
 .brandMark {
-  font-family: var(--font-heading);
-  font-weight: 900;
-  font-style: italic;
+  font-family: var(--font-en);
+  font-weight: 700;
   font-size: var(--text-h2);
   letter-spacing: 0.08em;
   /* sits on the blue band — white, not red-on-blue */
