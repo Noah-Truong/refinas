@@ -20,9 +20,9 @@
   --color-blue-tint: #ecf3fa;    /* light blue-tinted surface */
   --color-ink: #463d36;          /* headings — warm gray-brown */
   --color-body: #4a403a;         /* body text — warm gray-brown, airy leading */
-  --color-base: #fffcf7;         /* warm white ground */
-  --color-panel: #f7f2ea;        /* warm cream band */
-  --color-border: #e5dcd1;       /* quiet warm 1px rules */
+  --color-base: #fff8f0;         /* warm white ground — slight orange tint */
+  --color-panel: #f8f0e4;        /* warm cream band — slight orange tint */
+  --color-border: #e9dccb;       /* quiet warm 1px rules */
   --color-muted: #99897c;
   --color-on-brand: #ffffff;                 /* text on red/blue grounds */
   --color-on-brand-muted: rgba(255, 255, 255, 0.82);
