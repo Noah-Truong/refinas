@@ -8,7 +8,6 @@
   <rect width="1200" height="400" fill="url(#cg)"/>
   <circle cx="1080" cy="40" r="220" fill="#FFFFFF" opacity="0.1"/>
   <circle cx="90" cy="380" r="150" fill="#FFFFFF" opacity="0.08"/>
-  <circle cx="600" cy="96" r="5" fill="#FFFFFF" opacity="0.9"/>
   <text x="600" y="196" text-anchor="middle" font-family="'Noto Sans JP', Roboto, sans-serif" font-size="66" font-weight="700" fill="#FFFFFF" letter-spacing="4">無料体験実施中</text>
   <text x="600" y="286" text-anchor="middle" font-family="'Noto Sans JP', Roboto, sans-serif" font-size="44" font-weight="700" fill="#FFFFFF" letter-spacing="10">体験レッスン 通常5,000円→0円</text>
   <text x="600" y="336" text-anchor="middle" font-family="Montserrat, Roboto, sans-serif" font-size="16" letter-spacing="6" fill="#FFFFFF" opacity="0.75">REFINAS KICKBOXING GYM</text>
