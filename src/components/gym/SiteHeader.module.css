@@ -158,7 +158,6 @@
   font-weight: 700;
   font-size: var(--text-small);
   letter-spacing: 0.04em;
-  border-radius: 0 0 12px 12px;
   transition: background var(--dur-fast) var(--ease-out);
 }
 

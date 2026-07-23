@@ -9,11 +9,12 @@ function studioScope(planName: string): string {
   return planName.includes('フルアクセス') ? '全店舗' : '1店舗';
 }
 
-/** Price comparison table (LAVA block 7): scrollable 4-col table + footnotes + option accordions. */
-export function PriceTable({ gym }: { gym: Gym }) {
-  const colClass = (isRecommended: boolean) =>
-    isRecommended ? styles.recommendedCol : undefined;
+/** Stored plan prices are 税抜 — display is 税込 (Fix Point 7/22 Task 5). */
+const taxIncluded = (price: number) => Math.round(price * 1.1);
 
+/** Pricing (LAVA block 7), Fix Point 7/22 Task 5: per-plan cards — left column
+    is the "who it's for" label, right column is plan name + tax-included fee. */
+export function PriceTable({ gym }: { gym: Gym }) {
   return (
     <>
       <SectionTitle
@@ -26,90 +27,63 @@ export function PriceTable({ gym }: { gym: Gym }) {
         }
       />
 
-      {/* 7a. comparison table (horizontally scrollable on SP) */}
-      <p className={styles.scrollHint}>※ 表は横にスクロールできます</p>
-      <div className={styles.scrollWrapper}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <td className={styles.cornerCell} aria-hidden="true" />
-              {gym.plans.map((plan) => (
-                <th key={plan.planName} scope="col" className={colClass(plan.isRecommended)}>
-                  <div className={styles.planHeader}>
-                    {plan.isRecommended && (
-                      <span className={styles.recommendBadge}>オススメ!</span>
-                    )}
-                    <h3 className={styles.planName}>{plan.planName}</h3>
-                    {plan.target && <p className={styles.planTarget}>{plan.target}</p>}
-                  </div>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row" className={styles.rowLabel}>
-                月会費
-              </th>
-              {gym.plans.map((plan) => {
-                const female = plan.priceFemale ?? plan.price;
-                const male = plan.priceMale ?? plan.price;
-                return (
-                  <td key={plan.planName} className={colClass(plan.isRecommended)}>
-                    <div className={styles.priceCell}>
-                      {female != null && (
-                        <p className={styles.priceLine}>
-                          <span className={styles.genderLabel}>女性</span>
-                          <span className={styles.priceValue}>
-                            ¥{female.toLocaleString()}
-                          </span>
-                        </p>
-                      )}
-                      {male != null && (
-                        <p className={styles.priceLine}>
-                          <span className={styles.genderLabel}>男性</span>
-                          <span className={styles.priceValue}>¥{male.toLocaleString()}</span>
-                        </p>
-                      )}
-                      <p className={styles.priceUnit}>{plan.unit}</p>
-                      <Button
-                        href={plan.ctaUrl ?? gym.primaryCtaUrl}
-                        className={styles.tableCta}
-                      >
-                        体験予約へ
-                      </Button>
-                    </div>
-                  </td>
-                );
-              })}
-            </tr>
-            <tr>
-              <th scope="row" className={styles.rowLabel}>
-                通えるスタジオ
-              </th>
-              {gym.plans.map((plan) => (
-                <td key={plan.planName} className={colClass(plan.isRecommended)}>
-                  <p className={styles.cellText}>{studioScope(plan.planName)}</p>
-                </td>
-              ))}
-            </tr>
-            <tr>
-              <th scope="row" className={styles.rowLabel}>
-                月間利用回数
-              </th>
-              {gym.plans.map((plan) => (
-                <td key={plan.planName} className={colClass(plan.isRecommended)}>
-                  <p className={styles.cellText}>{plan.sessions ?? '—'}</p>
-                </td>
-              ))}
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      {/* 7a. plan cards: who-it's-for (left) / plan name + 税込 fee (right) */}
+      <ul className={styles.planList}>
+        {gym.plans.map((plan) => {
+          const female = plan.priceFemale ?? plan.price;
+          const male = plan.priceMale ?? plan.price;
+          const scope = studioScope(plan.planName);
+          // 「全店舗通い放題・全店舗」の重複を避ける
+          const meta = plan.sessions?.includes(scope)
+            ? plan.sessions
+            : `${plan.sessions ?? '—'}・${scope}`;
+          return (
+            <li
+              key={plan.planName}
+              className={[styles.planCard, plan.isRecommended ? styles.recommended : '']
+                .filter(Boolean)
+                .join(' ')}
+            >
+              {plan.isRecommended && (
+                <span className={styles.recommendBadge}>オススメ!</span>
+              )}
+              <div className={styles.planTarget}>
+                <p className={styles.targetText}>{plan.target}</p>
+              </div>
+              <div className={styles.planMain}>
+                <h3 className={styles.planName}>{plan.planName}</h3>
+                <p className={styles.planMeta}>月会費（{meta}）</p>
+                <div className={styles.priceLines}>
+                  {female != null && (
+                    <p className={styles.priceLine}>
+                      <span className={styles.genderLabel}>女性</span>
+                      <span className={styles.priceValue}>
+                        {taxIncluded(female).toLocaleString()}
+                      </span>
+                      <span className={styles.priceYen}>円</span>
+                      <span className={styles.priceTax}>（税込）</span>
+                    </p>
+                  )}
+                  {male != null && (
+                    <p className={styles.priceLine}>
+                      <span className={styles.genderLabel}>男性</span>
+                      <span className={styles.priceValue}>
+                        {taxIncluded(male).toLocaleString()}
+                      </span>
+                      <span className={styles.priceYen}>円</span>
+                      <span className={styles.priceTax}>（税込）</span>
+                    </p>
+                  )}
+                </div>
+              </div>
+            </li>
+          );
+        })}
+      </ul>
 
       {/* 7a. footnotes */}
       <p className={styles.footnote}>
-        ※ 表示価格はすべて税抜です。
+        ※ 表示価格はすべて税込です。
         <br />
         ※ 月会費とは別に事務手数料を頂戴する場合がございます。
         <br />※ プラン内容・料金は店舗により変更となる場合がございます。

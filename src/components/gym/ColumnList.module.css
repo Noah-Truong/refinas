@@ -1,9 +1,10 @@
+/* Compact LAVA-style article cards (Fix Point 7/22 Task 2) */
 .grid {
   list-style: none;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-3);
-  margin-bottom: var(--space-4);
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
 }
 
 .card {
@@ -19,14 +20,14 @@
   display: block;
   overflow: hidden;
   border-radius: var(--radius-sm);
-  margin-bottom: var(--space-2);
+  margin-bottom: var(--space-1);
 }
 
 .image {
   display: block;
   width: 100%;
   height: auto;
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
   transition: transform var(--dur-med) var(--ease-out);
 }
@@ -39,7 +40,7 @@
   display: block;
   font-size: var(--text-small);
   font-weight: 700;
-  line-height: var(--leading-body);
+  line-height: 1.6;
 }
 
 .buttonWrapper {
@@ -47,13 +48,27 @@
   justify-content: center;
 }
 
+/* SP: compact horizontal rows (thumb left, title right) instead of
+   full-width stacked cards — keeps the card weight down on mobile */
 @media (max-width: 640px) {
   .grid {
     grid-template-columns: 1fr;
-    gap: var(--space-4);
+    gap: var(--space-2);
+  }
+
+  .card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+  }
+
+  .imageWrapper {
+    flex: 0 0 128px;
+    margin-bottom: 0;
   }
 
   .title {
-    font-size: var(--text-body);
+    flex: 1;
+    min-width: 0;
   }
 }

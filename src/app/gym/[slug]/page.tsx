@@ -63,49 +63,51 @@ export default async function GymPage({ params }: { params: Promise<Params> }) {
       />
       <SiteHeader gym={gym} />
       <main>
-        {/* 16-block structure — order fixed per the reference IA (spec §5) */}
+        {/* 16-block structure — order fixed per the reference IA (spec §5).
+            Fix Point 7/22 Task 3-A + Task 4: every band is white with right-angle
+            edges — the blue/panel/tint alternation and corner cuts are retired. */}
         <GymHero gym={gym} />
         {/* id="reserve" — landing target for every reserveUrl/primaryCtaUrl (#reserve) CTA */}
-        <Section bg="blue" cut="none" id="reserve">
+        <Section id="reserve">
           <TrialCta gym={gym} />
         </Section>
-        <Section bg="white" cut="right">
+        <Section>
           <CampaignBanner gym={gym} />
         </Section>
-        <Section bg="white" cut="none">
+        <Section>
           <AccessNap gym={gym} photos={studioPhotos} />
         </Section>
-        <Section bg="panel" cut="left">
+        <Section>
           <PriceTable gym={gym} />
         </Section>
-        <Section bg="white" cut="right">
+        <Section>
           <NearbyGyms gym={gym} />
         </Section>
-        <Section bg="tint" cut="left">
+        <Section>
           <TrialFlow gym={gym} />
         </Section>
-        <Section bg="panel" cut="right">
+        <Section>
           <StaffSection gym={gym} />
         </Section>
-        <Section bg="white" cut="left">
+        <Section>
           <VoiceSection gym={gym} />
         </Section>
-        <Section bg="tint" cut="right">
+        <Section>
           <ProgramSlider gym={gym} />
         </Section>
-        <Section bg="panel" cut="left">
+        <Section>
           <ScheduleLink gym={gym} />
         </Section>
-        <Section bg="white" cut="right">
+        <Section>
           <FaqAccordion gym={gym} />
         </Section>
-        <Section bg="panel" cut="left">
+        <Section>
           <TopicList gym={gym} />
         </Section>
-        <Section bg="white" cut="right">
+        <Section>
           <ColumnList gym={gym} />
         </Section>
-        <Section bg="blue" cut="none">
+        <Section>
           <BrandConcept gym={gym} />
         </Section>
       </main>

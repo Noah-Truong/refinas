@@ -20,7 +20,7 @@
   --color-blue-tint: #ecf3fa;    /* light blue-tinted surface */
   --color-ink: #463d36;          /* headings — warm gray-brown */
   --color-body: #4a403a;         /* body text — warm gray-brown, airy leading */
-  --color-base: #fff8f0;         /* warm white ground — slight orange tint */
+  --color-base: #ffffff;         /* pure white ground (Fix Point 7/22 Task 4) */
   --color-panel: #f8f0e4;        /* warm cream band — slight orange tint */
   --color-border: #e9dccb;       /* quiet warm 1px rules */
   --color-muted: #99897c;
@@ -48,13 +48,14 @@
   --leading-heading: 1.4;
   --leading-body: 1.9;
 
-  /* Radius — soft: cards 8–16, buttons full pills */
-  --radius-sm: 8px;
-  --radius-md: 16px;
-  --radius-pill: 999px;
+  /* Radius — right angles everywhere (Fix Point 7/22 Task 3, Option A).
+     Tokens kept at 0 so a future radius change stays one-line. */
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-pill: 0;
 
-  /* One large rounded corner per section band (LAVA: 100px, alternating side) */
-  --radius-band: clamp(48px, 9vw, 100px);
+  /* Section band corner — 0 per Task 3 Option A (was LAVA's 100px curve) */
+  --radius-band: 0px;
 
   /* Spacing — 8px grid */
   --space-1: 8px;

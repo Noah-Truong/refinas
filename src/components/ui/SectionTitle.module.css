@@ -27,16 +27,17 @@
   text-wrap: balance; /* avoid one-character orphan lines when the JP title wraps on SP */
 }
 
-/* Refinas heading marker: a soft red dot (LAVA's blurred-dot pattern) */
+/* Refinas heading marker: brand-red square, centered on the first text line
+   (Fix Point 7/22 Task 1 — em-based so it holds at every breakpoint) */
 .title::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 0.42em;
+  top: calc(0.5em * var(--leading-heading));
+  transform: translateY(-50%);
   width: 12px;
   height: 12px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--color-brand) 0%, var(--color-brand-strong) 55%, transparent 72%);
+  background: var(--color-brand);
 }
 
 .center .title {

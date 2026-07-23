@@ -28,8 +28,8 @@
   font-weight: 700;
   font-size: var(--text-h2);
   letter-spacing: 0.08em;
-  /* sits on the blue band — white, not red-on-blue */
-  color: var(--color-on-brand);
+  /* white band (Fix Point 7/22 Task 4) — brand red wordmark */
+  color: var(--color-brand);
   line-height: 1;
 }
 
@@ -38,7 +38,7 @@
   font-weight: 500;
   font-size: var(--text-small);
   letter-spacing: 0.32em;
-  color: var(--color-on-brand-muted);
+  color: var(--color-muted);
   margin-bottom: var(--space-4);
 }
 
@@ -52,7 +52,7 @@
 .copy p {
   font-size: var(--text-small);
   line-height: 2.2;
-  color: var(--color-on-brand-muted);
+  color: var(--color-body);
 }
 
 @media (max-width: 640px) {

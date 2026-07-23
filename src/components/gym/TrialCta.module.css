@@ -1,7 +1,7 @@
 .card {
-  /* elevated panel on the blue band (fix1: former dark card) */
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.22);
+  /* bordered card on the white page (Fix Point 7/22 Task 4: blue band retired) */
+  background: var(--color-base);
+  border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
   padding: clamp(var(--space-4), 5vw, var(--space-6));
   display: flex;
@@ -9,7 +9,7 @@
   align-items: center;
   gap: var(--space-3);
   text-align: center;
-  color: var(--color-on-brand);
+  color: var(--color-body);
 }
 
 /* --- EN kicker: line — label — line --- */
@@ -23,7 +23,7 @@
 .kickerLine {
   flex: 1;
   height: 1px;
-  background: rgba(255, 255, 255, 0.35);
+  background: var(--color-border);
 }
 
 .kickerLabel {
@@ -32,8 +32,7 @@
   font-size: var(--text-small);
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  /* red reads muddy on the blue band — kicker goes white here */
-  color: var(--color-on-brand);
+  color: var(--color-brand);
   white-space: nowrap;
 }
 
@@ -41,7 +40,7 @@
   font-size: var(--text-h2);
   font-weight: 700;
   line-height: var(--leading-heading);
-  color: var(--color-on-brand);
+  color: var(--color-ink);
   text-wrap: balance;
 }
 
@@ -63,6 +62,7 @@
   justify-content: center;
   gap: var(--space-2) var(--space-3);
   background: var(--color-base);
+  border: 1px solid var(--color-border);
   color: var(--color-ink);
   border-radius: var(--radius-sm);
   padding: var(--space-2) var(--space-4);
@@ -126,7 +126,7 @@
   padding-left: 26px;
   font-weight: 700;
   font-size: var(--text-body);
-  color: var(--color-on-brand);
+  color: var(--color-body);
   text-align: left;
 }
 
@@ -135,7 +135,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  color: var(--color-on-brand);
+  color: var(--color-brand);
   font-weight: 700;
 }
 
@@ -149,9 +149,9 @@
 }
 
 .flowLink {
-  color: var(--color-on-brand);
+  color: var(--color-body);
 }
 
 .flowLink:hover {
-  color: var(--color-on-brand-muted);
+  color: var(--color-brand);
 }

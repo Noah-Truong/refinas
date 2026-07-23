@@ -1,5 +1,6 @@
 .nav {
-  background: var(--color-panel);
+  /* white per Fix Point 7/22 Task 4 (entire page ground is white) */
+  background: var(--color-base);
   padding: var(--space-3) 0;
   border-top: 1px solid var(--color-border);
 }

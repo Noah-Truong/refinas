@@ -27,7 +27,7 @@ export function TrialCta({ gym }: { gym: Gym }) {
         <span className={styles.priceValue}>
           <strong className={styles.priceAmount}>0</strong>
           <span className={styles.priceYen}>円</span>
-          <span className={styles.priceTax}>（税抜）</span>
+          <span className={styles.priceTax}>（税込）</span>
         </span>
         <s className={styles.priceBefore}>通常5,000円</s>
       </div>

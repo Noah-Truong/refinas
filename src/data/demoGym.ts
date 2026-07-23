@@ -2,7 +2,7 @@ import type { Gym, Image } from '@/types/gym';
 
 // ---------------------------------------------------------------------------
 // Refinas demo data (dummy). Content mirrors the real refinas.jp brand:
-// real plan names/prices (税抜), campaign wording, CTA wording, tone.
+// real plan names/prices (stored 税抜 — PriceTable displays 税込), campaign wording, CTA wording, tone.
 // ---------------------------------------------------------------------------
 
 // チェックリスト③：予約導線URL。デモはページ内の予約ブロック（#reserve）に着地させる。
@@ -46,7 +46,7 @@ const plans: Gym['plans'] = [
     planName: 'シルバー',
     priceFemale: 9800,
     priceMale: 11800,
-    unit: '円/月（税抜）',
+    unit: '円/月',
     target: 'まずは週1ペースで通いたい方に',
     sessions: '月4回',
     isRecommended: false,
@@ -56,7 +56,7 @@ const plans: Gym['plans'] = [
     planName: 'プラチナ',
     priceFemale: 14800,
     priceMale: 16800,
-    unit: '円/月（税抜）',
+    unit: '円/月',
     target: 'しっかり結果を出したい方に一番人気',
     sessions: '通い放題',
     isRecommended: true,
@@ -66,7 +66,7 @@ const plans: Gym['plans'] = [
     planName: 'フルアクセス',
     priceFemale: 16800,
     priceMale: 18800,
-    unit: '円/月（税抜）',
+    unit: '円/月',
     target: '職場や外出先でも通いたい方に',
     sessions: '全店舗通い放題',
     isRecommended: false,
@@ -348,7 +348,7 @@ export const demoGyms: Gym[] = [
     seo: {
       title: 'キックボクシング渋谷 Refinas｜渋谷駅徒歩5分・初心者歓迎のキックボクシングジム',
       description:
-        '渋谷駅徒歩5分のキックボクシングジムRefinas（リフィナス）。初心者・女性歓迎、月4回9,800円〜。今なら体験レッスン通常5,000円→0円。',
+        '渋谷駅徒歩5分のキックボクシングジムRefinas（リフィナス）。初心者・女性歓迎、月4回10,780円（税込）〜。今なら体験レッスン通常5,000円→0円。',
       ogImage: { url: '/photos/hero-01.jpg', width: 1568, height: 881, alt: 'キックボクシング渋谷 Refinas' },
     },
   },

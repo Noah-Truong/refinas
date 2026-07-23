@@ -7,7 +7,6 @@
   width: 16px;
   height: 12px;
   background: var(--color-border);
-  border-radius: 6px;
 }
 
 .active {

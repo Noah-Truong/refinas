@@ -1,128 +1,95 @@
-/* --- scrollable table (SP) --- */
-.scrollWrapper {
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-
-.scrollHint {
-  display: none;
-  font-size: var(--text-small);
-  color: var(--color-muted);
-}
-
-@media (max-width: 640px) {
-  .scrollHint {
-    display: block;
-    /* pull the table up close — cancel most of the section container's flex gap */
-    margin-bottom: calc(-1 * var(--space-5));
-  }
-
-  .table {
-    min-width: 560px;
-  }
-
-  .table th,
-  .table td {
-    padding: var(--space-1) 10px;
-  }
-
-  .planName {
-    font-size: var(--text-body);
-  }
-
-  .priceValue {
-    font-size: 1.125rem;
-  }
-}
-
-.table {
-  width: 100%;
-  min-width: 620px;
-  border-collapse: collapse;
-  background: var(--color-base);
-  font-size: var(--text-body);
-}
-
-.table th,
-.table td {
-  border: 1px solid var(--color-border);
-  padding: var(--space-2);
-  text-align: center;
-  vertical-align: middle;
-}
-
-.cornerCell {
-  background: transparent;
-  border: none;
-}
-
-/* recommended column: tint + 2px red column border */
-.recommendedCol {
-  background: var(--color-brand-tint);
-  border-left: 2px solid var(--color-brand);
-  border-right: 2px solid var(--color-brand);
-}
-
-.table thead .recommendedCol {
-  border-top: 2px solid var(--color-brand);
-}
-
-.table tbody tr:last-child .recommendedCol {
-  border-bottom: 2px solid var(--color-brand);
-}
-
-/* --- column headers --- */
-.planHeader {
+/* --- plan cards (Fix Point 7/22 Task 5, layout per context/priceplan.png:
+   who-it's-for | divider | plan name + 月会費 + big 税込 price; the left/right
+   split holds at every width, badge rides the recommended card's top edge) --- */
+.planList {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: var(--space-1);
+  gap: var(--space-3);
+}
+
+.planCard {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  align-items: stretch;
+  border: 1px solid var(--color-border);
+  background: var(--color-base);
+}
+
+/* recommended plan: red frame + tinted card + top-edge badge */
+.recommended {
+  border: 2px solid var(--color-brand);
+  background: var(--color-brand-tint);
+  margin-top: var(--space-2);
 }
 
 .recommendBadge {
-  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -55%);
   background: var(--color-brand);
   color: var(--color-on-brand);
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: var(--text-small);
-  letter-spacing: 0.06em;
-  padding: 3px 14px;
+  letter-spacing: 0.1em;
+  padding: 4px 40px;
   border-radius: var(--radius-pill);
+  white-space: nowrap;
+}
+
+/* left column: who the plan is for — bold brand red, centered */
+.planTarget {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3) var(--space-2);
+  border-right: 1px solid var(--color-border);
+}
+
+.targetText {
+  font-weight: 700;
+  font-size: var(--text-body);
+  line-height: 1.8;
+  color: var(--color-brand);
+  text-align: center;
+}
+
+/* right column: plan name + 月会費 + tax-included fee */
+.planMain {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  padding: var(--space-3) var(--space-2);
+  text-align: center;
 }
 
 .planName {
-  font-size: var(--text-h3);
+  font-size: var(--text-body);
   font-weight: 700;
   line-height: var(--leading-heading);
 }
 
-.planTarget {
+.planMeta {
   font-size: var(--text-small);
-  font-weight: 400;
   color: var(--color-muted);
 }
 
-/* --- body cells --- */
-.rowLabel {
-  background: var(--color-brand-blue);
-  color: var(--color-on-brand);
-  font-weight: 700;
-  font-size: var(--text-small);
-  white-space: nowrap;
-}
-
-.priceCell {
+.priceLines {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 2px;
+  margin-top: 4px;
 }
 
 .priceLine {
   display: flex;
   align-items: baseline;
-  gap: 8px;
+  gap: 6px;
 }
 
 .genderLabel {
@@ -134,26 +101,37 @@
 .priceValue {
   font-family: var(--font-heading);
   font-weight: 700;
-  font-size: 1.375rem;
+  font-size: clamp(1.5rem, 1.3rem + 0.8vw, 1.75rem);
+  line-height: 1.2;
   color: var(--color-ink);
   font-variant-numeric: tabular-nums;
 }
 
-.priceUnit {
-  font-size: var(--text-small);
+.priceYen {
+  font-size: var(--text-body);
+  font-weight: 700;
+  color: var(--color-ink);
+}
+
+.priceTax {
+  font-size: 0.6875rem;
   color: var(--color-muted);
 }
 
-.cellText {
-  font-weight: 700;
-}
+/* SP: keep the left/right split (per the reference), just tighten it */
+@media (max-width: 640px) {
+  .planCard {
+    grid-template-columns: 1fr 1.2fr;
+  }
 
-/* compact in-table CTA */
-.tableCta {
-  min-height: 40px;
-  padding: 6px 30px 6px 16px;
-  font-size: var(--text-small);
-  width: 100%;
+  .planTarget,
+  .planMain {
+    padding: var(--space-2) var(--space-1);
+  }
+
+  .recommendBadge {
+    padding: 3px 28px;
+  }
 }
 
 /* --- footnotes --- */
@@ -177,14 +155,15 @@
   padding-left: 20px;
 }
 
+/* square marker centered on the text line (matches SectionTitle, Task 1) */
 .optionsTitle::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 0.42em;
+  top: calc(0.5em * var(--leading-heading));
+  transform: translateY(-50%);
   width: 10px;
   height: 10px;
-  border-radius: 50%;
   background: var(--color-brand);
 }
 
