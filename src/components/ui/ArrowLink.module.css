@@ -27,3 +27,18 @@
 .link:hover .arrow {
   transform: rotate(45deg) translate(2px, -2px);
 }
+
+/* on colored grounds the brand-red arrow vanishes — follow the link color instead */
+.toneInherit .arrow {
+  border-top-color: currentColor;
+  border-right-color: currentColor;
+}
+
+/* these links render ~25px tall; on touch that is well under any tap-target
+   guideline, so pad them out to ~45px. They are always standalone, never inline
+   inside a paragraph, so the extra height costs nothing. */
+@media (max-width: 900px) {
+  .link {
+    padding: 10px 0;
+  }
+}

@@ -3,7 +3,7 @@ import styles from './Button.module.css';
 
 type ButtonProps = {
   href: string;
-  variant?: 'primary' | 'secondary' | 'ghost' | 'whiteOutline';
+  variant?: 'primary' | 'secondary' | 'ghost' | 'white' | 'whiteOutline';
   size?: 'md' | 'lg';
   /** Small catch-text line rendered above the button (LAVA's trial-button pattern) */
   catchText?: string;

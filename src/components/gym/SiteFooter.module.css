@@ -54,7 +54,7 @@
   top: 0.42em;
   width: 9px;
   height: 9px;
-  background: var(--color-brand);
+  background: var(--color-marker);
 }
 
 .telLink {
@@ -198,6 +198,23 @@
   /* reserve room for the fixed bottom quick-nav so the copyright isn't covered */
   .footerProper {
     padding-bottom: calc(var(--space-6) + 56px + env(safe-area-inset-bottom));
+  }
+
+  /* Footer links were 19px tall — below any touch-target guideline. Real padding
+     rather than a negative-inset overlay, so neighbouring rows can't overlap;
+     the row gap drops to 0 because the padding now provides the separation. */
+  .nav {
+    row-gap: 0;
+  }
+
+  .navLink {
+    display: inline-block;
+    padding: 13px 0;
+  }
+
+  .snsLink {
+    min-width: 44px;
+    min-height: 44px;
   }
 }
 

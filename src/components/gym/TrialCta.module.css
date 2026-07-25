@@ -1,5 +1,5 @@
 .card {
-  /* bordered card on the white page (Fix Point 7/22 Task 4: blue band retired) */
+  /* card sits on the white page; only the card's inside takes color (fix24 §1) */
   background: var(--color-base);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -10,6 +10,45 @@
   gap: var(--space-3);
   text-align: center;
   color: var(--color-body);
+}
+
+/* ============================================================
+   fix24 §1 Option A — solid logo blue, contents reversed to white.
+   The price box deliberately stays a white card so the red ¥0 keeps working.
+   ============================================================ */
+.solid {
+  background: var(--color-brand-blue);
+  border-color: transparent;
+  color: var(--color-on-brand);
+}
+
+.solid .kickerLabel,
+.solid .heading,
+.solid .checkItem,
+.solid .checkItem::before,
+.solid .flowLink {
+  color: var(--color-on-brand);
+}
+
+.solid .kickerLine {
+  background: var(--color-on-brand-muted);
+}
+
+.solid .flowLink:hover {
+  color: var(--color-on-brand-muted);
+}
+
+/* ============================================================
+   fix24 §1 Option B — pale blue tint. Text and the red CTA are untouched;
+   only the ground and the framing rule shift cool.
+   ============================================================ */
+.tinted {
+  background: var(--color-blue-tint);
+  border-color: var(--color-blue-border);
+}
+
+.tinted .kickerLine {
+  background: var(--color-blue-border);
 }
 
 /* --- EN kicker: line — label — line --- */

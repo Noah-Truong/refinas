@@ -1,6 +1,6 @@
 # fix1.pdf 対応チェックリスト & 監査レポート
 
-**Source:** `context/fix1.pdf` (Nortiq Lab meeting minutes 2026-07-07 + 16-section information checklist)
+**Source:** `context/02-client-feedback/2026-07-07-fix1-minutes.pdf` (Nortiq Lab meeting minutes 2026-07-07 + 16-section information checklist)
 **Audited:** 2026-07-09 · **Fixes applied:** 2026-07-09 (same day, see Part 3) · `npm run build` = ✅ green (3 store pages SSG)
 
 **Legend:** ✅ done in codebase · ⚠️ partially done / needs work · ⏳ blocked on client input · ❌ not done · — N/A this phase

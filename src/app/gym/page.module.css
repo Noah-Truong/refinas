@@ -51,7 +51,7 @@
   top: 0.42em;
   width: 10px;
   height: 10px;
-  background: var(--color-brand);
+  background: var(--color-marker);
 }
 
 .list {

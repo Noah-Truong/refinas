@@ -9,10 +9,21 @@ const CHECK_ITEMS = [
   'トレーナーがマンツーマンでサポート',
 ];
 
-/** Trial CTA card (LAVA block 3). Rendered on the blue Section — white-on-blue styling (fix1). */
-export function TrialCta({ gym }: { gym: Gym }) {
+/**
+ * Trial CTA card (LAVA block 3).
+ *
+ * fix24 §1 — the client asked for the inside of this card to be blue while the page
+ * behind it stays white. Two intensities are on the table and the choice is theirs:
+ *   'a' = solid logo blue, everything inside reversed to white (recommended)
+ *   'b' = pale blue tint, text and the red CTA left as they were
+ * `/mockup/trial` renders both side by side for comparison.
+ */
+export type TrialCtaVariant = 'a' | 'b';
+
+export function TrialCta({ gym, variant = 'a' }: { gym: Gym; variant?: TrialCtaVariant }) {
+  const solid = variant === 'a';
   return (
-    <div className={styles.card}>
+    <div className={[styles.card, solid ? styles.solid : styles.tinted].join(' ')}>
       <p className={styles.kicker}>
         <span className={styles.kickerLine} aria-hidden="true" />
         <strong className={styles.kickerLabel}>TRIAL LESSON</strong>
@@ -39,10 +50,10 @@ export function TrialCta({ gym }: { gym: Gym }) {
         ))}
       </ul>
       <div className={styles.buttonWrapper}>
-        <Button href={gym.primaryCtaUrl} size="lg">
+        <Button href={gym.primaryCtaUrl} size="lg" variant={solid ? 'white' : 'primary'}>
           {gym.primaryCtaLabel}
         </Button>
-        <ArrowLink href="#flow" className={styles.flowLink}>
+        <ArrowLink href="#flow" className={styles.flowLink} tone={solid ? 'inherit' : 'brand'}>
           体験の流れを詳しく見る
         </ArrowLink>
       </div>

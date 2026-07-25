@@ -1,4 +1,4 @@
-/* --- plan cards (Fix Point 7/22 Task 5, layout per context/priceplan.png:
+/* --- plan cards (Fix Point 7/22 Task 5, layout per context/02-client-feedback/2026-07-22-priceplan.png:
    who-it's-for | divider | plan name + 月会費 + big 税込 price; the left/right
    split holds at every width, badge rides the recommended card's top edge) --- */
 .planList {
@@ -114,7 +114,8 @@
 }
 
 .priceTax {
-  font-size: 0.6875rem;
+  /* 12px floor — 11px is uncomfortably small on a phone */
+  font-size: 0.75rem;
   color: var(--color-muted);
 }
 
@@ -164,7 +165,7 @@
   transform: translateY(-50%);
   width: 10px;
   height: 10px;
-  background: var(--color-brand);
+  background: var(--color-marker);
 }
 
 .optionList {

@@ -27,7 +27,7 @@
   top: 0.48em;
   width: 9px;
   height: 9px;
-  background: var(--color-brand);
+  background: var(--color-marker);
 }
 
 .text {

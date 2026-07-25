@@ -13,10 +13,12 @@ html {
   scroll-padding-top: 96px;
 }
 
-/* SP header is a single logo row — smaller anchor offset */
+/* SP header is a single logo row — smaller anchor offset. The header is exactly
+   64px, so 64px would land the heading flush against it; the extra 12px is
+   breathing room rather than an arbitrary number. */
 @media (max-width: 900px) {
   html {
-    scroll-padding-top: 64px;
+    scroll-padding-top: 76px;
   }
 }
 

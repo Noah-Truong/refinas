@@ -15,9 +15,13 @@
   --color-brand-strong: #e2554a; /* hover — warm coral */
   --color-brand-deep: #a3352c;   /* pressed / gradient end */
   --color-brand-tint: #fdf0ea;   /* light peach-tinted surface */
-  --color-brand-blue: #0f6eb8;   /* Refinas Blue — secondary ground + accents */
+  --color-brand-blue: #0e6eb8;   /* Refinas Blue — sampled from the logo glove (fix24 §1) */
   --color-blue-strong: #0a5a99;  /* blue hover / gradient end */
-  --color-blue-tint: #ecf3fa;    /* light blue-tinted surface */
+  --color-blue-tint: #ecf3fa;    /* light blue-tinted surface — Trial Lesson Option B ground */
+  --color-blue-border: #cfe0f0;  /* cool 1px rule for use on blue-tinted surfaces */
+  /* Square markers that head body text. Client asked for blue (fix24 §3);
+     kept as its own token so the whole set reverts in one line. */
+  --color-marker: var(--color-brand-blue);
   --color-ink: #463d36;          /* headings — warm gray-brown */
   --color-body: #4a403a;         /* body text — warm gray-brown, airy leading */
   --color-base: #ffffff;         /* pure white ground (Fix Point 7/22 Task 4) */

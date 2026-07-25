@@ -24,6 +24,10 @@ export function GymHero({ gym }: { gym: Gym }) {
             sizes="(max-width: 840px) 100vw, 800px"
             className={styles.slideBase}
           />
+          {/* The crossfade layers are above the fold, so lazy-loading would not defer
+              them. None is visible for at least SLIDE_SECONDS, so they load at low
+              priority and let the LCP base layer win the connection — on mobile data
+              that is one hero image blocking paint instead of six. */}
           {slides.length > 1 &&
             slides.map((photo, i) => (
               <Image
@@ -34,6 +38,7 @@ export function GymHero({ gym }: { gym: Gym }) {
                 alt=""
                 aria-hidden="true"
                 sizes="(max-width: 840px) 100vw, 800px"
+                fetchPriority="low"
                 className={styles.slide}
                 style={{
                   animationDelay: `${i * SLIDE_SECONDS}s`,

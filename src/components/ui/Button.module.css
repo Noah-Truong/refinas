@@ -52,6 +52,17 @@
   box-shadow: inset 0 0 0 1px var(--color-brand);
 }
 
+/* solid white fill, brand-red label — primary CTA when the ground is brand blue
+   (fix24 §1: red-on-blue reads cheap, white-on-blue keeps the red legible) */
+.white {
+  --btn-bg: var(--color-base);
+  --btn-fg: var(--color-brand);
+}
+
+.white:hover {
+  background: var(--color-brand-tint);
+}
+
 .whiteOutline {
   --btn-bg: transparent;
   --btn-fg: var(--color-on-brand);

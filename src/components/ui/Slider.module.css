@@ -51,6 +51,13 @@
   cursor: default;
 }
 
+@media (max-width: 900px) {
+  .arrowButton {
+    width: 44px;
+    height: 44px;
+  }
+}
+
 .chevron {
   width: 8px;
   height: 8px;
@@ -84,24 +91,39 @@
   transition: background var(--dur-fast) var(--ease-out);
 }
 
+/* On touch, grow the hit area to 44px tall while the visible mark stays 10px —
+   padding does the work. Only the height grows: the bullet row has to fit between
+   the two arrow buttons, so width stays compact (see the 640px block below). */
+@media (max-width: 900px) {
+  .bullet {
+    height: 44px;
+    padding: 17px 7px;
+  }
+}
+
+/* `background-color`, not the `background` shorthand — the shorthand resets
+   `background-clip` to border-box and the mark would fill the whole tap area
+   instead of staying a 10px dot. */
 .bullet:hover {
-  background: var(--color-muted);
+  background-color: var(--color-muted);
 }
 
 .bulletActive,
 .bulletActive:hover {
-  background: var(--color-brand);
+  background-color: var(--color-brand);
 }
 
-/* SP: compact bullets so a long slide count fits the row between the arrows */
+/* SP: compact bullets so a long slide count fits the row between the arrows.
+   24px is the WCAG 2.5.8 minimum — the old 20px missed it — and eight of them
+   still fit: 8×24 + 7×6 gap = 234px inside the ~255px between the arrows.
+   Height stays 44px from the rule above. */
 @media (max-width: 640px) {
   .bullets {
     gap: 6px;
   }
 
   .bullet {
-    width: 20px;
-    height: 20px;
-    padding: 5px;
+    width: 24px;
+    padding: 17px 7px;
   }
 }

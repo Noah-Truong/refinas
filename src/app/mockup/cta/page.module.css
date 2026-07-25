@@ -1,0 +1,28 @@
+/* Each CTA option sits on the same blue field so the comparison is fair. */
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  background: var(--color-brand-blue);
+  padding: var(--space-6) var(--space-3);
+}
+
+.caption {
+  font-size: var(--text-small);
+  font-weight: 700;
+  color: var(--color-on-brand-muted);
+}
+
+/* the tertiary link that sits under the button in the real section */
+.flowLink {
+  color: var(--color-on-brand);
+}
+
+.flowLink:hover {
+  color: var(--color-on-brand-muted);
+}
+
+.flowLinkRed {
+  color: var(--color-on-brand);
+}
