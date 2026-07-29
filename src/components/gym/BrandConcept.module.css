@@ -16,6 +16,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* the subject sits left of centre, so bias the crop left to keep him in frame
+     (lower % = more of the left edge; 50% is the default centre crop) */
+  object-position: 35% center;
 }
 
 .statement {

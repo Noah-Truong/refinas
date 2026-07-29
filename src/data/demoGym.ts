@@ -9,7 +9,7 @@ import type { Gym, Image } from '@/types/gym';
 // 本番リリース時にここを実際の予約ページ（現行 refinas.net 系）へ差し替えるだけでよい。
 const RESERVE_URL = '#reserve';
 
-/** 6 studio photos shared by all demo stores (used by PhotoSlider). */
+/** 7 studio photos shared by all demo stores (used by PhotoSlider). */
 export const studioPhotos: Image[] = [
   { url: '/photos/interior-01.jpg', width: 1477, height: 984, alt: 'トレーニングフロア全景' },
   { url: '/photos/interior-02.jpg', width: 1500, height: 999, alt: 'リング・サンドバッグエリア' },
@@ -17,6 +17,7 @@ export const studioPhotos: Image[] = [
   { url: '/photos/action-01.jpg', width: 1500, height: 1000, alt: 'グループレッスンの様子' },
   { url: '/photos/action-02.jpg', width: 1500, height: 1000, alt: 'ミット打ちトレーニングの様子' },
   { url: '/photos/action-03.jpg', width: 1500, height: 1000, alt: 'キックのフォーム練習' },
+  { url: '/photos/refinas2.jpg', width: 5599, height: 3733, alt: 'サンドバッグの前で笑顔を見せる会員' },
 ];
 
 /**
@@ -30,6 +31,7 @@ const heroOrder: Image[] = [
   studioPhotos[0], // interior-01 フロア全景
   studioPhotos[5], // action-03 キック
   studioPhotos[2], // interior-03 受付
+  studioPhotos[6], // refinas2 サンドバッグ・笑顔
 ];
 
 const rotate = <T,>(arr: T[], n: number): T[] => [...arr.slice(n), ...arr.slice(0, n)];

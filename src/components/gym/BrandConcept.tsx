@@ -5,7 +5,7 @@ import styles from './BrandConcept.module.css';
 
 /** Brand concept: split photo + centered brand statement (LAVA's closing brand block). */
 export function BrandConcept({ gym }: { gym: Gym }) {
-  const photo = studioPhotos[0];
+  const photo = studioPhotos[6];
   return (
     <div className={styles.split}>
       <div className={styles.photoWrapper}>

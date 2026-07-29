@@ -21,8 +21,16 @@
 }
 
 /*
- * Crossfade slideshow. Duration/delay come from GymHero.tsx (slides × 5s);
- * the keyframe windows below assume 6 slides (fade over 1.2s, hold ~4s).
+ * Crossfade slideshow. Duration/delay come from GymHero.tsx (slides × 5s).
+ *
+ * The percentages below are tied to the slide COUNT — currently 7 (heroOrder in
+ * demoGym.ts). CSS cannot parameterise keyframe offsets, so if you add or remove
+ * a hero photo you must recompute them for N slides (T = SLIDE_SECONDS = 5s,
+ * fade = 1.2s, duration = N × T):
+ *   fade-in done  = fade / (N × T)      → 1.2 / 35 = 3.43%
+ *   hold until    = 1 / N               → 1 / 7    = 14.29%
+ *   fade-out done = (T + fade) / (N × T) → 6.2 / 35 = 17.71%
+ * Getting this wrong does not error — slides just overlap or leave gaps.
  */
 .slide {
   opacity: 0;
@@ -33,13 +41,13 @@
   0% {
     opacity: 0;
   }
-  4% {
+  3.43% {
     opacity: 1;
   }
-  16.67% {
+  14.29% {
     opacity: 1;
   }
-  20.67% {
+  17.71% {
     opacity: 0;
   }
   100% {
