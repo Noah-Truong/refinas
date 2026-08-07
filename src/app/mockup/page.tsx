@@ -30,8 +30,14 @@ const DECISIONS = [
 
 const PENDING = [
   'コンセプト欄のお写真：元データ（原寸）をお送りください。LINEでいただいた画像はiPad画面の再撮影のため、画質が足りません。',
-  '以前のバージョンのリンク：どの時点のものかをお知らせください（例：「色の変更前」）。該当のデプロイURLをお送りします。',
 ];
+
+/**
+ * The "previous version" request is answered by a separate deployment rather than a
+ * page here — it is the whole site at an earlier commit, on its own domain.
+ * Deployed with X-Robots-Tag: noindex so it cannot compete with the live site.
+ */
+const PREVIOUS_VERSION_URL = 'https://refinas-before-7-22.vercel.app/gym/shibuya';
 
 export default function MockupIndexPage() {
   return (
@@ -54,6 +60,19 @@ export default function MockupIndexPage() {
               <span className={styles.linkCardMeta}>{decision.meta}</span>
             </Link>
           ))}
+        </div>
+
+        <div className={styles.pending}>
+          <p className={styles.pendingTitle}>以前のバージョン（7月22日の修正前）</p>
+          <p style={{ fontSize: 'var(--text-small)', lineHeight: 'var(--leading-body)' }}>
+            「以前のバージョンを見たい」というご要望に対して、7月22日の修正を行う前の状態を
+            別のアドレスで公開しました。今のサイトはそのままです。
+            <br />
+            この時点のもので合っているかご確認ください。
+          </p>
+          <a className={styles.linkCardMeta} href={PREVIOUS_VERSION_URL} target="_blank" rel="noreferrer">
+            {PREVIOUS_VERSION_URL}
+          </a>
         </div>
 
         <div className={styles.pending}>

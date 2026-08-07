@@ -17,8 +17,13 @@ const montserrat = Montserrat({
   variable: '--font-montserrat',
 });
 
+// Nortiq Revise pins fix requests to a specific build; on Vercel the commit SHA is in the
+// build env. Omit the tag entirely off-Vercel rather than emit a placeholder (tool's request).
+const commitSha = process.env.VERCEL_GIT_COMMIT_SHA;
+
 export const metadata: Metadata = {
   metadataBase: new URL('https://refinas.jp'),
+  ...(commitSha ? { other: { 'nq-sha': commitSha } } : {}),
   title: {
     default: 'Refinas｜キックボクシングジム リフィナス',
     template: '%s｜キックボクシングジム Refinas',
@@ -30,7 +35,11 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ja" className={`${sans.variable} ${montserrat.variable}`}>
-      <body>{children}</body>
+      <body>
+        {children}
+        {/* Nortiq Revise fix-request widget — renders nothing for visitors without an invite token */}
+        <script src="https://nortiq-client.vercel.app/w.js" data-project="refinas" defer />
+      </body>
     </html>
   );
 }

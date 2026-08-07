@@ -105,16 +105,56 @@ the 体験レッスン price chip, and the accordion indicator bars.
 The checklist ✓ marks — the report's third candidate — turn white inside the blue card
 under Option A, so that reading of the request is covered either way.
 
-## 4. Previous deployment link — NOT ACTIONABLE HERE
+## 4. Previous deployment link — DONE (2026-07-28)
 
-Still blocked on the client confirming *which* version they mean, and it cannot be done
-from this repo: the connected Vercel account (team `nortiqs-projects`) contains only a
-project named `files`. The refinas project lives on a different account, and there is no
-`.vercel/project.json` link and no Vercel CLI installed.
+**https://refinas-before-7-22.vercel.app** — the site as of `fa391af` (2026-07-16), the
+commit immediately before `6694312 "fix 7/22"`.
 
-Whoever owns that Vercel account should pull the deployment URL from
-Project → Deployments, check Deployment Protection, and send it labeled as the *previous*
-version alongside the current URL. Do not promote the old deployment to production.
+The earlier note said this was not actionable because the *MCP-connected* Vercel account
+(team `nortiqs-projects`) only contains a project called `files`. That was the wrong account.
+The Vercel **CLI** on this machine is authenticated as `noah-truongs-projects`, which is
+where `refinas`, `refinas-sharp`, `refinas-blue` and `refinas-serif` all live. `npx vercel`
+picks that auth up with no login step.
+
+### How it was done, and why nothing else moved
+
+- `git worktree add --detach <tmp> fa391af` — the old commit is checked out into a throwaway
+  directory. The main working tree, `HEAD` and the index are never touched. Verified clean
+  before and after; the worktree was removed and pruned afterwards.
+- Deployed as a **separate Vercel project** (`refinas-before-7-22`), so `--prod` here means
+  production *of that new project*. `refinas.vercel.app` is a different project and was never
+  a deploy target — re-checked at 200 with its current content afterwards.
+- `npm ci && npm run build` in the worktree first, so a broken old commit could not be
+  discovered by the client.
+
+### noindex — do not skip this on a redeploy
+
+A full copy of the client's site on a second public domain will compete with the real one in
+search. The first deploy had **no** robots protection (verified: no `X-Robots-Tag`, no robots
+meta, `robots.txt` 404), which also made a claim in the client PDF false. Fixed by adding, in
+the worktree only:
+
+- `vercel.json` — `X-Robots-Tag: noindex, nofollow` on `/(.*)`
+- `public/robots.txt` — `Disallow: /`
+
+Both are **deploy-time files that are not in the repo**, so a future redeploy from a fresh
+worktree must re-add them. They change no rendering, so the demo still represents `fa391af`
+faithfully. Verified after redeploy: header present, robots.txt served, page still 200 to an
+anonymous request, and `refinas.vercel.app` still has no noindex header.
+
+### To rebuild or redeploy it
+
+    git worktree add --detach /tmp/refinas-before-7-22 fa391af
+    cd /tmp/refinas-before-7-22
+    # re-add vercel.json + public/robots.txt (see above)
+    npx vercel deploy --yes --prod
+    cd - && git worktree remove --force /tmp/refinas-before-7-22
+
+### Still open
+
+The client has not confirmed *which* previous version they meant — pre-7/22 is our reading of
+"before the colour revisions". Both the PDF and `/mockup` now ask them to confirm, and another
+point in time can be deployed the same way.
 
 ## 5. Concept-section photo — BLOCKED
 
@@ -243,7 +283,7 @@ Two traps worth knowing about, since both produced convincing false evidence:
 
 ## Open questions for the client
 
-1. Which previous version should the link point to?
+1. Is the pre-7/22 build the version they meant? → https://refinas-before-7-22.vercel.app
 2. Trial card: A案 or B案? → `/mockup/trial`
 3. Reservation button: which of the three? → `/mockup/cta`
 4. Are the blue squares the right elements, and should the red chips change too?
