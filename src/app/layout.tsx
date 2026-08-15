@@ -38,7 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         {children}
         {/* Nortiq Revise fix-request widget — renders nothing for visitors without an invite token */}
-        <script src="https://nortiq-client.vercel.app/w.js" data-project="refinas" defer />
+        <script src="https://nortiq-client.vercel.app/w.js" data-project="ref-2026" defer />
       </body>
     </html>
   );
