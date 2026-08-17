@@ -52,6 +52,12 @@
   margin-bottom: var(--space-3);
 }
 
+.copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
 .copy p {
   font-size: var(--text-small);
   line-height: 2.2;
@@ -72,13 +78,4 @@
     height: auto;
   }
 
-  /* the per-sentence line breaks wrap into one-character orphans on
-     narrow screens — flow the statement as a single paragraph instead */
-  .copy p {
-    display: inline;
-  }
-
-  .copy {
-    line-height: 2.2;
-  }
 }
