@@ -161,7 +161,7 @@
   content: '';
   position: absolute;
   left: 0;
-  top: calc(0.5em * var(--leading-heading));
+  top: calc(0.5em * var(--leading-heading) + var(--marker-nudge));
   transform: translateY(-50%);
   width: 10px;
   height: 10px;

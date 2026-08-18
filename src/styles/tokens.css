@@ -22,6 +22,12 @@
   /* Square markers that head body text. Client asked for blue (fix24 §3);
      kept as its own token so the whole set reverts in one line. */
   --color-marker: var(--color-brand-blue);
+  /* Optical nudge for those markers. Centering them on the line box leaves them
+     sitting ~0.05–0.10em above the glyph ink (measured on the live page across
+     all six marker rules), because the line box carries more space above the
+     ink than below. em-based so it holds at every breakpoint; one number moves
+     the whole set. */
+  --marker-nudge: 0.06em;
   --color-ink: #463d36;          /* headings — warm gray-brown */
   --color-body: #4a403a;         /* body text — warm gray-brown, airy leading */
   --color-base: #ffffff;         /* pure white ground (Fix Point 7/22 Task 4) */

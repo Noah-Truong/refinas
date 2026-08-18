@@ -51,7 +51,7 @@
   content: '';
   position: absolute;
   left: 0;
-  top: 0.42em;
+  top: calc(0.42em + var(--marker-nudge));
   width: 9px;
   height: 9px;
   background: var(--color-marker);
@@ -126,21 +126,55 @@
   padding-bottom: var(--space-6);
 }
 
-.marquee {
-  overflow: hidden;
-  white-space: nowrap;
-  padding: var(--space-3) 0;
+/* Closing brand lockup: the tagline once, centred, with hairlines either side.
+   Replaces the 3x-repeated outlined marquee (which was clipped mid-word on the
+   right and read left-aligned because of it). */
+.tagline {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-6) var(--gutter);
   border-bottom: 1px solid rgba(15, 110, 184, 0.15);
+  text-align: center;
 }
 
-.marqueeText {
+.taglineMain {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(var(--space-2), 4vw, var(--space-4));
+  width: 100%;
+}
+
+/* hairlines flank the words and shrink with the viewport */
+.taglineMain::before,
+.taglineMain::after {
+  content: '';
+  flex: 0 0 auto;
+  width: clamp(24px, 9vw, 92px);
+  height: 1px;
+  background: rgba(15, 110, 184, 0.3);
+}
+
+.taglineText {
   font-family: var(--font-en);
   font-weight: 700;
-  font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2.25rem);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(15, 110, 184, 0.35);
+  font-size: clamp(1.125rem, 0.85rem + 1.3vw, 1.75rem);
+  letter-spacing: 0.2em;
+  /* tracking adds a trailing gap after the last letter, which drags centred
+     text visibly left — pad the same amount back on to re-centre it */
+  padding-left: 0.2em;
+  color: var(--color-brand-blue);
+}
+
+.taglineSub {
+  font-family: var(--font-en);
+  font-weight: 500;
+  font-size: var(--text-small);
+  letter-spacing: 0.28em;
+  text-indent: 0.28em;
+  color: var(--color-muted);
 }
 
 .footerInner {
