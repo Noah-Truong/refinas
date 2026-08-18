@@ -15,10 +15,10 @@ export function VoiceSection({ gym }: { gym: Gym }) {
       <div className={styles.awardWrapper}>
         <Image
           src="/photos/award-2025.png"
-          width={900}
-          height={892}
+          width={1500}
+          height={1487}
           alt="フィットネスクラブ部門3冠受賞：お客様満足度・口コミ人気・トレーナーの親切丁寧度 No.1（JMR調べ）"
-          sizes="(max-width: 640px) 80vw, 560px"
+          sizes="(max-width: 640px) 80vw, 700px"
           className={styles.award}
           data-nq-fix="1"
         />

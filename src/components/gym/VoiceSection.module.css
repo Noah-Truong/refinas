@@ -4,8 +4,10 @@
   margin-bottom: var(--space-4);
 }
 
+/* 700px is the practical ceiling: the content column is 760px, and the source
+   is 1500px wide so 700 still renders 1:1 on a 2x screen (700 * 2 = 1400). */
 .award {
-  width: min(560px, 80vw);
+  width: min(700px, 80vw);
   height: auto;
 }
 
