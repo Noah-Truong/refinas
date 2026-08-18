@@ -92,7 +92,7 @@
   content: '';
   position: absolute;
   left: 0;
-  top: 0.42em;
+  top: calc(0.42em + var(--marker-nudge));
   width: 9px;
   height: 9px;
   background: var(--color-marker);
