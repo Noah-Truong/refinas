@@ -139,9 +139,18 @@
   font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2.25rem);
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  /* Outlined (hollow) type — the glyphs read as their contours only. */
-  color: transparent;
-  -webkit-text-stroke: 1px rgba(15, 110, 184, 0.35);
+  /* Outlined (hollow) type.
+     -webkit-text-stroke alone strokes EVERY contour in the glyph, including the
+     internal seams where the font's component paths (stem + bowl + leg on R,
+     stem + arms on E/F) overlap. A normal fill hides those seams under the
+     union silhouette; stroking exposes them as lines cutting through each
+     letter. Not font-specific — Helvetica does the same.
+     Fix: fill with the band colour and paint the stroke *underneath* it, so the
+     fill covers every interior mark and only the outer contour survives. The
+     stroke is 2px because the fill hides its inner half — ~1px stays visible. */
+  color: var(--color-blue-tint);
+  -webkit-text-stroke: 2px rgba(15, 110, 184, 0.35);
+  paint-order: stroke fill;
 }
 
 .footerInner {
