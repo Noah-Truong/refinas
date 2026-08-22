@@ -16,6 +16,8 @@ const FOOTER_NAV = [
   'サイトマップ',
 ];
 
+const MARQUEE_TEXT = 'REFINE YOUR IDEAL — KICKBOXING STUDIO REFINAS — ';
+
 function InstagramIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -97,12 +99,13 @@ export function SiteFooter({ gym }: { gym: Gym }) {
 
       {/* c. Footer proper */}
       <div className={styles.footerProper}>
-        <div className={styles.tagline}>
-          <p className={styles.taglineMain}>
-            <span className={styles.taglineText}>REFINE YOUR IDEAL</span>
-          </p>
-          <p className={styles.taglineSub}>KICKBOXING STUDIO REFINAS</p>
-        </div>
+        <p className={styles.marquee} aria-hidden="true">
+          <span className={styles.marqueeText}>
+            {MARQUEE_TEXT}
+            {MARQUEE_TEXT}
+            {MARQUEE_TEXT}
+          </span>
+        </p>
         <Container>
           <div className={styles.footerInner}>
             <nav aria-label="フッターナビゲーション">
