@@ -46,17 +46,6 @@
   gap: 4px;
 }
 
-.utilityRow {
-  display: flex;
-  gap: var(--space-2);
-  font-size: 0.6875rem;
-  color: var(--color-muted);
-}
-
-.utilityRow a:hover {
-  color: var(--color-ink);
-}
-
 .storeRow {
   display: flex;
   align-items: center;
@@ -231,14 +220,6 @@
   text-align: center;
   padding: 14px;
   border-radius: var(--radius-pill);
-}
-
-.drawerLogin {
-  border: 1px solid var(--color-border);
-  text-align: center;
-  padding: 12px;
-  border-radius: var(--radius-sm);
-  font-size: var(--text-small);
 }
 
 .drawerList {
