@@ -207,7 +207,7 @@ export function AccessNap({ gym, photos }: { gym: Gym; photos: Image[] }) {
         )}
 
         {/* 7. 店舗の雰囲気 */}
-        <div className={styles.row}>
+        <div className={styles.row} data-nq-fix="6">
           <h3 className={styles.rowTitle}>店舗の雰囲気</h3>
           <PhotoSlider photos={photos} />
         </div>

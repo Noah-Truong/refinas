@@ -28,7 +28,7 @@ export function PriceTable({ gym }: { gym: Gym }) {
       />
 
       {/* 7a. plan cards: who-it's-for (left) / plan name + 税込 fee (right) */}
-      <ul className={styles.planList}>
+      <ul className={styles.planList} data-nq-fix="4">
         {gym.plans.map((plan) => {
           const female = plan.priceFemale ?? plan.price;
           const male = plan.priceMale ?? plan.price;
@@ -61,7 +61,6 @@ export function PriceTable({ gym }: { gym: Gym }) {
                         {taxIncluded(female).toLocaleString()}
                       </span>
                       <span className={styles.priceYen}>円</span>
-                      <span className={styles.priceTax}>（税込）</span>
                     </p>
                   )}
                   {male != null && (
@@ -71,7 +70,6 @@ export function PriceTable({ gym }: { gym: Gym }) {
                         {taxIncluded(male).toLocaleString()}
                       </span>
                       <span className={styles.priceYen}>円</span>
-                      <span className={styles.priceTax}>（税込）</span>
                     </p>
                   )}
                 </div>

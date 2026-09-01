@@ -62,11 +62,24 @@
   }
 }
 
+/* award badge: top-right of the photo band, opposite corner from .brandLabel */
+.award {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  width: 140px;
+  height: auto;
+}
+
 /* SP: taller crop so the overlaid title keeps breathing room */
 @media (max-width: 640px) {
   .imageWrapper {
     aspect-ratio: 4 / 3;
     min-height: 240px;
+  }
+
+  .award {
+    width: 100px;
   }
 
   .subtitle {

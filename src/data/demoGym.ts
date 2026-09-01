@@ -276,6 +276,8 @@ export const demoGyms: Gym[] = [
     ...shared,
     slug: 'shibuya',
     name: 'キックボクシング渋谷 Refinas',
+    // 依頼#9：最終来館ルールは渋谷のみ確認済みのため、この店舗だけに持たせる
+    scheduleNote: '最終来館時間は閉店の1時間前となります。',
     nameKana: 'キックボクシングシブヤ リフィナス',
     area: '東京',
     catchCopy: '渋谷駅徒歩5分。初心者からはじめる、洗練されたキックボクシングジム。',
