@@ -1,41 +1,30 @@
-import Image from 'next/image';
 import type { Gym } from '@/types/gym';
 import { SectionTitle } from '@/components/ui/SectionTitle';
-import { Button } from '@/components/ui/Button';
 import styles from './CampaignBanner.module.css';
+
+/** EN sub-line of the banner — matches the site's Montserrat kicker labels. */
+const BANNER_EN = 'REFINAS KICKBOXING GYM';
 
 /** Campaign banner (LAVA block 4). Hidden entirely when no campaign is running. */
 export function CampaignBanner({ gym }: { gym: Gym }) {
   const campaign = gym.campaign;
   if (!campaign?.active) return null;
   const href = campaign.url ?? gym.primaryCtaUrl;
+  // Client request #3: the banner is built from text instead of an image so it
+  // stays legible on SP (the 1200x400 artwork shrank the EN line to 4.5px).
+  const [headline, ...rest] = (campaign.title ?? '').split('｜');
+  const subline = rest.join('｜');
   return (
     <>
       <SectionTitle title={`${gym.name}で開催中のキャンペーン`} />
-      <div className={styles.body}>
+      <div className={styles.body} data-nq-fix="5">
         <a href={href} className={styles.bannerLink}>
-          {campaign.banner ? (
-            <Image
-              src={campaign.banner.url}
-              width={campaign.banner.width}
-              height={campaign.banner.height}
-              alt={campaign.banner.alt}
-              sizes="(max-width: 840px) 100vw, 760px"
-              className={styles.bannerImage}
-            />
-          ) : (
-            <span className={styles.bannerFallback}>
-              <span className={styles.bannerKicker}>CAMPAIGN</span>
-              <span className={styles.bannerTitle}>{campaign.title}</span>
-            </span>
-          )}
+          <span className={styles.banner}>
+            <span className={styles.bannerHeadline}>{headline}</span>
+            {subline && <span className={styles.bannerSubline}>{subline}</span>}
+            <span className={styles.bannerEn}>{BANNER_EN}</span>
+          </span>
         </a>
-        <div className={styles.buttonWrapper}>
-          {/* outline pill — LAVA's secondary-action pattern */}
-          <Button href={href} variant="ghost">
-            キャンペーン内容を見る
-          </Button>
-        </div>
       </div>
     </>
   );

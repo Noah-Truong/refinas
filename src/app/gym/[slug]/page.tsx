@@ -71,7 +71,7 @@ export default async function GymPage({ params }: { params: Promise<Params> }) {
         <Section id="reserve">
           <TrialCta gym={gym} />
         </Section>
-        <Section>
+        <Section data-nq-fix="3">
           <CampaignBanner gym={gym} />
         </Section>
         <Section>

@@ -40,8 +40,8 @@ export function ScheduleLink({ gym }: { gym: Gym }) {
             )}
           </tbody>
         </table>
-        <p className={styles.snsNote}>
-          混雑状況は店舗のSNSで随時発信しています。ご来店前のチェックがおすすめです。
+        <p className={styles.snsNote} data-nq-fix="9">
+          {gym.scheduleNote ?? '混雑状況は店舗のSNSで随時発信しています。ご来店前のチェックがおすすめです。'}
         </p>
       </div>
       {gym.scheduleType === 'pdf' && gym.schedulePdf && (

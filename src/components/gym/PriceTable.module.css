@@ -113,12 +113,6 @@
   color: var(--color-ink);
 }
 
-.priceTax {
-  /* 12px floor — 11px is uncomfortably small on a phone */
-  font-size: 0.75rem;
-  color: var(--color-muted);
-}
-
 /* SP: keep the left/right split (per the reference), just tighten it */
 @media (max-width: 640px) {
   .planCard {
