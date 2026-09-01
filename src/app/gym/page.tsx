@@ -13,7 +13,7 @@ export default async function GymListPage() {
   const areas = [...new Set(gyms.map((g) => g.area))];
 
   return (
-    <main className={styles.main}>
+    <main id="main" tabIndex={-1} className={styles.main}>
       <header className={styles.header}>
         <p className={styles.kicker}>GYM LIST</p>
         <h1 className={styles.title}>店舗一覧</h1>

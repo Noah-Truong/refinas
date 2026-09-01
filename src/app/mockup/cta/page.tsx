@@ -47,7 +47,7 @@ export default async function CtaMockupPage() {
   if (!gym) notFound();
 
   return (
-    <main className={shell.page}>
+    <main id="main" tabIndex={-1} className={shell.page}>
       <div className={shell.shell}>
         <Link href="/mockup" className={shell.back}>
           ← 一覧に戻る
