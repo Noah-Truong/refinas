@@ -113,6 +113,9 @@
     visibility var(--dur-fast);
 }
 
+/* [data-open] = click-toggled (the accessible path, mirrored by aria-expanded);
+   :hover / :focus-within keep the original pointer + tab behaviour. */
+.dropdownList[data-open],
 .dropdown:hover .dropdownList,
 .dropdown:focus-within .dropdownList {
   opacity: 1;

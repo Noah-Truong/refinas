@@ -99,6 +99,26 @@ details summary::-webkit-details-marker {
   color: var(--color-on-brand);
 }
 
+/* Skip link: off-screen until focused, then pinned over the sticky header.
+   Global (not a CSS Module) because it lives in the root layout. */
+.skipLink {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: calc(var(--z-header) + 10);
+  padding: 12px 20px;
+  background: var(--color-brand);
+  color: var(--color-on-brand);
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+  transform: translateY(calc(-100% - 16px));
+  transition: transform var(--dur-fast, 150ms) var(--ease-out, ease);
+}
+
+.skipLink:focus-visible {
+  transform: translateY(0);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

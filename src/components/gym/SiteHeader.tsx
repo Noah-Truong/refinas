@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { Gym } from '@/types/gym';
 import styles from './SiteHeader.module.css';
 
@@ -24,6 +24,8 @@ const storeDetailNav = [
 export function SiteHeader({ gym }: { gym: Gym }) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [detailOpen, setDetailOpen] = useState(false);
+  const hamburgerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -39,16 +41,34 @@ export function SiteHeader({ gym }: { gym: Gym }) {
     };
   }, [menuOpen]);
 
+  // Escape closes whichever disclosure is open. Closing the drawer hands focus back to
+  // the hamburger, otherwise focus would be stranded on a now-hidden element.
+  useEffect(() => {
+    if (!menuOpen && !detailOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      setDetailOpen(false);
+      if (menuOpen) {
+        setMenuOpen(false);
+        hamburgerRef.current?.focus();
+      }
+    };
+    document.addEventListener('keydown', onKeyDown);
+    return () => document.removeEventListener('keydown', onKeyDown);
+  }, [menuOpen, detailOpen]);
+
   return (
     <>
       <header className={styles.header} data-scrolled={scrolled || undefined}>
         <div className={styles.inner}>
           <Link href="/" className={styles.logo} aria-label="Refinas トップ">
             {/* brand logo (glove mark + logotype) — same artwork family as src/app/icon.png */}
+            {/* Intrinsic size matches the 44px-tall render (.logoImage), not the source
+                artwork's 545x160 — same 3.41 aspect, ~4x fewer pixels on the critical path. */}
             <Image
               src="/logo/refinas-logo.png"
-              width={545}
-              height={160}
+              width={150}
+              height={44}
               alt="Refinas fitness studio"
               priority
               className={styles.logoImage}
@@ -65,15 +85,23 @@ export function SiteHeader({ gym }: { gym: Gym }) {
                     <Link href={item.href}>{item.label}</Link>
                   </li>
                 ))}
-                <li className={styles.dropdown}>
-                  <button type="button" className={styles.dropdownButton}>
+                <li className={styles.dropdown} onMouseLeave={() => setDetailOpen(false)}>
+                  <button
+                    type="button"
+                    className={styles.dropdownButton}
+                    aria-expanded={detailOpen}
+                    aria-controls="store-detail-nav"
+                    onClick={() => setDetailOpen((open) => !open)}
+                  >
                     店舗の詳しい情報
                     <span className={styles.chevronDown} aria-hidden="true" />
                   </button>
-                  <ul className={styles.dropdownList}>
+                  <ul id="store-detail-nav" className={styles.dropdownList} data-open={detailOpen || undefined}>
                     {storeDetailNav.map((item) => (
                       <li key={item.href}>
-                        <Link href={item.href}>{item.label}</Link>
+                        <Link href={item.href} onClick={() => setDetailOpen(false)}>
+                          {item.label}
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -90,10 +118,12 @@ export function SiteHeader({ gym }: { gym: Gym }) {
           </Link>
 
           <button
+            ref={hamburgerRef}
             type="button"
             className={styles.hamburger}
             aria-expanded={menuOpen}
-            aria-label="メニューを開く"
+            aria-controls="sp-drawer"
+            aria-label={menuOpen ? 'メニューを閉じる' : 'メニューを開く'}
             onClick={() => setMenuOpen((open) => !open)}
           >
             <span />
@@ -104,7 +134,13 @@ export function SiteHeader({ gym }: { gym: Gym }) {
       </header>
 
       {/* SP drawer */}
-      <nav className={styles.drawer} data-open={menuOpen || undefined} aria-label="メニュー" aria-hidden={!menuOpen}>
+      <nav
+        id="sp-drawer"
+        className={styles.drawer}
+        data-open={menuOpen || undefined}
+        aria-label="メニュー"
+        aria-hidden={!menuOpen}
+      >
         <div className={styles.drawerCtas}>
           <Link href={gym.primaryCtaUrl} className={styles.drawerTrial} onClick={() => setMenuOpen(false)}>
             {gym.primaryCtaLabel}

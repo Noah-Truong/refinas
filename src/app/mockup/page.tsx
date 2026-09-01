@@ -41,7 +41,7 @@ const PREVIOUS_VERSION_URL = 'https://refinas-before-7-22.vercel.app/gym/shibuya
 
 export default function MockupIndexPage() {
   return (
-    <main className={styles.page}>
+    <main id="main" tabIndex={-1} className={styles.page}>
       <div className={styles.shell}>
         <div className={styles.header}>
           <p className={styles.kicker}>Refinas — Review</p>

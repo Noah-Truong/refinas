@@ -24,6 +24,11 @@ import { SiteFooter } from '@/components/gym/SiteFooter';
 
 type Params = { slug: string };
 
+// The store list is fully known at build time, so every page is prerendered and any
+// other slug is a 404 — no on-demand render, no function invocation for junk URLs.
+// When the CMS lands, swap this to a revalidate window rather than dropping it.
+export const dynamicParams = false;
+
 export async function generateStaticParams(): Promise<Params[]> {
   const gyms = await getAllGyms();
   return gyms.map((gym) => ({ slug: gym.slug }));
@@ -62,7 +67,7 @@ export default async function GymPage({ params }: { params: Promise<Params> }) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(gymJsonLd(gym)).replace(/</g, '\\u003c') }}
       />
       <SiteHeader gym={gym} />
-      <main>
+      <main id="main" tabIndex={-1}>
         {/* 16-block structure — order fixed per the reference IA (spec §5).
             Fix Point 7/22 Task 3-A + Task 4: every band is white with right-angle
             edges — the blue/panel/tint alternation and corner cuts are retired. */}
