@@ -6,7 +6,7 @@ import styles from './PhotoSlider.module.css';
 /** Studio atmosphere photo carousel (LAVA block 6) — one photo visible at a time. */
 export function PhotoSlider({ photos }: { photos: Image[] }) {
   return (
-    <Slider label="店舗の雰囲気" slideWidth="100%">
+    <Slider label="店舗の雰囲気" slideWidth="80%">
       {photos.map((photo) => (
         <figure key={photo.url} className={styles.figure}>
           <NextImage
@@ -14,7 +14,7 @@ export function PhotoSlider({ photos }: { photos: Image[] }) {
             width={1200}
             height={800}
             alt={photo.alt}
-            sizes="(max-width: 840px) 100vw, 760px"
+            sizes="(max-width: 840px) 80vw, 608px"
             className={styles.image}
           />
           <figcaption className={styles.caption}>{photo.alt}</figcaption>

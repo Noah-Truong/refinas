@@ -28,6 +28,8 @@ export type Gym = {
   // Hours
   hours: Array<{ label: string; time: string }>;
   holiday?: string;
+  /** note under the schedule hours table (falls back to the SNS line) */
+  scheduleNote?: string;
 
   // ③ Pricing
   plans: Array<{

@@ -62,11 +62,27 @@
   }
 }
 
+/* award badge: top-right of the photo band, opposite corner from .brandLabel.
+   Sized to the room above the h1: on PC the band is 428px tall, so 180px still
+   clears the title by ~110px. On SP the 375px viewport is the tight case —
+   the vw term keeps ~8px of clearance there and grows to 120px by 430px. */
+.award {
+  position: absolute;
+  top: var(--space-2);
+  right: var(--space-2);
+  width: 180px;
+  height: auto;
+}
+
 /* SP: taller crop so the overlaid title keeps breathing room */
 @media (max-width: 640px) {
   .imageWrapper {
     aspect-ratio: 4 / 3;
     min-height: 240px;
+  }
+
+  .award {
+    width: min(28vw, 120px);
   }
 
   .subtitle {
