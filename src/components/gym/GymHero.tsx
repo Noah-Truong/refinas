@@ -53,7 +53,7 @@ export function GymHero({ gym }: { gym: Gym }) {
             width={1500}
             height={1487}
             alt="フィットネスクラブ部門3冠受賞：お客様満足度・口コミ人気・トレーナーの親切丁寧度 No.1（JMR調べ）"
-            sizes="(max-width: 640px) 100px, 140px"
+            sizes="(max-width: 640px) 120px, 180px"
             loading="eager"
             className={styles.award}
             data-nq-fix="1 8"
