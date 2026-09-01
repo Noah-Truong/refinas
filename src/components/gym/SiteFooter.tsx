@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import type { Gym } from '@/types/gym';
 import { Container } from '@/components/ui/Section';
 import { Button } from '@/components/ui/Button';
@@ -86,9 +87,18 @@ export function SiteFooter({ gym }: { gym: Gym }) {
       <div className={styles.brandBand}>
         <Container>
           <div className={styles.brandInner}>
-            <p className={styles.wordmark} aria-hidden="true">
-              Refinas
-            </p>
+            {/* client request #14: the real logo artwork (glove mark + logotype)
+                replaces the text wordmark. Intrinsic size matches the 80px-tall
+                render, not the source artwork's 545x160 — same 3.41 aspect. */}
+            <Image
+              src="/logo/refinas-logo.png"
+              width={273}
+              height={80}
+              alt=""
+              aria-hidden="true"
+              className={styles.wordmark}
+              data-nq-fix="14"
+            />
             <p className={styles.brandLine}>理想に向かい、輝き続ける人々のコミュニティを創造する</p>
             <p className={styles.brandText}>
               Refinasは、キックボクシングを通じて一人ひとりが自分を磨き、洗練させていくためのジムです。汗を流すその先にある、理想のあなたと輝く毎日を、私たちは全力で応援します。
