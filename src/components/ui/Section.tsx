@@ -7,13 +7,21 @@ type SectionProps = {
   cut?: 'left' | 'right' | 'none';
   id?: string;
   className?: string;
+  /** Vertical rhythm: 'intro' tightens both paddings, 'outro' shortens the bottom */
+  pad?: 'intro' | 'outro';
   /** client fix marker, set per call site (see CLAUDE.md / fix requests) */
   'data-nq-fix'?: string;
   children: React.ReactNode;
 };
 
-export function Section({ bg = 'white', cut = 'none', id, className, children, ...rest }: SectionProps) {
-  const classes = [styles.section, styles[bg], cut !== 'none' ? styles[`round${cut === 'left' ? 'Left' : 'Right'}`] : '', className]
+export function Section({ bg = 'white', cut = 'none', pad, id, className, children, ...rest }: SectionProps) {
+  const classes = [
+    styles.section,
+    styles[bg],
+    cut !== 'none' ? styles[`round${cut === 'left' ? 'Left' : 'Right'}`] : '',
+    pad === 'intro' ? styles.padIntro : pad === 'outro' ? styles.padOutro : '',
+    className,
+  ]
     .filter(Boolean)
     .join(' ');
   return (

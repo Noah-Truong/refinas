@@ -73,10 +73,11 @@ export default async function GymPage({ params }: { params: Promise<Params> }) {
             edges — the blue/panel/tint alternation and corner cuts are retired. */}
         <GymHero gym={gym} />
         {/* id="reserve" — landing target for every reserveUrl/primaryCtaUrl (#reserve) CTA */}
-        <Section id="reserve">
+        {/* intro bands run tighter (spacing rhythm, 余白レポート6-1) */}
+        <Section id="reserve" pad="intro">
           <TrialCta gym={gym} />
         </Section>
-        <Section data-nq-fix="3">
+        <Section data-nq-fix="3" pad="intro">
           <CampaignBanner gym={gym} />
         </Section>
         <Section>
@@ -109,10 +110,11 @@ export default async function GymPage({ params }: { params: Promise<Params> }) {
         <Section>
           <TopicList gym={gym} />
         </Section>
-        <Section>
+        {/* closing bands ease out with a shorter bottom (spacing rhythm) */}
+        <Section pad="outro">
           <ColumnList gym={gym} />
         </Section>
-        <Section>
+        <Section pad="outro">
           <BrandConcept gym={gym} />
         </Section>
       </main>

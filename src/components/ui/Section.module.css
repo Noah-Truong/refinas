@@ -1,6 +1,21 @@
 .section {
-  padding: var(--section-gap) 0;
+  /* per-instance gaps so variants and the corner-cut rule below stay in sync */
+  --_gap-top: var(--section-gap);
+  --_gap-bottom: var(--section-gap);
+  padding: var(--_gap-top) 0 var(--_gap-bottom);
   position: relative;
+}
+
+/* Spacing rhythm (依頼#2 余白レポート6-1): intro bands (体験CTA・キャンペーン)
+   pull tighter on both sides; closing bands (コラム・コンセプト) shorten only
+   their bottom so the page eases out instead of stopping. */
+.padIntro {
+  --_gap-top: var(--section-gap-intro);
+  --_gap-bottom: var(--section-gap-intro);
+}
+
+.padOutro {
+  --_gap-bottom: var(--section-gap-outro);
 }
 
 /* LAVA band rhythm: a section with a rounded top corner pulls itself up over
@@ -20,7 +35,7 @@
 
 .section:has(+ .roundLeft),
 .section:has(+ .roundRight) {
-  padding-bottom: calc(var(--section-gap) + var(--radius-band));
+  padding-bottom: calc(var(--_gap-bottom) + var(--radius-band));
 }
 
 .white {

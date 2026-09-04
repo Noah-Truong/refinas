@@ -78,6 +78,10 @@
   --space-10: 80px;
   --space-12: 96px;
   --section-gap: clamp(var(--space-8), 6vw, var(--space-12));
+  /* Spacing rhythm (依頼#2 余白レポート6-1): intro bands sit tighter, closing
+     bands ease off — LAVA's 導入は詰める・本編は広く・結びは締める. 56 = 8x7. */
+  --section-gap-intro: 56px;
+  --section-gap-outro: clamp(var(--space-6), 4.5vw, var(--space-8));
 
   /* Elevation — soft, warm-tinted */
   --shadow-1: 0 1px 2px rgba(86, 62, 43, 0.04), 0 4px 14px rgba(86, 62, 43, 0.07);
@@ -102,5 +106,7 @@
   :root {
     --gutter: 16px;
     --section-gap: clamp(var(--space-6), 9vw, var(--space-8));
+    --section-gap-intro: var(--space-4);
+    --section-gap-outro: var(--space-4);
   }
 }
