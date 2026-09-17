@@ -130,7 +130,31 @@
   border-bottom: 1px solid rgba(15, 110, 184, 0.15);
 }
 
+.marqueeTrack {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+
+/* 1本分（トラックの半分）ずらした時点で2本目が1本目の位置に来るので、ループの継ぎ目が見えない */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marqueeTrack {
+    animation: none;
+  }
+}
+
 .marqueeText {
+  /* 末尾の区切り「 — 」の空白を保持し、2本の継ぎ目でも文字間が詰まらないようにする */
+  white-space: pre;
   font-family: var(--font-en);
   font-weight: 700;
   font-size: clamp(1.5rem, 1.2rem + 1.6vw, 2.25rem);

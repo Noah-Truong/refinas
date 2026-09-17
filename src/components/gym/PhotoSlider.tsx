@@ -2,6 +2,7 @@ import NextImage from 'next/image';
 import type { Image } from '@/types/gym';
 import { Slider } from '@/components/ui/Slider';
 import styles from './PhotoSlider.module.css';
+import { JaWrap } from '@/components/ui/JaWrap';
 
 /** Studio atmosphere photo carousel (LAVA block 6) — one photo visible at a time. */
 export function PhotoSlider({ photos }: { photos: Image[] }) {
@@ -17,7 +18,7 @@ export function PhotoSlider({ photos }: { photos: Image[] }) {
             sizes="(max-width: 840px) 80vw, 608px"
             className={styles.image}
           />
-          <figcaption className={styles.caption}>{photo.alt}</figcaption>
+          <figcaption className={styles.caption}><JaWrap>{photo.alt}</JaWrap></figcaption>
         </figure>
       ))}
     </Slider>

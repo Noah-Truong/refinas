@@ -3,6 +3,7 @@ import type { Gym } from '@/types/gym';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Button } from '@/components/ui/Button';
 import styles from './VoiceSection.module.css';
+import { JaWrap } from '@/components/ui/JaWrap';
 
 /** Member voices: 2-col testimonial cards + disclaimers + trial CTA. */
 export function VoiceSection({ gym }: { gym: Gym }) {
@@ -24,15 +25,17 @@ export function VoiceSection({ gym }: { gym: Gym }) {
                 className={styles.avatar}
               />
               <span className={styles.labelChip}>
-                <span>{voice.label}</span>
+                <span><JaWrap>{voice.label}</JaWrap></span>
               </span>
             </div>
-            <p className={styles.comment}>{voice.comment}</p>
+            <p className={styles.comment}>
+              <JaWrap>{voice.comment}</JaWrap>
+            </p>
             {voice.tags && voice.tags.length > 0 && (
               <ul className={styles.tags}>
                 {voice.tags.map((tag) => (
                   <li key={tag} className={styles.tag}>
-                    <span>＃{tag}</span>
+                    <span><JaWrap>＃{tag}</JaWrap></span>
                   </li>
                 ))}
               </ul>
@@ -41,8 +44,8 @@ export function VoiceSection({ gym }: { gym: Gym }) {
         ))}
       </ul>
       <ul className={styles.notes}>
-        <li className={styles.note}>会員様個人の感想であり、効果・効能を保証するものではありません。</li>
-        <li className={styles.note}>Refinas会員様アンケート（2026年実施）より抜粋しています。</li>
+        <li className={styles.note}><JaWrap>会員様個人の感想であり、効果・効能を保証するものではありません。</JaWrap></li>
+        <li className={styles.note}><JaWrap>Refinas会員様アンケート（2026年実施）より抜粋しています。</JaWrap></li>
       </ul>
       <div className={styles.ctaWrapper}>
         <Button href={gym.primaryCtaUrl} size="lg" catchText="まずは気軽に無料体験から">

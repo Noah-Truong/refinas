@@ -17,6 +17,8 @@
 
 .cardHeader {
   display: flex;
+  /* 狭い画面では名前・ふりがな・役職を折り返し、カードが画面からはみ出さないようにする */
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--space-2);
 }

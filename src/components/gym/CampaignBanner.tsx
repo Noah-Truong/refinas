@@ -1,6 +1,8 @@
 import type { Gym } from '@/types/gym';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import styles from './CampaignBanner.module.css';
+import { GymName } from '@/components/ui/GymName';
+import { JaWrap } from '@/components/ui/JaWrap';
 
 /** EN sub-line of the banner — matches the site's Montserrat kicker labels. */
 const BANNER_EN = 'REFINAS KICKBOXING GYM';
@@ -16,12 +18,12 @@ export function CampaignBanner({ gym }: { gym: Gym }) {
   const subline = rest.join('｜');
   return (
     <>
-      <SectionTitle title={`${gym.name}で開催中のキャンペーン`} />
+      <SectionTitle title={<><GymName name={gym.name} />で開催中のキャンペーン</>} />
       <div className={styles.body} data-nq-fix="5">
         <a href={href} className={styles.bannerLink}>
           <span className={styles.banner}>
-            <span className={styles.bannerHeadline}>{headline}</span>
-            {subline && <span className={styles.bannerSubline}>{subline}</span>}
+            <span className={styles.bannerHeadline}><JaWrap>{headline}</JaWrap></span>
+            {subline && <span className={styles.bannerSubline}><JaWrap>{subline}</JaWrap></span>}
             <span className={styles.bannerEn}>{BANNER_EN}</span>
           </span>
         </a>

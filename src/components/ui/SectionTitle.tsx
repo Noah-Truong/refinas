@@ -1,10 +1,12 @@
 import styles from './SectionTitle.module.css';
+import { JaWrap } from '@/components/ui/JaWrap';
 
 type SectionTitleProps = {
   /** Optional small English kicker (Montserrat caps, red) — e.g. "TRIAL LESSON" */
   kicker?: string;
-  /** Main Japanese title (H2), e.g. 「渋谷店の料金プラン」 */
-  title: string;
+  /** Main Japanese title (H2), e.g. 「渋谷店の料金プラン」.
+   *  店舗名を含む場合は <GymName> を混ぜた JSX を渡す（改行での分断を防ぐため）。 */
+  title: React.ReactNode;
   /** Optional one-line lead below the title */
   lead?: React.ReactNode;
   id?: string;
@@ -16,9 +18,13 @@ export function SectionTitle({ kicker, title, lead, id, align = 'left' }: Sectio
     <div className={[styles.wrapper, align === 'center' ? styles.center : ''].filter(Boolean).join(' ')}>
       {kicker && <span className={styles.kicker}>{kicker}</span>}
       <h2 id={id} className={styles.title}>
-        {title}
+        <JaWrap>{title}</JaWrap>
       </h2>
-      {lead && <p className={styles.lead}>{lead}</p>}
+      {lead && (
+        <p className={styles.lead}>
+          <JaWrap>{lead}</JaWrap>
+        </p>
+      )}
     </div>
   );
 }

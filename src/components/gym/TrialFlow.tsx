@@ -1,9 +1,12 @@
+import { Fragment } from 'react';
 import Image from 'next/image';
 import type { Gym } from '@/types/gym';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Button } from '@/components/ui/Button';
 import { ArrowLink } from '@/components/ui/ArrowLink';
 import styles from './TrialFlow.module.css';
+import { GymName } from '@/components/ui/GymName';
+import { JaWrap } from '@/components/ui/JaWrap';
 
 const STEPS = [
   {
@@ -55,13 +58,14 @@ const STEPS = [
 /** Trial flow: 4-step guide + trial CTA + phone/FAQ support block. */
 export function TrialFlow({ gym }: { gym: Gym }) {
   const tel = gym.telCta ?? gym.tel;
-  const hoursLine = gym.hours.map((h) => `${h.label} ${h.time}`).join(' / ');
+  /** 「平日 11:00〜22:00」のような時間帯ごとの単位。単位の内部では折り返させない。 */
+  const hourUnits = gym.hours.map((h) => `${h.label} ${h.time}`);
   return (
     <>
       <SectionTitle
         id="flow"
         kicker="TRIAL FLOW"
-        title={`${gym.name}の無料体験の流れ`}
+        title={<><GymName name={gym.name} />の無料体験の流れ</>}
         lead={
           <>
             体験は<em>手ぶらでOK</em>、所要時間は<em>約60分</em>
@@ -84,8 +88,10 @@ export function TrialFlow({ gym }: { gym: Gym }) {
               sizes="(max-width: 640px) 100vw, 380px"
               className={styles.stepImage}
             />
-            <h3 className={styles.stepTitle}>{step.title}</h3>
-            <p className={styles.stepText}>{step.description}</p>
+            <h3 className={styles.stepTitle}><JaWrap>{step.title}</JaWrap></h3>
+            <p className={styles.stepText}>
+              <JaWrap>{step.description}</JaWrap>
+            </p>
           </li>
         ))}
       </ol>
@@ -96,15 +102,23 @@ export function TrialFlow({ gym }: { gym: Gym }) {
       </div>
       <div className={styles.support}>
         <div className={styles.supportCol}>
-          <h3 className={styles.supportTitle}>体験予約専用ダイヤル</h3>
+          <h3 className={styles.supportTitle}><JaWrap>体験予約専用ダイヤル</JaWrap></h3>
           <a href={`tel:${tel}`} className={styles.telLink}>
             {tel}
           </a>
-          <p className={styles.supportNote}>受付時間：{hoursLine}</p>
+          <p className={styles.supportNote}>
+            受付時間：
+            {hourUnits.map((unit, i) => (
+              <Fragment key={unit}>
+                {i > 0 && ' / '}
+                <span className="nobr">{unit}</span>
+              </Fragment>
+            ))}
+          </p>
         </div>
         <div className={styles.supportCol}>
-          <h3 className={styles.supportTitle}>お問い合わせ</h3>
-          <p className={styles.supportNote}>体験前のご不明点は、こちらもあわせてご覧ください。</p>
+          <h3 className={styles.supportTitle}><JaWrap>お問い合わせ</JaWrap></h3>
+          <p className={styles.supportNote}><JaWrap>体験前のご不明点は、こちらもあわせてご覧ください。</JaWrap></p>
           <ArrowLink href="#faq">よくあるご質問</ArrowLink>
         </div>
       </div>

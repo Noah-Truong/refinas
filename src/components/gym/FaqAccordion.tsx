@@ -2,6 +2,7 @@ import type { Gym } from '@/types/gym';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Button } from '@/components/ui/Button';
 import styles from './FaqAccordion.module.css';
+import { JaWrap } from '@/components/ui/JaWrap';
 
 /** FAQ: native <details> accordion list (multiple can stay open) + contact button. */
 export function FaqAccordion({ gym }: { gym: Gym }) {
@@ -16,14 +17,18 @@ export function FaqAccordion({ gym }: { gym: Gym }) {
                 <span className={styles.qChip} aria-hidden="true">
                   <span>Q</span>
                 </span>
-                <h3 className={styles.question}>{faq.q}</h3>
+                <h3 className={styles.question}>
+                  <JaWrap>{faq.q}</JaWrap>
+                </h3>
                 <span className={styles.indicator} aria-hidden="true" />
               </summary>
               <div className={styles.answer}>
                 <span className={styles.aChip} aria-hidden="true">
                   <span>A</span>
                 </span>
-                <p className={styles.answerText}>{faq.a}</p>
+                <p className={styles.answerText}>
+                  <JaWrap>{faq.a}</JaWrap>
+                </p>
               </div>
             </details>
           </li>

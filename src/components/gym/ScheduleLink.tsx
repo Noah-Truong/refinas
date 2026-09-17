@@ -2,6 +2,8 @@ import type { Gym } from '@/types/gym';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Button } from '@/components/ui/Button';
 import styles from './ScheduleLink.module.css';
+import { GymName } from '@/components/ui/GymName';
+import { JaWrap } from '@/components/ui/JaWrap';
 
 /** Schedule: opening-hours panel + PDF / external reservation link. */
 export function ScheduleLink({ gym }: { gym: Gym }) {
@@ -10,7 +12,7 @@ export function ScheduleLink({ gym }: { gym: Gym }) {
       <SectionTitle
         id="schedule"
         kicker="SCHEDULE"
-        title={`${gym.name}の営業スケジュール`}
+        title={<><GymName name={gym.name} />の営業スケジュール</>}
         lead={
           <>
             Refinasはセミパーソナル式。<em>ご予約不要</em>
@@ -41,7 +43,7 @@ export function ScheduleLink({ gym }: { gym: Gym }) {
           </tbody>
         </table>
         <p className={styles.snsNote} data-nq-fix="9">
-          {gym.scheduleNote ?? '混雑状況は店舗のSNSで随時発信しています。ご来店前のチェックがおすすめです。'}
+          <JaWrap>{gym.scheduleNote ?? '混雑状況は店舗のSNSで随時発信しています。ご来店前のチェックがおすすめです。'}</JaWrap>
         </p>
       </div>
       {gym.scheduleType === 'pdf' && gym.schedulePdf && (
@@ -54,7 +56,7 @@ export function ScheduleLink({ gym }: { gym: Gym }) {
       {gym.scheduleType === 'external' && (
         <div className={styles.buttonWrapper}>
           <Button href={gym.reserveUrl ?? gym.primaryCtaUrl} size="lg">
-            スケジュールを確認・予約する
+            <JaWrap>スケジュールを確認・予約する</JaWrap>
           </Button>
         </div>
       )}

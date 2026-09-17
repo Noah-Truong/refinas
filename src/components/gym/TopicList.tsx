@@ -2,13 +2,15 @@ import type { Gym } from '@/types/gym';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Button } from '@/components/ui/Button';
 import styles from './TopicList.module.css';
+import { GymName } from '@/components/ui/GymName';
+import { JaWrap } from '@/components/ui/JaWrap';
 
 /** Topics: news list rows (date / important chip / title) + load-more style button. */
 export function TopicList({ gym }: { gym: Gym }) {
   if (!gym.news?.length) return null;
   return (
     <>
-      <SectionTitle id="topics" kicker="TOPICS" title={`${gym.name}からのお知らせ`} />
+      <SectionTitle id="topics" kicker="TOPICS" title={<><GymName name={gym.name} />からのお知らせ</>} />
       <ul className={styles.list}>
         {gym.news.map((item) => (
           <li key={item.url + item.title} className={styles.item}>
@@ -23,7 +25,9 @@ export function TopicList({ gym }: { gym: Gym }) {
                   </span>
                 )}
               </span>
-              <span className={styles.title}>{item.title}</span>
+              <span className={styles.title}>
+                <JaWrap>{item.title}</JaWrap>
+              </span>
             </a>
           </li>
         ))}

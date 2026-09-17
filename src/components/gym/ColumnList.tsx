@@ -3,6 +3,7 @@ import type { Gym } from '@/types/gym';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Button } from '@/components/ui/Button';
 import styles from './ColumnList.module.css';
+import { JaWrap } from '@/components/ui/JaWrap';
 
 /** Column: 3 article cards (photo + title) + read-more button. */
 export function ColumnList({ gym }: { gym: Gym }) {
@@ -24,7 +25,9 @@ export function ColumnList({ gym }: { gym: Gym }) {
                   className={styles.image}
                 />
               </span>
-              <span className={styles.title}>{column.title}</span>
+              <span className={styles.title}>
+                <JaWrap>{column.title}</JaWrap>
+              </span>
             </a>
           </li>
         ))}

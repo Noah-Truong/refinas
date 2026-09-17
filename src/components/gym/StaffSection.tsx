@@ -3,6 +3,8 @@ import type { Gym } from '@/types/gym';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Button } from '@/components/ui/Button';
 import styles from './StaffSection.module.css';
+import { GymName } from '@/components/ui/GymName';
+import { JaWrap } from '@/components/ui/JaWrap';
 
 /** Staff: trainer card grid + Instagram promo + trial CTA. */
 export function StaffSection({ gym }: { gym: Gym }) {
@@ -12,7 +14,7 @@ export function StaffSection({ gym }: { gym: Gym }) {
       <SectionTitle
         id="staff"
         kicker="TRAINER"
-        title={`${gym.name}のトレーナー`}
+        title={<><GymName name={gym.name} />のトレーナー</>}
         lead="初心者の方にも一からていねいに。経験豊富なトレーナーが、あなたの理想づくりをサポートします。"
       />
       <ul className={styles.list}>
@@ -30,22 +32,24 @@ export function StaffSection({ gym }: { gym: Gym }) {
                 />
               )}
               <div className={styles.nameBlock}>
-                <span className={styles.name}>{trainer.name}</span>
-                {trainer.nameKana && <span className={styles.nameKana}>{trainer.nameKana}</span>}
+                <span className={styles.name}><JaWrap>{trainer.name}</JaWrap></span>
+                {trainer.nameKana && <span className={styles.nameKana}><JaWrap>{trainer.nameKana}</JaWrap></span>}
                 {trainer.role && (
                   <span className={styles.roleChip}>
-                    <span>{trainer.role}</span>
+                    <span className="nobr">{trainer.role}</span>
                   </span>
                 )}
               </div>
             </div>
-            <p className={styles.profile}>{trainer.profile}</p>
+            <p className={styles.profile}>
+              <JaWrap>{trainer.profile}</JaWrap>
+            </p>
           </li>
         ))}
       </ul>
       {instagram && (
         <div className={styles.instagramRow}>
-          <p className={styles.instagramLabel}>{gym.name}の最新情報をチェック！</p>
+          <p className={styles.instagramLabel}><JaWrap><GymName name={gym.name} />の最新情報をチェック！</JaWrap></p>
           <Button href={instagram} variant="secondary">
             Instagram
           </Button>

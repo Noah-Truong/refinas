@@ -177,6 +177,8 @@
 .optionSummary {
   cursor: pointer;
   display: flex;
+  /* 狭い画面でオプション名が入りきらない場合は、金額を次の行へ送る */
+  flex-wrap: wrap;
   align-items: center;
   gap: var(--space-2);
   padding: var(--space-2) 44px var(--space-2) var(--space-2);
@@ -207,7 +209,8 @@
 }
 
 .optionName {
-  flex: 1;
+  /* basis を auto にして、名前の実寸を優先させる */
+  flex: 1 1 auto;
   min-width: 0;
 }
 

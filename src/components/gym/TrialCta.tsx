@@ -2,6 +2,8 @@ import type { Gym } from '@/types/gym';
 import { Button } from '@/components/ui/Button';
 import { ArrowLink } from '@/components/ui/ArrowLink';
 import styles from './TrialCta.module.css';
+import { GymName } from '@/components/ui/GymName';
+import { JaWrap } from '@/components/ui/JaWrap';
 
 const CHECK_ITEMS = [
   '初心者・未経験OK',
@@ -30,8 +32,8 @@ export function TrialCta({ gym, variant = 'a' }: { gym: Gym; variant?: TrialCtaV
         <span className={styles.kickerLine} aria-hidden="true" />
       </p>
       <h2 className={styles.heading}>
-        {gym.name}で<br className={styles.spBreak} />
-        無料体験レッスンをはじめよう
+        <GymName name={gym.name} />で<br className={styles.spBreak} />
+        <JaWrap>無料体験レッスンをはじめよう</JaWrap>
       </h2>
       <div className={styles.priceBox}>
         <span className={styles.priceLabel}>体験レッスン</span>
@@ -45,7 +47,7 @@ export function TrialCta({ gym, variant = 'a' }: { gym: Gym; variant?: TrialCtaV
       <ul className={styles.checkList}>
         {CHECK_ITEMS.map((item) => (
           <li key={item} className={styles.checkItem}>
-            {item}
+            <JaWrap>{item}</JaWrap>
           </li>
         ))}
       </ul>
