@@ -1,9 +1,12 @@
+import { Fragment } from 'react';
 import type { ReactNode } from 'react';
 import type { Gym, Image } from '@/types/gym';
 import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Button } from '@/components/ui/Button';
 import { PhotoSlider } from './PhotoSlider';
 import styles from './AccessNap.module.css';
+import { GymName } from '@/components/ui/GymName';
+import { JaWrap } from '@/components/ui/JaWrap';
 
 /** 設備・サービス名 → ラインアイコン（24x24 stroke SVG。未定義の設備はチェックマーク） */
 const FACILITY_ICON: Record<string, ReactNode> = {
@@ -119,21 +122,27 @@ export function AccessNap({ gym, photos }: { gym: Gym; photos: Image[] }) {
   const nearest = gym.access[0];
   return (
     <>
-      <SectionTitle title={`${gym.name}のアクセス情報`} id="access" />
+      <SectionTitle title={<><GymName name={gym.name} />のアクセス情報</>} id="access" />
       <div className={styles.rows}>
         {/* 1. 住所 */}
         <div className={styles.row}>
-          <h3 className={styles.rowTitle}>住所</h3>
+          <h3 className={styles.rowTitle}><JaWrap>住所</JaWrap></h3>
           <p className={styles.text}>
-            〒{gym.postalCode}
+            <span className="nobr">〒{gym.postalCode}</span>
             <br />
-            {gym.address}
+            {/* 「オーベル渋谷」のような建物名が語中で切れないよう、空白区切りの単位で保護する */}
+            {gym.address.split(' ').map((part, i) => (
+              <Fragment key={part + i}>
+                {i > 0 && ' '}
+                <span className="nobr">{part}</span>
+              </Fragment>
+            ))}
           </p>
         </div>
 
         {/* 2. アクセス */}
         <div className={styles.row}>
-          <h3 className={styles.rowTitle}>アクセス</h3>
+          <h3 className={styles.rowTitle}><JaWrap>アクセス</JaWrap></h3>
           <ul className={styles.routeList}>
             {gym.access.map((route, i) => (
               <li key={i} className={styles.routeItem}>
@@ -142,7 +151,11 @@ export function AccessNap({ gym, photos }: { gym: Gym; photos: Image[] }) {
               </li>
             ))}
           </ul>
-          {gym.parking && <p className={styles.parking}>■駐車場・駐輪場：{gym.parking}</p>}
+          {gym.parking && (
+            <p className={styles.parking}>
+              ■駐車場・駐輪場：<JaWrap>{gym.parking}</JaWrap>
+            </p>
+          )}
           <iframe
             src={`https://maps.google.com/maps?q=${gym.geo.lat},${gym.geo.lng}&z=16&output=embed`}
             title="地図"
@@ -150,13 +163,13 @@ export function AccessNap({ gym, photos }: { gym: Gym; photos: Image[] }) {
             className={styles.map}
           />
           <details className={styles.directions}>
-            <summary className={styles.directionsSummary}>{gym.name}への詳しい経路</summary>
+            <summary className={styles.directionsSummary}><JaWrap><GymName name={gym.name} />への詳しい経路</JaWrap></summary>
             <div className={styles.directionsBody}>
               <p className={styles.text}>
-                {nearest
+                <JaWrap>{nearest
                   ? `${nearest.station}${nearest.exit ? `の${nearest.exit}` : 'の改札'}を出て、大通り沿いにまっすぐお進みください。最初の交差点を渡ってすぐのビルにスタジオがございます。入口の「Refinas」の赤いサインが目印です。`
                   : 'お近くの駅からのご来店方法は、お気軽にお電話にてお問い合わせください。'}
-                {gym.accessNote ? ` ${gym.accessNote}` : ''}
+                {gym.accessNote ? ` ${gym.accessNote}` : ''}</JaWrap>
               </p>
             </div>
           </details>
@@ -164,7 +177,7 @@ export function AccessNap({ gym, photos }: { gym: Gym; photos: Image[] }) {
 
         {/* 3. 営業時間 */}
         <div className={styles.row}>
-          <h3 className={styles.rowTitle}>営業時間</h3>
+          <h3 className={styles.rowTitle}><JaWrap>営業時間</JaWrap></h3>
           <ul className={styles.hoursList}>
             {gym.hours.map((h) => (
               <li key={h.label} className={styles.hoursItem}>
@@ -178,21 +191,21 @@ export function AccessNap({ gym, photos }: { gym: Gym; photos: Image[] }) {
         {/* 4. 定休日 */}
         {gym.holiday && (
           <div className={styles.row}>
-            <h3 className={styles.rowTitle}>定休日</h3>
+            <h3 className={styles.rowTitle}><JaWrap>定休日</JaWrap></h3>
             <p className={styles.text}>{gym.holiday}</p>
           </div>
         )}
 
         {/* 5. 設備・サービス */}
         <div className={styles.row}>
-          <h3 className={styles.rowTitle}>設備・サービス</h3>
+          <h3 className={styles.rowTitle}><JaWrap>設備・サービス</JaWrap></h3>
           <ul className={styles.facilityList}>
             {gym.facilities.map((facility) => (
               <li key={facility} className={styles.facilityChip}>
                 <span className={styles.facilityIcon} aria-hidden="true">
                   <FacilityIcon name={facility} />
                 </span>
-                {facility}
+                <JaWrap>{facility}</JaWrap>
               </li>
             ))}
           </ul>
@@ -201,22 +214,29 @@ export function AccessNap({ gym, photos }: { gym: Gym; photos: Image[] }) {
         {/* 6. スタジオ種別 */}
         {gym.studioType && (
           <div className={styles.row}>
-            <h3 className={styles.rowTitle}>スタジオ種別</h3>
+            <h3 className={styles.rowTitle}><JaWrap>スタジオ種別</JaWrap></h3>
             <p className={styles.text}>{gym.studioType}</p>
           </div>
         )}
 
         {/* 7. 店舗の雰囲気 */}
         <div className={styles.row} data-nq-fix="6">
-          <h3 className={styles.rowTitle}>店舗の雰囲気</h3>
+          <h3 className={styles.rowTitle}><JaWrap>店舗の雰囲気</JaWrap></h3>
           <PhotoSlider photos={photos} />
         </div>
 
         {/* 8. 支払方法 */}
         {gym.paymentMethods && gym.paymentMethods.length > 0 && (
           <div className={styles.row}>
-            <h3 className={styles.rowTitle}>支払方法</h3>
-            <p className={styles.text}>{gym.paymentMethods.join(' / ')}</p>
+            <h3 className={styles.rowTitle}><JaWrap>支払方法</JaWrap></h3>
+            <p className={styles.text}>
+              {gym.paymentMethods.map((method, i) => (
+                <Fragment key={method}>
+                  {i > 0 && ' / '}
+                  <span className="nobr">{method}</span>
+                </Fragment>
+              ))}
+            </p>
           </div>
         )}
       </div>

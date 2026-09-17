@@ -5,6 +5,7 @@ import { studioPhotos } from '@/data/demoGym';
 import { gymJsonLd } from '@/lib/jsonld';
 import { Section } from '@/components/ui/Section';
 import { SiteHeader } from '@/components/gym/SiteHeader';
+import { JaWrap } from '@/components/ui/JaWrap';
 import { GymHero } from '@/components/gym/GymHero';
 import { TrialCta } from '@/components/gym/TrialCta';
 import { CampaignBanner } from '@/components/gym/CampaignBanner';
@@ -66,7 +67,11 @@ export default async function GymPage({ params }: { params: Promise<Params> }) {
         // Escape "<" so CMS-sourced strings can never break out of the script tag (</script> injection).
         dangerouslySetInnerHTML={{ __html: JSON.stringify(gymJsonLd(gym)).replace(/</g, '\\u003c') }}
       />
-      <SiteHeader gym={gym} />
+      <SiteHeader
+        gym={gym}
+        ctaLabel={<JaWrap>{gym.primaryCtaLabel}</JaWrap>}
+        ctaShortLabel={<JaWrap>無料体験予約</JaWrap>}
+      />
       <main id="main" tabIndex={-1}>
         {/* 16-block structure — order fixed per the reference IA (spec §5).
             Fix Point 7/22 Task 3-A + Task 4: every band is white with right-angle

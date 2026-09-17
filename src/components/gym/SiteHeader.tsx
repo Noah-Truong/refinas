@@ -2,9 +2,10 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import type { Gym } from '@/types/gym';
 import styles from './SiteHeader.module.css';
+import { GymName } from '@/components/ui/GymName';
 
 const storeNav = [
   { label: 'アクセス', href: '#access' },
@@ -21,7 +22,18 @@ const storeDetailNav = [
 ] as const;
 
 /** Sticky site header: logo + store-scoped nav + trial CTA. Mirrors LAVA's 2-row header + SP drawer. */
-export function SiteHeader({ gym }: { gym: Gym }) {
+export function SiteHeader({
+  gym,
+  ctaLabel = gym.primaryCtaLabel,
+  ctaShortLabel = '無料体験予約',
+}: {
+  gym: Gym;
+  /** ドロワー内ボタンの文言。サーバー側で <JaWrap> 済みのものを受け取り、「予 / 約する」のような語中改行を防ぐ
+   *  （このファイルはクライアント部品なので、改行位置の辞書をここで読み込むとブラウザに送る JS が増えるため） */
+  ctaLabel?: ReactNode;
+  /** ヘッダー右上と画面下部バーの短い文言（同上） */
+  ctaShortLabel?: ReactNode;
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [detailOpen, setDetailOpen] = useState(false);
@@ -114,7 +126,7 @@ export function SiteHeader({ gym }: { gym: Gym }) {
           </div>
 
           <Link href={gym.primaryCtaUrl} className={styles.headerCta}>
-            無料体験予約
+            {ctaShortLabel}
           </Link>
 
           <button
@@ -143,11 +155,13 @@ export function SiteHeader({ gym }: { gym: Gym }) {
       >
         <div className={styles.drawerCtas}>
           <Link href={gym.primaryCtaUrl} className={styles.drawerTrial} onClick={() => setMenuOpen(false)}>
-            {gym.primaryCtaLabel}
+            {ctaLabel}
           </Link>
         </div>
         <ul className={styles.drawerList}>
-          <li className={styles.drawerStoreName}>{gym.name}</li>
+          <li className={styles.drawerStoreName}>
+            <GymName name={gym.name} />
+          </li>
           {[...storeNav, ...storeDetailNav].map((item) => (
             <li key={item.href}>
               <Link href={item.href} onClick={() => setMenuOpen(false)}>
@@ -169,7 +183,7 @@ export function SiteHeader({ gym }: { gym: Gym }) {
         <Link href="#access">アクセス</Link>
         <Link href="#price">料金</Link>
         <Link href={gym.primaryCtaUrl} className={styles.bottomBarCta}>
-          無料体験予約
+          {ctaShortLabel}
         </Link>
       </nav>
     </>

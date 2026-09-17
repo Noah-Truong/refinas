@@ -4,6 +4,8 @@ import { Container } from '@/components/ui/Section';
 import { Button } from '@/components/ui/Button';
 import { ArrowLink } from '@/components/ui/ArrowLink';
 import styles from './SiteFooter.module.css';
+import { JaWrap } from '@/components/ui/JaWrap';
+import { Fragment } from 'react';
 
 // Legal/company links required by the footer composition (spec §5 block 16).
 // Placeholder targets until the real-build pages exist; FAQ is omitted — the
@@ -48,7 +50,8 @@ function YoutubeIcon() {
 /** Footer: trial support band + brand statement band + footer proper (3 stacked full-bleed bands). */
 export function SiteFooter({ gym }: { gym: Gym }) {
   const tel = gym.telCta ?? gym.tel;
-  const hoursLine = gym.hours.map((h) => `${h.label} ${h.time}`).join(' / ');
+  /** 「平日 11:00〜22:00」のような時間帯ごとの単位。単位の内部では折り返させない。 */
+  const hourUnits = gym.hours.map((h) => `${h.label} ${h.time}`);
   const sns = [
     { key: 'instagram', label: 'Instagram', href: gym.sns?.instagram, icon: <InstagramIcon /> },
     { key: 'line', label: 'LINE', href: gym.sns?.line, icon: <LineIcon /> },
@@ -65,15 +68,23 @@ export function SiteFooter({ gym }: { gym: Gym }) {
             </Button>
             <div className={styles.support}>
               <div className={styles.supportCol}>
-                <h3 className={styles.supportTitle}>体験予約専用ダイヤル</h3>
+                <h3 className={styles.supportTitle}><JaWrap>体験予約専用ダイヤル</JaWrap></h3>
                 <a href={`tel:${tel}`} className={styles.telLink}>
                   {tel}
                 </a>
-                <p className={styles.supportNote}>受付時間：{hoursLine}</p>
+                <p className={styles.supportNote}>
+                  受付時間：
+                  {hourUnits.map((unit, i) => (
+                    <Fragment key={unit}>
+                      {i > 0 && ' / '}
+                      <span className="nobr">{unit}</span>
+                    </Fragment>
+                  ))}
+                </p>
               </div>
               <div className={styles.supportCol}>
-                <h3 className={styles.supportTitle}>お問い合わせ</h3>
-                <p className={styles.supportNote}>体験前のご不明点はこちらをご覧ください。</p>
+                <h3 className={styles.supportTitle}><JaWrap>お問い合わせ</JaWrap></h3>
+                <p className={styles.supportNote}><JaWrap>体験前のご不明点はこちらをご覧ください。</JaWrap></p>
                 <ArrowLink href="#faq" className={styles.supportLink}>
                   よくあるご質問
                 </ArrowLink>
@@ -99,9 +110,11 @@ export function SiteFooter({ gym }: { gym: Gym }) {
               className={styles.wordmark}
               data-nq-fix="14"
             />
-            <p className={styles.brandLine}>理想に向かい、輝き続ける人々のコミュニティを創造する</p>
-            <p className={styles.brandText}>
-              Refinasは、キックボクシングを通じて一人ひとりが自分を磨き、洗練させていくためのジムです。汗を流すその先にある、理想のあなたと輝く毎日を、私たちは全力で応援します。
+            <p className={styles.brandLine}>
+              <JaWrap>理想に向かい、輝き続ける人々のコミュニティを創造する</JaWrap>
+            </p>
+            <p className={styles.brandText}><JaWrap>
+              Refinasは、キックボクシングを通じて一人ひとりが自分を磨き、洗練させていくためのジムです。汗を流すその先にある、理想のあなたと輝く毎日を、私たちは全力で応援します。</JaWrap>
             </p>
           </div>
         </Container>
@@ -110,10 +123,15 @@ export function SiteFooter({ gym }: { gym: Gym }) {
       {/* c. Footer proper */}
       <div className={styles.footerProper}>
         <p className={styles.marquee} aria-hidden="true">
-          <span className={styles.marqueeText}>
-            {MARQUEE_TEXT}
-            {MARQUEE_TEXT}
-            {MARQUEE_TEXT}
+          {/* 同じ帯を2本並べて左へ半分ずらし続けることで、継ぎ目なく流れ続ける */}
+          <span className={styles.marqueeTrack}>
+            {[0, 1].map((copy) => (
+              <span key={copy} className={styles.marqueeText}>
+                {MARQUEE_TEXT}
+                {MARQUEE_TEXT}
+                {MARQUEE_TEXT}
+              </span>
+            ))}
           </span>
         </p>
         <Container>
@@ -123,7 +141,7 @@ export function SiteFooter({ gym }: { gym: Gym }) {
                 {FOOTER_NAV.map((label) => (
                   <li key={label}>
                     <a href="#" className={styles.navLink}>
-                      {label}
+                      <JaWrap>{label}</JaWrap>
                     </a>
                   </li>
                 ))}

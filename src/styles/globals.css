@@ -22,6 +22,15 @@ html {
   }
 }
 
+/* 320px未満の狭い画面（折りたたみスマホの外側画面など）：文字全体を一回り小さくし、
+   「無料体験レッスン」のような1つの単語が枠より長くなって途中で折れるのを防ぐ。
+   320px以上の画面には影響しない。 */
+@media (max-width: 319px) {
+  html {
+    font-size: 87.5%;
+  }
+}
+
 body {
   margin: 0;
   font-family: var(--font-body);
@@ -129,4 +138,45 @@ details summary::-webkit-details-marker {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* =========================================================
+   日本語の改行制御
+   店舗名などの固有名詞が語中で折り返される問題への対応。
+   原稿（文言）は変更せず、折り返し方だけを制御する。
+   ========================================================= */
+body {
+  /* 行頭の長音「ー」・小書き仮名を禁止（「トレ / ーナー」型の崩れを防ぐ） */
+  line-break: strict;
+}
+
+h1,
+h2,
+h3 {
+  /* 行長を揃え、1文字だけの孤立行を防ぐ */
+  text-wrap: balance;
+  /* Chromium は文節単位で折り返す。非対応ブラウザは無視するため安全 */
+  word-break: auto-phrase;
+}
+
+p,
+li,
+dt,
+dd {
+  /* 最終行だけが極端に短くなるのを回避（対応ブラウザのみ） */
+  text-wrap: pretty;
+}
+
+/* 固有名詞・数値など、途中で切らせたくない単位に付ける */
+.nobr {
+  white-space: nowrap;
+}
+
+/* JaWrap が挿入する <wbr> の位置でのみ折り返す。
+   overflow-wrap は、どうしても収まらない場合の保険。 */
+.ja-wrap {
+  word-break: keep-all;
+  /* どうしても1行に入らない場合だけ折る保険。anywhere と違い、枠の幅の計算を狭めないため、
+     「通いやすいですか？」のように本来1行に入る文を無理に折らない。 */
+  overflow-wrap: break-word;
 }

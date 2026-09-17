@@ -75,55 +75,64 @@
 .bullets {
   display: flex;
   align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
   justify-content: center;
+  gap: 8px;
+  /* ドットは必ず1行に収める。スライド数が多くて入りきらない場合は、
+     押せる範囲の幅だけが縮む（見た目の四角は ::before で10pxのまま） */
+  flex-wrap: nowrap;
+  flex: 0 1 auto;
+  min-width: 0;
 }
 
 .bullet {
-  /* 24px touch target, 10px visible mark (background clipped to content box) */
+  position: relative;
+  flex: 0 1 24px;
   width: 24px;
+  min-width: 12px;
   height: 24px;
-  padding: 7px;
-  box-sizing: border-box;
+  padding: 0;
+  background: none;
+}
+
+/* 見た目の四角（10px）。ボタンの幅が縮んでも大きさは変わらない */
+.bullet::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  transform: translate(-50%, -50%);
   background: var(--color-border);
-  background-clip: content-box;
   transition: background var(--dur-fast) var(--ease-out);
 }
 
-/* On touch, grow the hit area to 44px tall while the visible mark stays 10px —
-   padding does the work. Only the height grows: the bullet row has to fit between
-   the two arrow buttons, so width stays compact (see the 640px block below). */
+/* タッチ操作では押せる範囲の高さを44pxにする（見た目の四角は10pxのまま） */
 @media (max-width: 900px) {
   .bullet {
     height: 44px;
-    padding: 17px 7px;
   }
 }
 
-/* `background-color`, not the `background` shorthand — the shorthand resets
-   `background-clip` to border-box and the mark would fill the whole tap area
-   instead of staying a 10px dot. */
-.bullet:hover {
-  background-color: var(--color-muted);
+.bullet:hover::before {
+  background: var(--color-muted);
 }
 
-.bulletActive,
-.bulletActive:hover {
-  background-color: var(--color-brand);
+.bulletActive::before,
+.bulletActive:hover::before {
+  background: var(--color-brand);
 }
 
-/* SP: compact bullets so a long slide count fits the row between the arrows.
-   24px is the WCAG 2.5.8 minimum — the old 20px missed it — and eight of them
-   still fit: 8×24 + 7×6 gap = 234px inside the ~255px between the arrows.
-   Height stays 44px from the rule above. */
+/* SP：矢印とドットのすき間を詰め、ボタン幅16px＋間隔8px（中心間24px）にする。
+   320px幅でも矢印の間（184px）に8個が1行で収まり、中心間24pxを保つので
+   WCAG 2.5.8 の間隔の例外も満たす。これより多い場合は幅が縮んで1行を維持する。 */
 @media (max-width: 640px) {
-  .bullets {
-    gap: 6px;
+  .controls {
+    gap: 8px;
   }
 
   .bullet {
-    width: 24px;
-    padding: 17px 7px;
+    flex-basis: 16px;
+    width: 16px;
   }
 }

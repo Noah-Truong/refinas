@@ -3,6 +3,8 @@ import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Button } from '@/components/ui/Button';
 import { ArrowLink } from '@/components/ui/ArrowLink';
 import styles from './PriceTable.module.css';
+import { GymName } from '@/components/ui/GymName';
+import { JaWrap } from '@/components/ui/JaWrap';
 
 /** フルアクセス系プランは全店舗、それ以外は登録1店舗のみ利用可能。 */
 function studioScope(planName: string): string {
@@ -18,7 +20,7 @@ export function PriceTable({ gym }: { gym: Gym }) {
   return (
     <>
       <SectionTitle
-        title={`${gym.name}の料金プラン`}
+        title={<><GymName name={gym.name} />の料金プラン</>}
         id="price"
         lead={
           <>
@@ -48,11 +50,13 @@ export function PriceTable({ gym }: { gym: Gym }) {
                 <span className={styles.recommendBadge}>オススメ!</span>
               )}
               <div className={styles.planTarget}>
-                <p className={styles.targetText}>{plan.target}</p>
+                <p className={styles.targetText}>
+                  <JaWrap>{plan.target}</JaWrap>
+                </p>
               </div>
               <div className={styles.planMain}>
-                <h3 className={styles.planName}>{plan.planName}</h3>
-                <p className={styles.planMeta}>月会費（{meta}）</p>
+                <h3 className={styles.planName}><JaWrap>{plan.planName}</JaWrap></h3>
+                <p className={styles.planMeta}><JaWrap>月会費（{meta}）</JaWrap></p>
                 <div className={styles.priceLines}>
                   {female != null && (
                     <p className={styles.priceLine}>
@@ -80,29 +84,31 @@ export function PriceTable({ gym }: { gym: Gym }) {
       </ul>
 
       {/* 7a. footnotes */}
-      <p className={styles.footnote}>
+      <p className={styles.footnote}><JaWrap>
         ※ 表示価格はすべて税込です。
         <br />
         ※ 月会費とは別に事務手数料を頂戴する場合がございます。
-        <br />※ プラン内容・料金は店舗により変更となる場合がございます。
+        <br />※ プラン内容・料金は店舗により変更となる場合がございます。</JaWrap>
       </p>
 
       {/* 7c. options */}
       {gym.options && gym.options.length > 0 && (
         <div className={styles.optionsBlock}>
-          <h3 className={styles.optionsTitle}>その他のオプション</h3>
+          <h3 className={styles.optionsTitle}><JaWrap>その他のオプション</JaWrap></h3>
           <ul className={styles.optionList}>
             {gym.options.map((option) => (
               <li key={option.name}>
                 <details className={styles.option}>
                   <summary className={styles.optionSummary}>
-                    <span className={styles.optionName}>{option.name}</span>
+                    <span className={styles.optionName}>
+                      <JaWrap>{option.name}</JaWrap>
+                    </span>
                     <span className={styles.optionPrice}>
-                      +{option.price.toLocaleString()}円
+                      <span className="nobr">+{option.price.toLocaleString()}円</span>
                     </span>
                   </summary>
                   <div className={styles.optionBody}>
-                    <p>{option.note ?? '詳しくはスタッフまでお気軽にお尋ねください。'}</p>
+                    <p><JaWrap>{option.note ?? '詳しくはスタッフまでお気軽にお尋ねください。'}</JaWrap></p>
                   </div>
                 </details>
               </li>

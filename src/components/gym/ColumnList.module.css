@@ -52,7 +52,8 @@
    full-width stacked cards — keeps the card weight down on mobile */
 @media (max-width: 640px) {
   .grid {
-    grid-template-columns: 1fr;
+    /* 中身の最小幅でカードが枠を押し広げないよう、0まで縮められる列にする */
+    grid-template-columns: minmax(0, 1fr);
     gap: var(--space-2);
   }
 
@@ -70,5 +71,13 @@
   .title {
     flex: 1;
     min-width: 0;
+  }
+}
+
+/* 320px未満の狭い画面：写真を小さくして、記事タイトルに単語1つ分以上の幅を確保する
+   （「キックボクシングとは？」が途中で折れたり、カードがはみ出したりしないように）。 */
+@media (max-width: 319px) {
+  .imageWrapper {
+    flex-basis: 96px;
   }
 }

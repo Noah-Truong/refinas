@@ -59,3 +59,11 @@
   color: var(--color-brand);
   font-weight: 700;
 }
+
+/* 320px未満の狭い画面：「キックボクシングコラム」（11文字）のような長い単語の見出しが
+   途中で折れないよう、画面幅に合わせて文字を縮める。320px以上の見た目は変えない。 */
+@media (max-width: 319px) {
+  .title {
+    font-size: calc((100vw - 56px) / 10.4);
+  }
+}

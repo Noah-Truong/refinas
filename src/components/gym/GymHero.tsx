@@ -2,6 +2,8 @@ import Image from 'next/image';
 import type { Gym } from '@/types/gym';
 import { Container } from '@/components/ui/Section';
 import styles from './GymHero.module.css';
+import { GymName } from '@/components/ui/GymName';
+import { JaWrap } from '@/components/ui/JaWrap';
 
 /** Seconds each slide stays fully visible — keep in sync with the keyframe windows in GymHero.module.css. */
 const SLIDE_SECONDS = 5;
@@ -59,15 +61,20 @@ export function GymHero({ gym }: { gym: Gym }) {
             data-nq-fix="1 8"
           />
           <div className={styles.titleWrapper}>
-            <p className={styles.brandLabel}>{gym.brandLabel}</p>
+            <p className={styles.brandLabel}><JaWrap>{gym.brandLabel}</JaWrap></p>
             <h1 className={styles.title}>
-              {gym.name}
+              {/* H1 は縦並びの flex なので、店名を1つの要素にまとめて文章として折り返させる */}
+              <span>
+                <GymName name={gym.name} />
+              </span>
               <span className={styles.subtitle}>{gym.area}</span>
             </h1>
           </div>
         </div>
         <div className={styles.description}>
-          <h2 className={styles.catchCopy}>{gym.catchCopy}</h2>
+          <h2 className={styles.catchCopy}>
+            <JaWrap>{gym.catchCopy}</JaWrap>
+          </h2>
           <ul className={styles.badges}>
             {nearest && (
               <li className={styles.badge}>
@@ -75,9 +82,9 @@ export function GymHero({ gym }: { gym: Gym }) {
                 {nearest.exit ? ` ${nearest.exit}` : ''} 徒歩{nearest.walkMin}分
               </li>
             )}
-            {gym.targetNote && <li className={styles.badge}>{gym.targetNote}</li>}
+            {gym.targetNote && <li className={styles.badge}><JaWrap>{gym.targetNote}</JaWrap></li>}
             {gym.studioType && !gym.targetNote?.includes(gym.studioType) && (
-              <li className={styles.badge}>{gym.studioType}</li>
+              <li className={styles.badge}><JaWrap>{gym.studioType}</JaWrap></li>
             )}
           </ul>
         </div>

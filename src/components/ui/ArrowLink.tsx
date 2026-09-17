@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from './ArrowLink.module.css';
+import { JaWrap } from '@/components/ui/JaWrap';
 
 /**
  * Tertiary text link with a small arrow (LAVA's border-arrow-link equivalent).
@@ -22,7 +23,7 @@ export function ArrowLink({
       href={href}
       className={[styles.link, tone === 'inherit' ? styles.toneInherit : '', className].filter(Boolean).join(' ')}
     >
-      {children}
+      <JaWrap>{children}</JaWrap>
       <span className={styles.arrow} aria-hidden="true" />
     </Link>
   );

@@ -170,3 +170,11 @@
   padding: 4px 14px;
   border-radius: var(--radius-pill);
 }
+
+/* 320px未満の狭い画面：店名の最長の単語「キックボクシング」（8文字）が枠に収まるよう、
+   画面幅に合わせて文字を縮める。320px以上の見た目は変えない。 */
+@media (max-width: 319px) {
+  .title {
+    font-size: calc((100vw - 64px) / 7.6);
+  }
+}

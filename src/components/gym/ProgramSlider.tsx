@@ -5,16 +5,20 @@ import { Button } from '@/components/ui/Button';
 import { StrengthMeter } from '@/components/ui/StrengthMeter';
 import { Slider } from '@/components/ui/Slider';
 import styles from './ProgramSlider.module.css';
+import { GymName } from '@/components/ui/GymName';
+import { JaWrap } from '@/components/ui/JaWrap';
 
 /** Programs: card carousel (name / trial tag / duration / intensity / image / description) + trial CTA. */
 export function ProgramSlider({ gym }: { gym: Gym }) {
   return (
     <>
-      <SectionTitle id="program" kicker="PROGRAM" title={`${gym.name}のプログラム`} />
+      <SectionTitle id="program" kicker="PROGRAM" title={<><GymName name={gym.name} />のプログラム</>} />
       <Slider label={`${gym.name}のプログラム一覧`} slideWidth="min(260px, 80vw)">
         {gym.programs.map((program) => (
           <article key={program.name} className={styles.card}>
-            <h3 className={styles.name}>{program.name}</h3>
+            <h3 className={styles.name}>
+              <span className="nobr">{program.name}</span>
+            </h3>
             {program.trialOk && (
               <p className={styles.trialTag}>
                 <span>体験OK</span>
@@ -22,12 +26,12 @@ export function ProgramSlider({ gym }: { gym: Gym }) {
             )}
             {program.durationMin != null && (
               <div className={styles.row}>
-                <h4 className={styles.rowLabel}>レッスン時間</h4>
+                <h4 className={styles.rowLabel}><JaWrap>レッスン時間</JaWrap></h4>
                 <p className={styles.rowValue}>{program.durationMin}分</p>
               </div>
             )}
             <div className={styles.row}>
-              <h4 className={styles.rowLabel}>プログラム強度</h4>
+              <h4 className={styles.rowLabel}><JaWrap>プログラム強度</JaWrap></h4>
               <StrengthMeter value={program.intensity} />
             </div>
             {program.image && (
@@ -40,7 +44,9 @@ export function ProgramSlider({ gym }: { gym: Gym }) {
                 className={styles.image}
               />
             )}
-            <p className={styles.description}>{program.description}</p>
+            <p className={styles.description}>
+              <JaWrap>{program.description}</JaWrap>
+            </p>
           </article>
         ))}
       </Slider>
