@@ -14,8 +14,15 @@ Next.js 15 (App Router, TS, CSS Modules — no Tailwind, no UI deps) demo reprod
   (type: `src/types/gym.ts`), and do NOT render their own `<Section>` — `app/gym/[slug]/page.tsx`
   wraps them and owns the background/corner-cut alternation. `SiteFooter` renders its own `<footer>`.
 - Section order is fixed (spec §5, 16 blocks) — do not reorder.
-- Data access goes through `getGym(slug)`/`getAllGyms()` in `src/data/getGym.ts`; the demo reads
-  `src/data/demoGym.ts`, the real build will swap in CMS fetching with the same signatures.
+- Data access goes through `getGym(slug)`/`getAllGyms()` in `src/data/getGym.ts`. With `PAGE_API_BASE`
+  set they read the LINE page service's API (nortiq-line-post `docs/design-v1.2.md` §6: tagged
+  `force-cache` fetches invalidated via `/api/revalidate`, drafts via `/api/preview` + Draft Mode);
+  without it they fall back to the demo data in `src/data/demoGym.ts`, whose output must stay unchanged.
+  See README for the env vars and `scripts/mock-page-api.ts` for a local stand-in.
+- Store/brand facts in copy (plan count, store count, trial price/duration, routes, notes) come from
+  `Gym` data, never component literals — the LINE service can only check and update data. A block
+  with no data is not rendered at all: `page.tsx` gates each `<Section>` on the `has*` predicate
+  exported next to its component.
 - Design language (red/blue/white per client minutes `context/02-client-feedback/2026-07-07-fix1-minutes.pdf`; surface
   language matched to yoga-lava.com 2026-07-15): brand red #D8212C for CTA/emphasis, brand blue
   #0E6EB8 for contrast bands/secondary accents, white/#F8F7F7 grounds — no black/dark grounds,
