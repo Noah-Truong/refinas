@@ -21,10 +21,13 @@ const montserrat = Montserrat({
 // Nortiq Revise pins fix requests to a specific build; on Vercel the commit SHA is in the
 // build env. Omit the tag entirely off-Vercel rather than emit a placeholder (tool's request).
 const commitSha = process.env.VERCEL_GIT_COMMIT_SHA;
+// Demo / staging deployments (e.g. a *.vercel.app copy) must not be indexed next to the real refinas.jp.
+const noIndex = process.env.SITE_NOINDEX === '1';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://refinas.jp'),
   ...(commitSha ? { other: { 'nq-sha': commitSha } } : {}),
+  ...(noIndex ? { robots: { index: false, follow: false } } : {}),
   title: {
     default: 'Refinas｜キックボクシングジム リフィナス',
     template: '%s｜キックボクシングジム Refinas',

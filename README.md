@@ -48,6 +48,7 @@ public/dummy/               プレースホルダー画像（SVG・27点）
 | `PAGE_REVALIDATE_SECRET` | 再生成の署名とプレビューの token の秘密（HMAC-SHA256）。無ければ `/api/revalidate` は 503、プレビューは使えない |
 | `PAGE_MEDIA_HOSTS` | API の写真を置くホスト名（カンマ区切り）。`images.remotePatterns`（https）に入る |
 | `SITE_URL` | サイトの URL（JSON-LD の絶対 URL）。無ければデモの仮の URL |
+| `SITE_NOINDEX` | `1` なら全ページに `noindex, nofollow`（デモ・検証用のコピーを、本物のサイトと並んで検索に出さないため） |
 
 鍵と秘密は Vercel の環境変数に置き、リポジトリには入れない（ローカルは `.env.local`。`.env*.local` は .gitignore 済み）。
 
