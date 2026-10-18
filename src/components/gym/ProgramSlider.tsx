@@ -7,9 +7,14 @@ import { Slider } from '@/components/ui/Slider';
 import styles from './ProgramSlider.module.css';
 import { GymName } from '@/components/ui/GymName';
 import { JaWrap } from '@/components/ui/JaWrap';
+import { trialCatchText } from '@/lib/trial';
+
+/** The page renders this section only when there is at least one program. */
+export const hasPrograms = (gym: Gym) => (gym.programs?.length ?? 0) > 0;
 
 /** Programs: card carousel (name / trial tag / duration / intensity / image / description) + trial CTA. */
 export function ProgramSlider({ gym }: { gym: Gym }) {
+  if (!hasPrograms(gym)) return null;
   return (
     <>
       <SectionTitle id="program" kicker="PROGRAM" title={<><GymName name={gym.name} />のプログラム</>} />
@@ -51,7 +56,7 @@ export function ProgramSlider({ gym }: { gym: Gym }) {
         ))}
       </Slider>
       <div className={styles.ctaWrapper}>
-        <Button href={gym.primaryCtaUrl} size="lg" catchText="まずは気軽に無料体験から">
+        <Button href={gym.primaryCtaUrl} size="lg" catchText={trialCatchText(gym)}>
           {gym.primaryCtaLabel}
         </Button>
       </div>

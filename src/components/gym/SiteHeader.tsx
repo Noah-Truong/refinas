@@ -6,6 +6,7 @@ import { useEffect, useRef, useState, type ReactNode } from 'react';
 import type { Gym } from '@/types/gym';
 import styles from './SiteHeader.module.css';
 import { GymName } from '@/components/ui/GymName';
+import { isTrialFree } from '@/lib/trial';
 
 const storeNav = [
   { label: 'アクセス', href: '#access' },
@@ -25,7 +26,8 @@ const storeDetailNav = [
 export function SiteHeader({
   gym,
   ctaLabel = gym.primaryCtaLabel,
-  ctaShortLabel = '無料体験予約',
+  ctaShortLabel = isTrialFree(gym) ? '無料体験予約' : '体験予約',
+  hiddenHrefs,
 }: {
   gym: Gym;
   /** ドロワー内ボタンの文言。サーバー側で <JaWrap> 済みのものを受け取り、「予 / 約する」のような語中改行を防ぐ
@@ -33,7 +35,12 @@ export function SiteHeader({
   ctaLabel?: ReactNode;
   /** ヘッダー右上と画面下部バーの短い文言（同上） */
   ctaShortLabel?: ReactNode;
+  /** ページに出していないセクションへのリンク（"#staff" など）。メニューから外す */
+  hiddenHrefs?: readonly string[];
 }) {
+  const visible = (item: { href: string }) => !hiddenHrefs?.includes(item.href);
+  const navItems = storeNav.filter(visible);
+  const detailNavItems = storeDetailNav.filter(visible);
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [detailOpen, setDetailOpen] = useState(false);
@@ -92,32 +99,34 @@ export function SiteHeader({
             <nav aria-label="店舗内ナビゲーション">
               <ul className={styles.storeRow}>
                 <li className={styles.storeName}>{gym.name}</li>
-                {storeNav.map((item) => (
+                {navItems.map((item) => (
                   <li key={item.href}>
                     <Link href={item.href}>{item.label}</Link>
                   </li>
                 ))}
-                <li className={styles.dropdown} onMouseLeave={() => setDetailOpen(false)}>
-                  <button
-                    type="button"
-                    className={styles.dropdownButton}
-                    aria-expanded={detailOpen}
-                    aria-controls="store-detail-nav"
-                    onClick={() => setDetailOpen((open) => !open)}
-                  >
-                    店舗の詳しい情報
-                    <span className={styles.chevronDown} aria-hidden="true" />
-                  </button>
-                  <ul id="store-detail-nav" className={styles.dropdownList} data-open={detailOpen || undefined}>
-                    {storeDetailNav.map((item) => (
-                      <li key={item.href}>
-                        <Link href={item.href} onClick={() => setDetailOpen(false)}>
-                          {item.label}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </li>
+                {detailNavItems.length > 0 && (
+                  <li className={styles.dropdown} onMouseLeave={() => setDetailOpen(false)}>
+                    <button
+                      type="button"
+                      className={styles.dropdownButton}
+                      aria-expanded={detailOpen}
+                      aria-controls="store-detail-nav"
+                      onClick={() => setDetailOpen((open) => !open)}
+                    >
+                      店舗の詳しい情報
+                      <span className={styles.chevronDown} aria-hidden="true" />
+                    </button>
+                    <ul id="store-detail-nav" className={styles.dropdownList} data-open={detailOpen || undefined}>
+                      {detailNavItems.map((item) => (
+                        <li key={item.href}>
+                          <Link href={item.href} onClick={() => setDetailOpen(false)}>
+                            {item.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </li>
+                )}
                 <li>
                   <Link href="/gym">他の店舗を探す</Link>
                 </li>
@@ -162,7 +171,7 @@ export function SiteHeader({
           <li className={styles.drawerStoreName}>
             <GymName name={gym.name} />
           </li>
-          {[...storeNav, ...storeDetailNav].map((item) => (
+          {[...navItems, ...detailNavItems].map((item) => (
             <li key={item.href}>
               <Link href={item.href} onClick={() => setMenuOpen(false)}>
                 {item.label}
@@ -181,7 +190,7 @@ export function SiteHeader({
       {/* SP fixed bottom quick-nav (LAVA's bottom-menu) */}
       <nav className={styles.bottomBar} aria-label="クイックナビ">
         <Link href="#access">アクセス</Link>
-        <Link href="#price">料金</Link>
+        {visible({ href: '#price' }) && <Link href="#price">料金</Link>}
         <Link href={gym.primaryCtaUrl} className={styles.bottomBarCta}>
           {ctaShortLabel}
         </Link>

@@ -5,14 +5,18 @@ import { Button } from '@/components/ui/Button';
 import styles from './ColumnList.module.css';
 import { JaWrap } from '@/components/ui/JaWrap';
 
+/** The page renders this section only when there are column articles. */
+export const hasColumns = (gym: Gym) => (gym.columns?.length ?? 0) > 0;
+
 /** Column: 3 article cards (photo + title) + read-more button. */
 export function ColumnList({ gym }: { gym: Gym }) {
-  if (!gym.columns?.length) return null;
+  if (!hasColumns(gym)) return null;
+  const columns = gym.columns ?? [];
   return (
     <>
       <SectionTitle id="column" kicker="COLUMN" title="キックボクシングコラム" />
       <ul className={styles.grid}>
-        {gym.columns.map((column) => (
+        {columns.map((column) => (
           <li key={column.title}>
             <a href={column.url} className={styles.card}>
               <span className={styles.imageWrapper}>

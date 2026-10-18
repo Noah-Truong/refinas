@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/Button';
 import { ArrowLink } from '@/components/ui/ArrowLink';
 import styles from './SiteFooter.module.css';
 import { JaWrap } from '@/components/ui/JaWrap';
+import { trialCatchText } from '@/lib/trial';
 import { Fragment } from 'react';
 
 // Legal/company links required by the footer composition (spec §5 block 16).
@@ -63,7 +64,7 @@ export function SiteFooter({ gym }: { gym: Gym }) {
       <div className={styles.trialBand}>
         <Container>
           <div className={styles.trialInner}>
-            <Button href={gym.primaryCtaUrl} size="lg" catchText="まずは気軽に無料体験から">
+            <Button href={gym.primaryCtaUrl} size="lg" catchText={trialCatchText(gym)}>
               {gym.primaryCtaLabel}
             </Button>
             <div className={styles.support}>

@@ -1,17 +1,23 @@
 import type { Gym } from '@/types/gym';
 
-const SITE_URL = 'https://refinas-demo.example.com'; // demo placeholder — real domain at CMS-integration phase
+/** Site origin for absolute URLs. Set SITE_URL in the deploy env; the fallback is the demo placeholder. */
+const SITE_URL = (process.env.SITE_URL?.trim() || 'https://refinas-demo.example.com').replace(/\/+$/, '');
+
+/** Paths become absolute on SITE_URL; URLs that already are absolute (remote images) are kept as-is. */
+const absoluteUrl = (url: string) =>
+  /^https?:\/\//i.test(url) ? url : `${SITE_URL}${url.startsWith('/') ? '' : '/'}${url}`;
 
 /** JSON-LD @graph per spec §7: HealthClub (LocalBusiness subtype) + BreadcrumbList. */
 export function gymJsonLd(gym: Gym) {
-  const url = `${SITE_URL}/gym/${gym.slug}/`;
+  // No trailing slash — matches the canonical (/gym/{slug}) and the routes (trailingSlash is off).
+  const url = `${SITE_URL}/gym/${gym.slug}`;
   return {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'HealthClub',
         name: gym.name,
-        image: [`${SITE_URL}${gym.heroImage.url}`],
+        image: [absoluteUrl(gym.heroImage.url)],
         address: {
           '@type': 'PostalAddress',
           postalCode: gym.postalCode,
@@ -35,8 +41,8 @@ export function gymJsonLd(gym: Gym) {
         '@type': 'BreadcrumbList',
         itemListElement: [
           { '@type': 'ListItem', position: 1, name: 'Refinas', item: `${SITE_URL}/` },
-          { '@type': 'ListItem', position: 2, name: '店舗一覧', item: `${SITE_URL}/gym/` },
-          { '@type': 'ListItem', position: 3, name: gym.area, item: `${SITE_URL}/gym/` },
+          { '@type': 'ListItem', position: 2, name: '店舗一覧', item: `${SITE_URL}/gym` },
+          { '@type': 'ListItem', position: 3, name: gym.area, item: `${SITE_URL}/gym` },
           { '@type': 'ListItem', position: 4, name: gym.name, item: url },
         ],
       },

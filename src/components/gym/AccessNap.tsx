@@ -7,6 +7,7 @@ import { PhotoSlider } from './PhotoSlider';
 import styles from './AccessNap.module.css';
 import { GymName } from '@/components/ui/GymName';
 import { JaWrap } from '@/components/ui/JaWrap';
+import { trialCatchText } from '@/lib/trial';
 
 /** 設備・サービス名 → ラインアイコン（24x24 stroke SVG。未定義の設備はチェックマーク） */
 const FACILITY_ICON: Record<string, ReactNode> = {
@@ -93,6 +94,13 @@ const FACILITY_ICON: Record<string, ReactNode> = {
   ),
 };
 
+/**
+ * 専用アイコンがある設備名（FACILITY_ICON のキー、定義順）。
+ * LINE の更新サービス（nortiq-line-post の GYM_FACILITY_NAMES）はこの一覧から選ばせるので、
+ * 設備を足すときはアイコンと一緒にここへ足し、サービス側の一覧も合わせる。
+ */
+export const FACILITY_NAMES: readonly string[] = Object.freeze(Object.keys(FACILITY_ICON));
+
 // 未定義の設備用フォールバック（チェックマーク）
 const DEFAULT_ICON = (
   <>
@@ -119,7 +127,8 @@ function FacilityIcon({ name }: { name: string }) {
 
 /** Access / NAP section (LAVA block 5): labeled rows (underlined h3 + content) + map + photo slider. */
 export function AccessNap({ gym, photos }: { gym: Gym; photos: Image[] }) {
-  const nearest = gym.access[0];
+  const directions = gym.directions?.trim();
+  const accessNote = gym.accessNote?.trim();
   return (
     <>
       <SectionTitle title={<><GymName name={gym.name} />のアクセス情報</>} id="access" />
@@ -162,17 +171,18 @@ export function AccessNap({ gym, photos }: { gym: Gym; photos: Image[] }) {
             loading="lazy"
             className={styles.map}
           />
-          <details className={styles.directions}>
-            <summary className={styles.directionsSummary}><JaWrap><GymName name={gym.name} />への詳しい経路</JaWrap></summary>
-            <div className={styles.directionsBody}>
-              <p className={styles.text}>
-                <JaWrap>{nearest
-                  ? `${nearest.station}${nearest.exit ? `の${nearest.exit}` : 'の改札'}を出て、大通り沿いにまっすぐお進みください。最初の交差点を渡ってすぐのビルにスタジオがございます。入口の「Refinas」の赤いサインが目印です。`
-                  : 'お近くの駅からのご来店方法は、お気軽にお電話にてお問い合わせください。'}
-                {gym.accessNote ? ` ${gym.accessNote}` : ''}</JaWrap>
-              </p>
-            </div>
-          </details>
+          {/* 道順はデータから（以前は全店共通の作り物の文を組み立てていた）。どちらも無ければ出さない */}
+          {(directions || accessNote) && (
+            <details className={styles.directions}>
+              <summary className={styles.directionsSummary}><JaWrap><GymName name={gym.name} />への詳しい経路</JaWrap></summary>
+              <div className={styles.directionsBody}>
+                <p className={styles.text}>
+                  {/* 2つの文は別々の文字列として渡す（文節の区切りと HTML を以前と同じに保つ） */}
+                  <JaWrap>{directions ?? ''}{accessNote ? `${directions ? ' ' : ''}${accessNote}` : ''}</JaWrap>
+                </p>
+              </div>
+            </details>
+          )}
         </div>
 
         {/* 3. 営業時間 */}
@@ -197,19 +207,21 @@ export function AccessNap({ gym, photos }: { gym: Gym; photos: Image[] }) {
         )}
 
         {/* 5. 設備・サービス */}
-        <div className={styles.row}>
-          <h3 className={styles.rowTitle}><JaWrap>設備・サービス</JaWrap></h3>
-          <ul className={styles.facilityList}>
-            {gym.facilities.map((facility) => (
-              <li key={facility} className={styles.facilityChip}>
-                <span className={styles.facilityIcon} aria-hidden="true">
-                  <FacilityIcon name={facility} />
-                </span>
-                <JaWrap>{facility}</JaWrap>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {(gym.facilities?.length ?? 0) > 0 && (
+          <div className={styles.row}>
+            <h3 className={styles.rowTitle}><JaWrap>設備・サービス</JaWrap></h3>
+            <ul className={styles.facilityList}>
+              {gym.facilities.map((facility) => (
+                <li key={facility} className={styles.facilityChip}>
+                  <span className={styles.facilityIcon} aria-hidden="true">
+                    <FacilityIcon name={facility} />
+                  </span>
+                  <JaWrap>{facility}</JaWrap>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         {/* 6. スタジオ種別 */}
         {gym.studioType && (
@@ -242,7 +254,7 @@ export function AccessNap({ gym, photos }: { gym: Gym; photos: Image[] }) {
       </div>
 
       <div className={styles.ctaWrapper}>
-        <Button href={gym.primaryCtaUrl} size="lg" catchText="まずは気軽に無料体験から">
+        <Button href={gym.primaryCtaUrl} size="lg" catchText={trialCatchText(gym)}>
           {gym.primaryCtaLabel}
         </Button>
       </div>

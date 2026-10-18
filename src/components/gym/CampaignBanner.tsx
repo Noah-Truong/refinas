@@ -7,10 +7,16 @@ import { JaWrap } from '@/components/ui/JaWrap';
 /** EN sub-line of the banner — matches the site's Montserrat kicker labels. */
 const BANNER_EN = 'REFINAS KICKBOXING GYM';
 
+/**
+ * The page renders this section only for a running campaign that has a title —
+ * the banner is built from the title text, so without one it would be an empty box.
+ */
+export const hasCampaign = (gym: Gym) => gym.campaign?.active === true && Boolean(gym.campaign.title?.trim());
+
 /** Campaign banner (LAVA block 4). Hidden entirely when no campaign is running. */
 export function CampaignBanner({ gym }: { gym: Gym }) {
   const campaign = gym.campaign;
-  if (!campaign?.active) return null;
+  if (!campaign || !hasCampaign(gym)) return null;
   const href = campaign.url ?? gym.primaryCtaUrl;
   // Client request #3: the banner is built from text instead of an image so it
   // stays legible on SP (the 1200x400 artwork shrank the EN line to 4.5px).

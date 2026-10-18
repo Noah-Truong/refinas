@@ -4,8 +4,12 @@ import { Button } from '@/components/ui/Button';
 import styles from './FaqAccordion.module.css';
 import { JaWrap } from '@/components/ui/JaWrap';
 
+/** The page renders this section only when there is at least one FAQ. */
+export const hasFaqs = (gym: Gym) => (gym.faqs?.length ?? 0) > 0;
+
 /** FAQ: native <details> accordion list (multiple can stay open) + contact button. */
 export function FaqAccordion({ gym }: { gym: Gym }) {
+  if (!hasFaqs(gym)) return null;
   return (
     <>
       <SectionTitle id="faq" kicker="FAQ" title="よくあるご質問" />

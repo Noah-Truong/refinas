@@ -3,23 +3,24 @@ import { notFound } from 'next/navigation';
 import { getAllGyms, getGym } from '@/data/getGym';
 import { studioPhotos } from '@/data/demoGym';
 import { gymJsonLd } from '@/lib/jsonld';
+import { isTrialFree } from '@/lib/trial';
 import { Section } from '@/components/ui/Section';
 import { SiteHeader } from '@/components/gym/SiteHeader';
 import { JaWrap } from '@/components/ui/JaWrap';
 import { GymHero } from '@/components/gym/GymHero';
 import { TrialCta } from '@/components/gym/TrialCta';
-import { CampaignBanner } from '@/components/gym/CampaignBanner';
+import { CampaignBanner, hasCampaign } from '@/components/gym/CampaignBanner';
 import { AccessNap } from '@/components/gym/AccessNap';
-import { PriceTable } from '@/components/gym/PriceTable';
-import { NearbyGyms } from '@/components/gym/NearbyGyms';
+import { PriceTable, hasPlans } from '@/components/gym/PriceTable';
+import { NearbyGyms, hasNearby } from '@/components/gym/NearbyGyms';
 import { TrialFlow } from '@/components/gym/TrialFlow';
-import { StaffSection } from '@/components/gym/StaffSection';
-import { VoiceSection } from '@/components/gym/VoiceSection';
-import { ProgramSlider } from '@/components/gym/ProgramSlider';
+import { StaffSection, hasTrainers } from '@/components/gym/StaffSection';
+import { VoiceSection, hasVoices } from '@/components/gym/VoiceSection';
+import { ProgramSlider, hasPrograms } from '@/components/gym/ProgramSlider';
 import { ScheduleLink } from '@/components/gym/ScheduleLink';
-import { FaqAccordion } from '@/components/gym/FaqAccordion';
-import { TopicList } from '@/components/gym/TopicList';
-import { ColumnList } from '@/components/gym/ColumnList';
+import { FaqAccordion, hasFaqs } from '@/components/gym/FaqAccordion';
+import { TopicList, hasNews } from '@/components/gym/TopicList';
+import { ColumnList, hasColumns } from '@/components/gym/ColumnList';
 import { BrandConcept } from '@/components/gym/BrandConcept';
 import { SiteFooter } from '@/components/gym/SiteFooter';
 
@@ -49,9 +50,12 @@ export async function generateMetadata({ params }: { params: Promise<Params> }):
   return {
     title: metaTitle,
     description,
-    openGraph: { title, description, type: 'article', images: [gym.heroImage.url] },
+    openGraph: { title, description, type: 'article', images: [gym.seo?.ogImage?.url ?? gym.heroImage.url] },
     twitter: { card: 'summary_large_image' },
     alternates: { canonical: `/gym/${gym.slug}` },
+    // <meta name="page-version"> — the LINE service reads it back to confirm a publish
+    // (merged with the layout's `other`, so nq-sha stays).
+    ...(gym.pageVersion ? { other: { 'page-version': gym.pageVersion } } : {}),
   };
 }
 
@@ -59,6 +63,27 @@ export default async function GymPage({ params }: { params: Promise<Params> }) {
   const { slug } = await params;
   const gym = await getGym(slug);
   if (!gym) notFound();
+
+  // A block without data is left out entirely — its <Section> band too, not just the content.
+  const show = {
+    campaign: hasCampaign(gym),
+    plans: hasPlans(gym),
+    nearby: hasNearby(gym),
+    trainers: hasTrainers(gym),
+    voices: hasVoices(gym),
+    programs: hasPrograms(gym),
+    faqs: hasFaqs(gym),
+    news: hasNews(gym),
+    columns: hasColumns(gym),
+  };
+  // In-page anchors of left-out blocks — the header menu drops its links to them.
+  const hiddenHrefs = [
+    !show.plans && '#price',
+    !show.trainers && '#staff',
+    !show.programs && '#program',
+    !show.faqs && '#faq',
+    !show.news && '#topics',
+  ].filter((href): href is string => Boolean(href));
 
   return (
     <>
@@ -70,7 +95,8 @@ export default async function GymPage({ params }: { params: Promise<Params> }) {
       <SiteHeader
         gym={gym}
         ctaLabel={<JaWrap>{gym.primaryCtaLabel}</JaWrap>}
-        ctaShortLabel={<JaWrap>無料体験予約</JaWrap>}
+        ctaShortLabel={<JaWrap>{isTrialFree(gym) ? '無料体験予約' : '体験予約'}</JaWrap>}
+        hiddenHrefs={hiddenHrefs}
       />
       <main id="main" tabIndex={-1}>
         {/* 16-block structure — order fixed per the reference IA (spec §5).
@@ -81,42 +107,60 @@ export default async function GymPage({ params }: { params: Promise<Params> }) {
         <Section id="reserve">
           <TrialCta gym={gym} />
         </Section>
-        <Section data-nq-fix="3">
-          <CampaignBanner gym={gym} />
-        </Section>
+        {show.campaign && (
+          <Section data-nq-fix="3">
+            <CampaignBanner gym={gym} />
+          </Section>
+        )}
         <Section>
-          <AccessNap gym={gym} photos={studioPhotos} />
+          <AccessNap gym={gym} photos={gym.studioPhotos?.length ? gym.studioPhotos : studioPhotos} />
         </Section>
-        <Section>
-          <PriceTable gym={gym} />
-        </Section>
-        <Section>
-          <NearbyGyms gym={gym} />
-        </Section>
+        {show.plans && (
+          <Section>
+            <PriceTable gym={gym} />
+          </Section>
+        )}
+        {show.nearby && (
+          <Section>
+            <NearbyGyms gym={gym} />
+          </Section>
+        )}
         <Section>
           <TrialFlow gym={gym} />
         </Section>
-        <Section>
-          <StaffSection gym={gym} />
-        </Section>
-        <Section>
-          <VoiceSection gym={gym} />
-        </Section>
-        <Section>
-          <ProgramSlider gym={gym} />
-        </Section>
+        {show.trainers && (
+          <Section>
+            <StaffSection gym={gym} />
+          </Section>
+        )}
+        {show.voices && (
+          <Section>
+            <VoiceSection gym={gym} />
+          </Section>
+        )}
+        {show.programs && (
+          <Section>
+            <ProgramSlider gym={gym} />
+          </Section>
+        )}
         <Section>
           <ScheduleLink gym={gym} />
         </Section>
-        <Section>
-          <FaqAccordion gym={gym} />
-        </Section>
-        <Section>
-          <TopicList gym={gym} />
-        </Section>
-        <Section>
-          <ColumnList gym={gym} />
-        </Section>
+        {show.faqs && (
+          <Section>
+            <FaqAccordion gym={gym} />
+          </Section>
+        )}
+        {show.news && (
+          <Section>
+            <TopicList gym={gym} />
+          </Section>
+        )}
+        {show.columns && (
+          <Section>
+            <ColumnList gym={gym} />
+          </Section>
+        )}
         <Section>
           <BrandConcept gym={gym} />
         </Section>

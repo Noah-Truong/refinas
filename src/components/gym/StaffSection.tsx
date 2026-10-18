@@ -5,9 +5,14 @@ import { Button } from '@/components/ui/Button';
 import styles from './StaffSection.module.css';
 import { GymName } from '@/components/ui/GymName';
 import { JaWrap } from '@/components/ui/JaWrap';
+import { trialCatchText } from '@/lib/trial';
+
+/** The page renders this section only when the store lists trainers. */
+export const hasTrainers = (gym: Gym) => (gym.trainers?.length ?? 0) > 0;
 
 /** Staff: trainer card grid + Instagram promo + trial CTA. */
 export function StaffSection({ gym }: { gym: Gym }) {
+  if (!hasTrainers(gym)) return null;
   const instagram = gym.sns?.instagram;
   return (
     <>
@@ -56,7 +61,7 @@ export function StaffSection({ gym }: { gym: Gym }) {
         </div>
       )}
       <div className={styles.ctaWrapper}>
-        <Button href={gym.primaryCtaUrl} size="lg" catchText="まずは気軽に無料体験から">
+        <Button href={gym.primaryCtaUrl} size="lg" catchText={trialCatchText(gym)}>
           {gym.primaryCtaLabel}
         </Button>
       </div>

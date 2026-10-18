@@ -5,6 +5,7 @@ import { ArrowLink } from '@/components/ui/ArrowLink';
 import styles from './PriceTable.module.css';
 import { GymName } from '@/components/ui/GymName';
 import { JaWrap } from '@/components/ui/JaWrap';
+import { isTrialFree, trialCatchText } from '@/lib/trial';
 
 /** フルアクセス系プランは全店舗、それ以外は登録1店舗のみ利用可能。 */
 function studioScope(planName: string): string {
@@ -14,17 +15,30 @@ function studioScope(planName: string): string {
 /** Stored plan prices are 税抜 — display is 税込 (Fix Point 7/22 Task 5). */
 const taxIncluded = (price: number) => Math.round(price * 1.1);
 
+/** The page renders the pricing section only when there is at least one plan. */
+export const hasPlans = (gym: Gym) => (gym.plans?.length ?? 0) > 0;
+
+/** Lead sentence about the plan count — the count comes from the data, never a fixed number. */
+function planCountSentence(count: number): string {
+  if (count >= 10) return `目的に合わせて選べる${count}種類のプラン。`; // 「10つ」とは言わない
+  if (count >= 2) return `目的に合わせて選べる${count}つのプラン。`;
+  return '料金プランをご案内します。';
+}
+
 /** Pricing (LAVA block 7), Fix Point 7/22 Task 5: per-plan cards — left column
     is the "who it's for" label, right column is plan name + tax-included fee. */
 export function PriceTable({ gym }: { gym: Gym }) {
+  if (!hasPlans(gym)) return null;
   return (
     <>
       <SectionTitle
         title={<><GymName name={gym.name} />の料金プラン</>}
         id="price"
         lead={
+          // 文と <em> の並びを元の形のまま保つ（JaWrap の文節分けを変えないため）
           <>
-            目的に合わせて選べる3つのプラン。まずは<em>無料体験レッスン</em>からお試しいただけます。
+            {`${planCountSentence(gym.plans.length)}まずは`}
+            <em>{isTrialFree(gym) ? '無料体験レッスン' : '体験レッスン'}</em>からお試しいただけます。
           </>
         }
       />
@@ -119,7 +133,7 @@ export function PriceTable({ gym }: { gym: Gym }) {
 
       {/* 7d. section-end CTA */}
       <div className={styles.ctaWrapper}>
-        <Button href={gym.primaryCtaUrl} size="lg" catchText="まずは気軽に無料体験から">
+        <Button href={gym.primaryCtaUrl} size="lg" catchText={trialCatchText(gym)}>
           {gym.primaryCtaLabel}
         </Button>
         <ArrowLink href="#faq">よくあるご質問を見る</ArrowLink>

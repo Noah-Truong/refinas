@@ -4,11 +4,17 @@ import { SectionTitle } from '@/components/ui/SectionTitle';
 import { Button } from '@/components/ui/Button';
 import styles from './VoiceSection.module.css';
 import { JaWrap } from '@/components/ui/JaWrap';
+import { trialCatchText } from '@/lib/trial';
+
+/** Checklist ⑪: publish consent is required — unconsented voices never render */
+const consentedVoices = (gym: Gym) => gym.voices?.filter((voice) => voice.consentConfirmed) ?? [];
+
+/** The page renders this section only when at least one voice has publish consent. */
+export const hasVoices = (gym: Gym) => consentedVoices(gym).length > 0;
 
 /** Member voices: 2-col testimonial cards + disclaimers + trial CTA. */
 export function VoiceSection({ gym }: { gym: Gym }) {
-  // Checklist ⑪: publish consent is required — unconsented voices never render
-  const voices = gym.voices?.filter((voice) => voice.consentConfirmed) ?? [];
+  const voices = consentedVoices(gym);
   if (!voices.length) return null;
   return (
     <>
@@ -45,10 +51,11 @@ export function VoiceSection({ gym }: { gym: Gym }) {
       </ul>
       <ul className={styles.notes}>
         <li className={styles.note}><JaWrap>会員様個人の感想であり、効果・効能を保証するものではありません。</JaWrap></li>
-        <li className={styles.note}><JaWrap>Refinas会員様アンケート（2026年実施）より抜粋しています。</JaWrap></li>
+        {/* 出典の注記はデータから（調査名・年を部品に書き込まない） */}
+        {gym.voicesNote && <li className={styles.note}><JaWrap>{gym.voicesNote}</JaWrap></li>}
       </ul>
       <div className={styles.ctaWrapper}>
-        <Button href={gym.primaryCtaUrl} size="lg" catchText="まずは気軽に無料体験から">
+        <Button href={gym.primaryCtaUrl} size="lg" catchText={trialCatchText(gym)}>
           {gym.primaryCtaLabel}
         </Button>
       </div>

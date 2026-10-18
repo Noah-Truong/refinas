@@ -4,6 +4,7 @@ import { ArrowLink } from '@/components/ui/ArrowLink';
 import styles from './TrialCta.module.css';
 import { GymName } from '@/components/ui/GymName';
 import { JaWrap } from '@/components/ui/JaWrap';
+import { formatYen, isTrialFree } from '@/lib/trial';
 
 const CHECK_ITEMS = [
   '初心者・未経験OK',
@@ -24,6 +25,7 @@ export type TrialCtaVariant = 'a' | 'b';
 
 export function TrialCta({ gym, variant = 'a' }: { gym: Gym; variant?: TrialCtaVariant }) {
   const solid = variant === 'a';
+  const trial = gym.trial;
   return (
     <div className={[styles.card, solid ? styles.solid : styles.tinted].join(' ')}>
       <p className={styles.kicker}>
@@ -33,17 +35,23 @@ export function TrialCta({ gym, variant = 'a' }: { gym: Gym; variant?: TrialCtaV
       </p>
       <h2 className={styles.heading}>
         <GymName name={gym.name} />で<br className={styles.spBreak} />
-        <JaWrap>無料体験レッスンをはじめよう</JaWrap>
+        <JaWrap>{isTrialFree(gym) ? '無料体験レッスンをはじめよう' : '体験レッスンをはじめよう'}</JaWrap>
       </h2>
-      <div className={styles.priceBox}>
-        <span className={styles.priceLabel}>体験レッスン</span>
-        <span className={styles.priceValue}>
-          <strong className={styles.priceAmount}>0</strong>
-          <span className={styles.priceYen}>円</span>
-          <span className={styles.priceTax}>（税込）</span>
-        </span>
-        <s className={styles.priceBefore}>通常5,000円</s>
-      </div>
+      {/* No trial data → no price box (never show a made-up price) */}
+      {trial && (
+        <div className={styles.priceBox}>
+          <span className={styles.priceLabel}>体験レッスン</span>
+          <span className={styles.priceValue}>
+            <strong className={styles.priceAmount}>{formatYen(trial.price)}</strong>
+            <span className={styles.priceYen}>円</span>
+            <span className={styles.priceTax}>（税込）</span>
+          </span>
+          {/* 二重価格は通常価格の方が高いときだけ（同額・安い通常価格は比べる意味がない） */}
+          {trial.regularPrice != null && trial.regularPrice > trial.price && (
+            <s className={styles.priceBefore}>{`通常${formatYen(trial.regularPrice)}円`}</s>
+          )}
+        </div>
+      )}
       <ul className={styles.checkList}>
         {CHECK_ITEMS.map((item) => (
           <li key={item} className={styles.checkItem}>

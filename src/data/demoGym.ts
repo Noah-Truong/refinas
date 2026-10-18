@@ -247,6 +247,9 @@ const columns: Gym['columns'] = [
   },
 ];
 
+// 体験レッスン：チェックリスト③の記入値（通常5,000円→0円・税込）、所要時間はチェックリスト⑨（約60分）
+const trial: Gym['trial'] = { price: 0, regularPrice: 5000, durationMin: 60 };
+
 const shared = {
   columns,
   brandLabel: 'キックボクシングジム',
@@ -256,6 +259,8 @@ const shared = {
   plans,
   options,
   campaign,
+  trial,
+  brand: { storeCount: 38 },
   programs,
   scheduleType: 'external' as const,
   reserveUrl: RESERVE_URL,
@@ -266,6 +271,7 @@ const shared = {
   primaryCtaLabel: '無料体験を予約する',
   primaryCtaUrl: RESERVE_URL,
   contactUrl: RESERVE_URL,
+  voicesNote: 'Refinas会員様アンケート（2026年実施）より抜粋しています。',
 };
 
 export const demoGyms: Gym[] = [
@@ -291,6 +297,9 @@ export const demoGyms: Gym[] = [
     tel: '0120-181-199',
     access: [{ line: 'JR山手線', station: '渋谷駅', walkMin: 5 }],
     accessNote: '渋谷駅東口方面、明治通りから1本入った「オーベル渋谷」の1階です。',
+    // 道順はダミー（以前 AccessNap が全店共通で組み立てていた文をそのまま移したもの）。実際の道順に差し替える
+    directions:
+      '渋谷駅の改札を出て、大通り沿いにまっすぐお進みください。最初の交差点を渡ってすぐのビルにスタジオがございます。入口の「Refinas」の赤いサインが目印です。',
     parking: '専用駐車場なし（近隣にコインパーキングあり）',
     geo: { lat: 35.656, lng: 139.7045 },
     trainers: [
@@ -379,6 +388,9 @@ export const demoGyms: Gym[] = [
       { line: '東武東上線', station: '池袋駅', exit: '南口', walkMin: 3 },
     ],
     accessNote: '池袋駅西口を出てすぐ、1階が飲食店のビル3階です。',
+    // 道順はダミー（渋谷と同じく、以前の部品の共通文）
+    directions:
+      '池袋駅の西口を出て、大通り沿いにまっすぐお進みください。最初の交差点を渡ってすぐのビルにスタジオがございます。入口の「Refinas」の赤いサインが目印です。',
     parking: '専用駐車場なし（近隣にコインパーキングあり）',
     geo: { lat: 35.729503, lng: 139.708112 },
     trainers: [
@@ -461,6 +473,9 @@ export const demoGyms: Gym[] = [
       { line: '横浜市営地下鉄ブルーライン', station: '横浜駅', exit: '9番出口', walkMin: 6 },
     ],
     accessNote: '北幸の大通りから1本入った、落ち着いた立地です。',
+    // 道順はダミー（渋谷と同じく、以前の部品の共通文）
+    directions:
+      '横浜駅の西口を出て、大通り沿いにまっすぐお進みください。最初の交差点を渡ってすぐのビルにスタジオがございます。入口の「Refinas」の赤いサインが目印です。',
     parking: '専用駐車場なし（近隣にコインパーキングあり）',
     geo: { lat: 35.464651, lng: 139.617419 },
     trainers: [

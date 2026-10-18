@@ -7,6 +7,7 @@ import { ArrowLink } from '@/components/ui/ArrowLink';
 import styles from './TrialFlow.module.css';
 import { GymName } from '@/components/ui/GymName';
 import { JaWrap } from '@/components/ui/JaWrap';
+import { isTrialFree, trialCatchText } from '@/lib/trial';
 
 const STEPS = [
   {
@@ -60,17 +61,25 @@ export function TrialFlow({ gym }: { gym: Gym }) {
   const tel = gym.telCta ?? gym.tel;
   /** 「平日 11:00〜22:00」のような時間帯ごとの単位。単位の内部では折り返させない。 */
   const hourUnits = gym.hours.map((h) => `${h.label} ${h.time}`);
+  const durationMin = gym.trial?.durationMin;
   return (
     <>
       <SectionTitle
         id="flow"
         kicker="TRIAL FLOW"
-        title={<><GymName name={gym.name} />の無料体験の流れ</>}
+        title={<><GymName name={gym.name} />{isTrialFree(gym) ? 'の無料体験の流れ' : 'の体験の流れ'}</>}
         lead={
-          <>
-            体験は<em>手ぶらでOK</em>、所要時間は<em>約60分</em>
-            。受付からカウンセリングまでの流れをご紹介します。
-          </>
+          // 所要時間はデータがあるときだけ。<em> の中身は1つの文字列にする（JaWrap の文節分けを変えないため）
+          durationMin != null ? (
+            <>
+              体験は<em>手ぶらでOK</em>、所要時間は<em>{`約${durationMin}分`}</em>
+              。受付からカウンセリングまでの流れをご紹介します。
+            </>
+          ) : (
+            <>
+              体験は<em>手ぶらでOK</em>。受付からカウンセリングまでの流れをご紹介します。
+            </>
+          )
         }
       />
       <ol className={styles.steps}>
@@ -96,7 +105,7 @@ export function TrialFlow({ gym }: { gym: Gym }) {
         ))}
       </ol>
       <div className={styles.ctaWrapper}>
-        <Button href={gym.primaryCtaUrl} size="lg" catchText="まずは気軽に無料体験から">
+        <Button href={gym.primaryCtaUrl} size="lg" catchText={trialCatchText(gym)}>
           {gym.primaryCtaLabel}
         </Button>
       </div>
