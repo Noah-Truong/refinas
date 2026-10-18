@@ -26,10 +26,13 @@ import { SiteFooter } from '@/components/gym/SiteFooter';
 
 type Params = { slug: string };
 
-// The store list is fully known at build time, so every page is prerendered and any
-// other slug is a 404 — no on-demand render, no function invocation for junk URLs.
-// When the CMS lands, swap this to a revalidate window rather than dropping it.
-export const dynamicParams = false;
+// Every store known at build time is prerendered. dynamicParams stays on because store data now
+// comes from the page API (updated through /api/revalidate):
+// - a store published after the build renders on its first request (no redeploy needed);
+// - with `false`, self-hosted Next 15.5 (`next start`) answers a store page whose tag was
+//   revalidated with a 404 (NoFallbackError) instead of re-rendering it.
+// An unknown slug costs one render (and one API 404) — its 404 is then cached like any page.
+export const dynamicParams = true;
 
 export async function generateStaticParams(): Promise<Params[]> {
   const gyms = await getAllGyms();
